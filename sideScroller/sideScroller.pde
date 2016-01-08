@@ -4,10 +4,13 @@ int[] scenery = new int[200];
  
 int currentPosition;
 int scrollPosition = gridSize;
- 
+float x,y;
+float dim = 80.0;
+PImage bg;
 void setup()
 {
-  size(500,500); // creates dimesions
+  size(960,540); // creates dimesions
+  bg = loadImage("marioBackground.jpg");
   for (int i = 0; i < scenery.length; i++){
     if (random(1) > 0.85){
       scenery[i] = int(random(height / gridSize));
@@ -19,7 +22,20 @@ void setup()
  
 void draw() // static void main-ish 
 {
-  background(255, 204, 0);
+  x = x = 0.8;
+  if(x > width + dim){
+      x = -dim;
+  }
+  translate(x, height/2-dim/2);
+  fill(255);
+  rect(-dim/2, -dim/2, dim, dim);
+  translate(x, dim);
+  fill(0);
+  rect(-dim/2, -dim/2, dim, dim);
+  
+  
+  
+  background(bg);
   fill(#005588);
   for (int i = currentPosition - halfScreen, j = 0; i < currentPosition + halfScreen; i++, j++)
   {
