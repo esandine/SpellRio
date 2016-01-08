@@ -7,9 +7,9 @@ void setup(){
   fill(ground);
   rect(0,5*height/6,width,height/6);//bottom sixth of the screen
 }
-Mario itsame = new Mario();
+Mario itsame = new Mario();// It's a me, Mario!
 void draw(){
-  itsame.move(0,1);
+  itsame.move(0,1);//moves mario continously
   setup();
   itsame.display();
 }
