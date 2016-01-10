@@ -1,4 +1,4 @@
-float groundheight;
+float groundheight;//The height of the brown bar at the bottom of the world
 void setup(){
   size(640,360);
   clear();//resets the world
@@ -11,37 +11,38 @@ void setup(){
   rect(0,groundheight,width,height/6);//bottom sixth of the screen
 }
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
-boolean wpressed = false;
-boolean apressed = false;
-boolean dpressed = false;
-int jumpsleft = 2;
-float gravity;
+boolean apressed = false;//Tracks whether or not the user is currently pressing "a"
+boolean dpressed = false;//Does the same with "d"
+int jumpsleft = 2;//Keeps track of the amount of jumps left for mario, starts at two.
+float gravity;//A speed that adjusts based on the distance between mario and the ground.
 void draw(){
-  if(wpressed){
-    itsame.move(0,1);
-  }
+  //If a or d is pressed, mario moves
   if(apressed){
-    itsame.move(-1,0);
+    itsame.move(-3,0);
   }
   if(dpressed){
-    itsame.move(1,0);
+    itsame.move(3,0);
   }
-  gravity = 10-((groundheight-itsame.getYcor())/27);
+  //Gravity is checked based on how high above the ground mario is.
+  gravity = 5-((groundheight-itsame.getYcor())/54);
   itsame.move(0,-gravity);
-  //itsame.move(1,0);//moves mario continously
+  //If mario is below the ground this shifts him up. It also resets his double jump
   if(itsame.getYcor()>groundheight){
     itsame.move(0,itsame.getYcor()-groundheight);
     jumpsleft=2;
   }
+  //Clears and displays Mario
   setup();
   itsame.display();  
 }
 
 void keyPressed(){
+  //If "w" is pressed, Mario jumps.
   if(key=='w'&&jumpsleft>0){
-    itsame.move(0,200);
+    itsame.move(0,150);
     jumpsleft-=1;
   }
+  //Keeps track of what keys are being pressed.
   if(key=='a'){
     apressed=true;
   }
@@ -50,9 +51,6 @@ void keyPressed(){
   }
 }
 void keyReleased(){
-  if(key=='w'){
-    wpressed=false;
-  }
   if(key=='a'){
     apressed=false;
   }
