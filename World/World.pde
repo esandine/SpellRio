@@ -14,6 +14,7 @@ Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the cen
 boolean wpressed = false;
 boolean apressed = false;
 boolean dpressed = false;
+int jumpsleft = 2;
 float gravity;
 void draw(){
   if(wpressed){
@@ -30,14 +31,16 @@ void draw(){
   //itsame.move(1,0);//moves mario continously
   if(itsame.getYcor()>groundheight){
     itsame.move(0,itsame.getYcor()-groundheight);
+    jumpsleft=2;
   }
   setup();
   itsame.display();  
 }
 
 void keyPressed(){
-  if(key=='w'){
-    wpressed=true;
+  if(key=='w'&&jumpsleft>0){
+    itsame.move(0,200);
+    jumpsleft-=1;
   }
   if(key=='a'){
     apressed=true;
