@@ -1,8 +1,8 @@
 void setup(){
+  size(640,360);
   clear();//resets the world
   color backcolor = color(0,120,0);//green
   //size(640,360);
-  fullScreen();
   background(backcolor);//backround is green
   color ground = color(220,120,0);//brown
   fill(ground);
@@ -12,8 +12,5 @@ Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the cen
 void draw(){
   itsame.move(1,0);//moves mario continously
   setup();
-  itsame.display();
-  
-  rect(width/2-15,height*5/6-50,30,50);
-  
+  itsame.display();  
 }

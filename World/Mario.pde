@@ -22,7 +22,7 @@ class Mario{
   */
   void display(){//Displays Mario
     fill(c);//makes a red rectangle that is 30x50
-    rect(xcor,ycor,30,50);
+    rect(getXcor(),getYcor(),30,50);
   }
   void move(float dx,float dy){//Moves Mario a specified distance
     xcor+=dx;
@@ -34,13 +34,13 @@ class Mario{
       ycor=height;
     }
   }
-  int getXcor(){
+  float getXcor(){
     return xcor;
   }
-  int getYcor(){
+  float getYcor(){
     return ycor;
   }
   color getC(){
-    return C;
+    return c;
   }
 }
