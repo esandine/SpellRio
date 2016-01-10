@@ -1,45 +1,25 @@
-final int gridSize = 50; // final is a permanent value 
-int halfScreen;
-int[] scenery = new int[200];
-PImage bg;
-int currentPosition;
-int scrollPosition = gridSize;
-
+PImage img;
+int x,y;
 void setup()
-{
- 
-  size(600,385); // creates dimesions
-  bg = loadImage("../Images/marioBG.png"); 
-  for (int i = 0; i < scenery.length; i++){
-    if (random(1) > 0.85){
-      scenery[i] = int(random(height / gridSize));
-    }
-  }
-  // Half screen in terms of grid size
-  halfScreen = currentPosition = width / gridSize / 2;
-}
- 
-void draw() // static void main-ish 
-{
-  background(bg);
-  fill(#005588);
-  for (int i = currentPosition - halfScreen, j = 0; i < currentPosition + halfScreen; i++, j++)
   {
-    if (scenery[i] > 0)
-    {
-      rect(scrollPosition + j * gridSize, height - scenery[i] * gridSize, 
-          gridSize, height);
-    }
+    size(800,600);  
+    img = loadImage(""); // image is 1600 x 600
   }
-  fill(255,0,0);
-  rect(30, 20, 55, 55, 3, 6, 12, 18); // Character!
- 
-  scrollPosition = scrollPosition - 1;
-  if (scrollPosition == 0)
-  {
-    currentPosition++;
-    scrollPosition = gridSize;
-    if (currentPosition == scenery.length - halfScreen)
-      exit(); // End
-  }
+void draw()
+{
+  //  background(0); 
+      // not needed as image is bigger than size 
+     // and thus overwrites all areas
+  x = constrain(x, 0, img.width - width);    
+     // ensures that "scrolling" stops at right end of image
+  // y = constrain(y, 0, img.height - height); 
+     // Not needed here, as scolling only in x
+  image(img, -x, 0);  
+     // overwrites the whole screen with the "shifted" image
+  x = frameCount;     
+     // advances the image with each new frame
+     // do whatever is wanted from here on 
+     // like after a call of background();
+  stroke(0,0,0);
+  ellipse(mouseX,mouseY,15,15);
 }
