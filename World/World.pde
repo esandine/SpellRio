@@ -1,3 +1,4 @@
+float groundheight;
 void setup(){
   size(640,360);
   clear();//resets the world
@@ -6,15 +7,14 @@ void setup(){
   background(backcolor);//backround is green
   color ground = color(220,120,0);//brown
   fill(ground);
-  rect(0,5*height/6,width,height/6);//bottom sixth of the screen
+  groundheight=5*height/6;
+  rect(0,groundheight,width,height/6);//bottom sixth of the screen
 }
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
 boolean wpressed = false;
 boolean apressed = false;
-boolean spressed = false;
 boolean dpressed = false;
-
-
+float gravity;
 void draw(){
   if(wpressed){
     itsame.move(0,1);
@@ -22,13 +22,15 @@ void draw(){
   if(apressed){
     itsame.move(-1,0);
   }
-  if(spressed){
-    itsame.move(0,-1);
-  }
   if(dpressed){
     itsame.move(1,0);
   }
+  gravity = 10-((groundheight-itsame.getYcor())/27);
+  itsame.move(0,-gravity);
   //itsame.move(1,0);//moves mario continously
+  if(itsame.getYcor()>groundheight){
+    itsame.move(0,itsame.getYcor()-groundheight);
+  }
   setup();
   itsame.display();  
 }
@@ -40,9 +42,6 @@ void keyPressed(){
   if(key=='a'){
     apressed=true;
   }
-  if(key=='s'){
-    spressed=true;
-  }
   if(key=='d'){
     dpressed=true;
   }
@@ -53,9 +52,6 @@ void keyReleased(){
   }
   if(key=='a'){
     apressed=false;
-  }
-  if(key=='s'){
-    spressed=false;
   }
   if(key=='d'){
     dpressed=false;
