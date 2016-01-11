@@ -1,3 +1,4 @@
+PImage mario;
 class Mario{
   color c;//his color
   float xcor;//coordinates of the point that represents him
@@ -21,8 +22,8 @@ class Mario{
   }
   */
   void display(){//Displays Mario
-    fill(c);//makes a red rectangle that is 30x50
-    rect(getXcor()-15,getYcor()-50,30,50);
+    mario=loadImage("runningMario.gif");
+    image(mario,xcor,ycor);
   }
   void move(float dx,float dy){//Moves Mario a specified distance
     xcor+=dx;
