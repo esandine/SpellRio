@@ -1,7 +1,3 @@
-// Alex French
-// a scrolling shooter inspired by Defender and Geometry Wars
-// features parallax scrolling
- 
 building b[] = new building[40];
 PImage bg;
 PImage buildings[] = new PImage[4];
