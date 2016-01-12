@@ -1,19 +1,22 @@
 PImage back, middle, front;
 PVector vback, vmiddle, vfront;
 float groundheight;//The height of the brown bar at the bottom of the world
+PImage pipe;
+PVector vpipe;
 
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
-  
+  pipe = loadImage("pipe.png");
   size(640, 420);
   vback = new PVector(0, 0);
   vmiddle = new PVector(0, 0);
   vfront = new PVector(0, 5); //just fixing the position of the image
-  
+  vpipe = new PVector(0,0);
   frameRate(24);
   groundheight=400;
+  
 
 }
 
@@ -53,6 +56,7 @@ void draw(){
   paraDraw(back, vback, 1);
   paraDraw(middle, vmiddle, 2);
   paraDraw(front, vfront, 3);
+  paraDraw(pipe,vpipe,4);
   itsame.display();
 }
 void keyPressed(){

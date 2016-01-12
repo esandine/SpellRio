@@ -7,17 +7,15 @@ class Pipe{
     public String orientation;
     private PImage img;
     
-    public Pipe(String orientation){
-      this.orientation = orientation;
-      reset();
+    
+    public Pipe(int x, int y){
+      mywidth = x;
+      myheight = y;
+      img.resize(mywidth, myheight);
     }
     public void reset(){
       mywidth = 66;
       myheight = 400;
-      x = width + 2;
-    }
-    public void update(){
-        x -= speed;
     }
     
     public boolean collides(int _x, int _y, int _width, int _height){
