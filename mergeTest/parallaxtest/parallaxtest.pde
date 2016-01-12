@@ -39,7 +39,7 @@ boolean apressed = false;//Tracks whether or not the user is currently pressing 
 boolean dpressed = false;//Does the same with "d"
 //int isjumping = 0;
 //int jumpsleft = 2;//Keeps track of the amount of jumps left for mario, starts at two.
-float gravity;//A speed that adjusts based on the distance between mario and the ground.
+//float gravity;//A speed that adjusts based on the distance between mario and the ground.
 void draw(){
   background(255);
   if(apressed){
@@ -48,20 +48,7 @@ void draw(){
   if(dpressed){
     itsame.move(3,0);
   }
-  gravity = 15-((groundheight-itsame.getYcor())/38);
-  if(itsame.getYcor()<10){
-    itsame.setIsJumping(0);
-  }
-  if(itsame.getIsJumping()>0){
-    itsame.move(0,gravity);
-    itsame.setIsJumping(itsame.getIsJumping()-1);
-  }else{
-    itsame.move(0,-gravity);
-  }
-  if(itsame.getYcor()>groundheight){
-    itsame.move(0,itsame.getYcor()-groundheight);
-    itsame.setJumpsLeft(2);
-  }
+  itsame.moveUpDown(groundheight);
   paraDraw(back, vback, 1);
   paraDraw(middle, vmiddle, 2);
   paraDraw(front, vfront, 3);
