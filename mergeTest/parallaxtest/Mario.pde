@@ -6,6 +6,9 @@ class Mario{
   int isjumping;//Keeps track of how long he has been jumping. 0-15 
   int jumpsleft;//Keeps track of the double jump
   float gravity;//ADjusts gravity based on his position
+  boolean apressed;//Keeps track of whether a or d are pressed
+  boolean dpressed;
+  
   Mario(color C, float x, float y){
     c=C;
     xcor=x;
@@ -13,6 +16,8 @@ class Mario{
     isjumping=0;
     jumpsleft=2;
     gravity=0;
+    apressed=false;
+    dpressed=false;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -28,7 +33,7 @@ class Mario{
   }
   */
   void display(){//Displays Mario
-    mario=loadImage("runningMario.gif");
+    mario=loadImage("standingMario.gif");
     image(mario,xcor,ycor);
   }
   void move(float dx,float dy){//Moves Mario a specified distance
@@ -47,6 +52,7 @@ class Mario{
       ycor=0;
     }
   }
+  //Accessors
   float getXcor(){
     return xcor;
   }
@@ -62,15 +68,37 @@ class Mario{
   int getIsJumping(){
     return isjumping;
   }
+  boolean getApressed(){
+    return apressed;
+  }
+  boolean getDpressed(){
+    return dpressed;
+  }
+  //Mutators
   void setJumpsLeft(int n){
     jumpsleft = n;
   }
   void setIsJumping(int n){
     isjumping = n;
   }
+  void setApressed(boolean tf){
+    apressed=tf;
+  }
+  void setDpressed(boolean tf){
+    dpressed=tf;
+  }
+  //jump() triggers when up is pressed.
   void jump(){
     setJumpsLeft(getJumpsLeft()-1);
     setIsJumping(15);
+  }
+  void moveLeftRight(){//Moves Mario left and right
+     if(apressed){
+       move(-3,0);
+     }
+     if(dpressed){
+       move(3,0);
+    }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   void moveUpDown(float groundheight){
