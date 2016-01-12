@@ -15,7 +15,7 @@ class Mario{
     ycor=y;
     isjumping=0;
     jumpsleft=2;
-    gravity=0;
+    gravity=10;
     apressed=false;
     dpressed=false;
   }
@@ -87,10 +87,13 @@ class Mario{
   void setDpressed(boolean tf){
     dpressed=tf;
   }
+  void setGravity(int g){
+    gravity=g;
+  }
   //jump() triggers when up is pressed.
   void jump(){
     setJumpsLeft(getJumpsLeft()-1);
-    setIsJumping(15);
+    gravity=0;
   }
   void moveLeftRight(){//Moves Mario left and right
      if(apressed){
@@ -102,16 +105,12 @@ class Mario{
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   void moveUpDown(float groundheight){
-    gravity = 15-((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
+    gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     if(itsame.getYcor()<10){//If Mario is near the top he stops jumping
-      itsame.setIsJumping(0);
+      gravity+=10000;
     }
-    if(itsame.getIsJumping()>0){//If mario is currently jumping move him up
-      itsame.move(0,gravity);
-      itsame.setIsJumping(itsame.getIsJumping()-1);
-    }else{//If not, move him down
-      itsame.move(0,-gravity);
-    }
+    itsame.move(0,10);
+    itsame.move(0,-gravity);
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);

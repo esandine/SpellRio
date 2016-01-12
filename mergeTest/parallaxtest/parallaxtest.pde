@@ -48,7 +48,7 @@ void draw(){
 void keyPressed(){
   //If "w" is pressed, Mario jumps.
   if(key=='w'&&itsame.getJumpsLeft()>0){
-    itsame.setIsJumping(15);
+    itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
   }
   //Keeps track of what keys are being pressed.
