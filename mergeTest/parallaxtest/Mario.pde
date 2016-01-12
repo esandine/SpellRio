@@ -107,7 +107,7 @@ class Mario{
   void moveUpDown(float groundheight){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     if(itsame.getYcor()<10){//If Mario is near the top he stops jumping
-      gravity+=10000;
+      gravity+=100;
     }
     itsame.move(0,10);
     itsame.move(0,-gravity);
