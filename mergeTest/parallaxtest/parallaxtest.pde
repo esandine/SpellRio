@@ -37,8 +37,8 @@ void paraDraw(PImage img, PVector pos, float vel){
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
 boolean apressed = false;//Tracks whether or not the user is currently pressing "a"
 boolean dpressed = false;//Does the same with "d"
-int isjumping = 0;
-int jumpsleft = 2;//Keeps track of the amount of jumps left for mario, starts at two.
+//int isjumping = 0;
+//int jumpsleft = 2;//Keeps track of the amount of jumps left for mario, starts at two.
 float gravity;//A speed that adjusts based on the distance between mario and the ground.
 void draw(){
   background(255);
@@ -50,17 +50,17 @@ void draw(){
   }
   gravity = 15-((groundheight-itsame.getYcor())/38);
   if(itsame.getYcor()<10){
-    isjumping = 0;
+    itsame.setIsJumping(0);
   }
-  if(isjumping>0){
+  if(itsame.getIsJumping()>0){
     itsame.move(0,gravity);
-    isjumping-=1;
+    itsame.setIsJumping(itsame.getIsJumping()-1);
   }else{
     itsame.move(0,-gravity);
   }
   if(itsame.getYcor()>groundheight){
     itsame.move(0,itsame.getYcor()-groundheight);
-    jumpsleft=2;
+    itsame.setJumpsLeft(2);
   }
   paraDraw(back, vback, 1);
   paraDraw(middle, vmiddle, 2);
@@ -70,9 +70,9 @@ void draw(){
 }
 void keyPressed(){
   //If "w" is pressed, Mario jumps.
-  if(key=='w'&&jumpsleft>0){
-    isjumping=15;
-    jumpsleft-=1;
+  if(key=='w'&&itsame.getJumpsLeft()>0){
+    itsame.setIsJumping(15);
+    itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
   }
   //Keeps track of what keys are being pressed.
   if(key=='a'){

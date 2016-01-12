@@ -3,10 +3,14 @@ class Mario{
   color c;//his color
   float xcor;//coordinates of the point that represents him
   float ycor;
+  int isjumping;
+  int jumpsleft;
   Mario(color C, float x, float y){
     c=C;
     xcor=x;
     ycor=y;
+    isjumping=0;
+    jumpsleft=2;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -50,4 +54,21 @@ class Mario{
   color getC(){
     return c;
   }
+  int getJumpsLeft(){
+    return jumpsleft;
+  }
+  int getIsJumping(){
+    return isjumping;
+  }
+  void setJumpsLeft(int n){
+    jumpsleft = n;
+  }
+  void setIsJumping(int n){
+    isjumping = n;
+  }
+  void jump(){
+    setJumpsLeft(getJumpsLeft()-1);
+    setIsJumping(15);
+  }
+    
 }
