@@ -114,6 +114,7 @@ class Mario{
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);
+      gravity-=.5;
     }
   }
 }
