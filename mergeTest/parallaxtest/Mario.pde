@@ -130,7 +130,7 @@ class Mario{
     }
   }
   public boolean isInside(Terrain m){
-    return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()) && (getYcor()<m.getYcor()+m.getHeight());
+    return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
   }
   
 }

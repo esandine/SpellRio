@@ -99,7 +99,7 @@ void setPipes(){
     float height = (float)Math.random()*200+200;
     pipes[i].setXcor((float)Math.random()*640);
     pipes[i].setYcor(height);
-    pipes[i].setLength((float)Math.random()*50+50);
+    pipes[i].setLength(50);
     pipes[i].setHeight(400-height);
     pipes[i].setImage(pipe);
   }
