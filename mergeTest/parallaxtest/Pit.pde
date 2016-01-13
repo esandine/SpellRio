@@ -18,8 +18,8 @@ public class Pit extends Terrain{
   
   public void display(){
     setColor(255,204,0);
-    rect(200,300,20,40);
-    fill(255,204,0);
+    fill(0,0,0);
+    rect(100,400,30,30);
   }
 
 }

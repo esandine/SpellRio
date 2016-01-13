@@ -25,6 +25,7 @@ void setup(){
   bushVel=0;
   backVel=0;
   setPipes();
+  setPit();
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -54,11 +55,7 @@ void draw(){
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }
-  
-  if(random(100)<25){
-      p = new Pit(color(255,204,0));
-      p.display();
-  }
+  p.display();
   //p1.display();
   //image(p1.getImage(),p1.getXcor(),p1.getYcor());
 }
@@ -106,6 +103,15 @@ void setPipes(){
     pipes[i].setHeight(400-height);
     pipes[i].setImage(pipe);
   }
-
-  
 }
+  void movePipes(){
+    for(int n = 0;n<pipes.length;n++){
+      if(itsame.isInside(pipes[n])){
+        itsame.move(100,100);
+      }
+    }
+  }
+  void setPit(){
+    p = new Pit(600,400,20,20,color(255,399,0));
+    p.display();
+  }

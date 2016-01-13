@@ -114,4 +114,8 @@ class Mario{
       gravity-=.5;
     }
   }
+  public boolean isInside(Terrain m){
+    return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()) && (getYcor()<m.getYcor()+m.getHeight());
+  }
+  
 }
