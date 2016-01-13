@@ -92,11 +92,11 @@ void keyReleased(){
 void setPipes(){
   for(int i = 0;i<pipes.length;i++){
     pipes[i]=new Pipe(pipe);
-    float height = (float)Math.random()*420;
+    float height = (float)Math.random()*200+200;
     pipes[i].setXcor((float)Math.random()*640);
     pipes[i].setYcor(height);
-    pipes[i].setLength((float)Math.random()*100);
-    pipes[i].setHeight(380-height);
+    pipes[i].setLength((float)Math.random()*50+50);
+    pipes[i].setHeight(400-height);
     pipes[i].setImage(pipe);
   }
 }
