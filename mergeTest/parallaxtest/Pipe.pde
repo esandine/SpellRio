@@ -5,9 +5,7 @@ class Pipe{
     public int myheight;
     public int speed = 3;
     public String orientation;
-    private PImage img;
-    
-    
+    private PImage img;   
     public Pipe(int x, int y){
       mywidth = x;
       myheight = y;
