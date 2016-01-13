@@ -6,13 +6,13 @@ PVector vpipe;
 float spriteVel;
 float bushVel;
 float backVel;
-Pipe p1 = new Pipe(pipe);
+Pipe[]pipes = new Pipe[10];
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
-  pipe = loadImage("pipe.png");
-  pipe.resize((int)p1.getXcor(),(int)p1.getYcor());
+  //p1.setImage(loadImage("pipe.png"));
+  //p1.getImage().resize((int)p1.getXcor(),(int)p1.getYcor());
   size(640, 420);
   vback = new PVector(0, 0);
   vmiddle = new PVector(0, 0);
@@ -23,7 +23,7 @@ void setup(){
   spriteVel=0;
   bushVel=0;
   backVel=0;
-  adjustPipe(p1);
+  setPipes();
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -49,7 +49,11 @@ void draw(){
   paraDraw(front, vfront,spriteVel);
   //paraDraw(pipe,vpipe,0);
   itsame.display();
-  image(pipe,p1.getXcor(),p1.getYcor());
+  for(int n = 0;n<pipes.length;n++){
+    pipes[n].display();
+  }
+  //p1.display();
+  //image(p1.getImage(),p1.getXcor(),p1.getYcor());
 }
 void keyPressed(){
   //If "w" is pressed, Mario jumps.
@@ -85,9 +89,14 @@ void keyReleased(){
     bushVel = 0;
   }
 }
-void adjustPipe(Pipe p){
-  p.setXcor((float)Math.random()*640);
-  p.setYcor(groundheight);
-  p.setLength((float)Math.random()*50);
-  p.setHeight((float)Math.random()*500);
+void setPipes(){
+  for(int i = 0;i<pipes.length;i++){
+    pipes[i]=new Pipe(pipe);
+    float height = (float)Math.random()*420;
+    pipes[i].setXcor((float)Math.random()*640);
+    pipes[i].setYcor(height);
+    pipes[i].setLength((float)Math.random()*100);
+    pipes[i].setHeight(380-height);
+    pipes[i].setImage(pipe);
+  }
 }

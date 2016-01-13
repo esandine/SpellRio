@@ -14,6 +14,9 @@ public class Pipe extends Terrain{
     img = nimg;
   }
   public void display(){
+    setImage(loadImage("pipe.png"));
+    getImage().resize((int)getXcor(),(int)getYcor());
+    image(getImage(),getXcor(),getYcor());
   }
 }
 /*class Pipe{
