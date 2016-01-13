@@ -1,11 +1,11 @@
 public class Pit extends Terrain{
   private color pitColor;
-  public Pit(float x, float y, float l, float h, color c){
+  public Pit(float x, float y, float l, float h, int c){
       super(x,y,l,h);
       pitColor = c;
   }
   public Pit(color c){
-      super(100,100,100,100,(color(255,204,0)));
+      this(100,100,100,100,c);
   }
   
   public color getColor(){
@@ -16,7 +16,10 @@ public class Pit extends Terrain{
       pitColor = color(r,g,b);
   }
   
-      
-
+  public void display(){
+    setColor(255,204,0);
+    rect(200,300,20,40);
+    fill(255,204,0);
+  }
 
 }
