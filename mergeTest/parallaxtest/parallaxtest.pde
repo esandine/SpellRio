@@ -5,6 +5,7 @@ PImage pipe;
 PVector vpipe;
 float spriteVel;
 float bushVel;
+Terrain t;
 float backVel;
 Pipe[]pipes = new Pipe[10];
 void setup(){
@@ -49,6 +50,7 @@ void draw(){
   paraDraw(front, vfront,spriteVel);
   //paraDraw(pipe,vpipe,0);
   itsame.display();
+  isPit();
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }
@@ -99,4 +101,10 @@ void setPipes(){
     pipes[i].setHeight(400-height);
     pipes[i].setImage(pipe);
   }
+void isPit(){
+  if(random(100)<25){
+      t = new Terrain(300,400,20,20);
+  }}  
+  
+  
 }
