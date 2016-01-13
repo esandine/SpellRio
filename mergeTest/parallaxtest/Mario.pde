@@ -95,19 +95,34 @@ class Mario{
     setJumpsLeft(getJumpsLeft()-1);
     gravity=0;
   }
-  void moveLeftRight(){//Moves Mario left and right
+  void moveLeftRight(Terrain[] ts){//Moves Mario left and right
      if(apressed){
        move(-3,0);
+       for(int i = 0;i<ts.length;i++){
+         if(isInside(ts[i])){
+           move(3,0);
+         }
+       }
      }
      if(dpressed){
        move(3,0);
+       for(int i = 0;i<ts.length;i++){
+         if(isInside(ts[i])){
+           move(-3,0);
+         }
+       }
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight){
+  void moveUpDown(float groundheight, Terrain[] ts){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
-    itsame.move(0,10);
-    itsame.move(0,-gravity);
+    itsame.move(0,10-gravity);
+    for(int i = 0;i<ts.length;i++){
+         if(isInside(ts[i])){
+           move(0,gravity-10);
+           setJumpsLeft(2);
+         }
+       }
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);

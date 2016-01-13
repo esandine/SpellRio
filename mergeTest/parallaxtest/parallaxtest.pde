@@ -44,8 +44,8 @@ void paraDraw(PImage img, PVector pos, float vel){
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
 void draw(){
   background(255);
-  itsame.moveLeftRight();
-  itsame.moveUpDown(groundheight);
+  itsame.moveLeftRight(pipes);
+  itsame.moveUpDown(groundheight,pipes);
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
   paraDraw(front, vfront,spriteVel);
