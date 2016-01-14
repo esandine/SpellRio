@@ -8,7 +8,7 @@ float bushVel;
 boolean lost = false;
 int coinCount = 0;
 final int minxcor = 2;
-//Pit p;
+Pit p;
 CoinCounter counter;
 float backVel;
 Pipe[]pipes = new Pipe[10];
@@ -28,7 +28,6 @@ void setup(){
   bushVel=0;
   backVel=0;
   setPipes();
-  //setPit();
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);

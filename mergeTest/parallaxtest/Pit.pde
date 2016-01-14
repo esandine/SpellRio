@@ -1,25 +1,12 @@
-/*public class Pit extends Terrain{
-  private color pitColor;
-  public Pit(float x, float y, float l, float h, int c){
-      super(x,y,l,h);
-      pitColor = c;
+public class Pit extends Terrain{
+  public Pit(float x, float y, float l, float h, PImage p){
+      super(x,y,l,h,p);
   }
-  public Pit(color c){
-      this(100,100,100,100,c);
+  public Pit(PImage p){
+      this(100,100,100,100,p);
   }
-  
-  public color getColor(){
-      return pitColor;
-  }
-  
-  public void setColor(int r, int g, int b){
-      pitColor = color(r,g,b);
-  }
-  
   public void display(){
-    setColor(255,204,0);
-    fill(0,0,0);
-    rect(getXcor(),getYcor(),getHeight(),getLength());
+    display("pitPic.png");
   }
   public void upTrigger(Mario m){  
     m.die();
@@ -27,4 +14,4 @@
   public void leftTrigger(Mario m){}
   public void rightTrigger(Mario m){}
   public void downTrigger(Mario m){}
-}*/
+}
