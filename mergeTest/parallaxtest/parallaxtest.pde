@@ -5,6 +5,7 @@ PImage pipe;
 PVector vpipe;
 float spriteVel;
 float bushVel;
+boolean lost = false;
 Pit p;
 float backVel;
 Pipe[]pipes = new Pipe[10];
@@ -18,7 +19,7 @@ void setup(){
   vback = new PVector(0, 0);
   vmiddle = new PVector(0, 0);
   vfront = new PVector(0, 5); //just fixing the position of the image
-  //vpipe = new PVector(0,0);
+  textSize(13);
   frameRate(24);
   groundheight=380;
   spriteVel=0;
@@ -42,6 +43,8 @@ void paraDraw(PImage img, PVector pos, float vel){
   //rect(pos.x, 0, img.width, img.height);
 }
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
+
+
 void draw(){
   background(255);
   itsame.moveLeftRight(pipes);
@@ -56,9 +59,19 @@ void draw(){
     pipes[n].display();
   }
   p.display();
-  //p1.display();
-  //image(p1.getImage(),p1.getXcor(),p1.getYcor());
+  print(itsame.getHealth());
+  if((itsame.getHealth() == 0)){
+   textSize(20);
+   text("Click To Restart",300,200);
+   noLoop();
+   lost = true;
+   textSize(13);
+  }
+    
 }
+
+
+
 void keyPressed(){
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
