@@ -5,13 +5,16 @@ class CoinCounter{
   }
   
   void incrementCoinNum(int x,Mario actor, Coin money){
-    if(isCollected(actor,money)){
+    if(isCollected(actor,money) && money.collected == false){
     coinNum += x;
+    money.collected = true;
+    //delete the coin
     }
   }
   
   boolean isCollected(Mario m, Coin c){
-      return ((m.getXcor() == c.getXcor()) && (m.getYcor() == c.getYcor()));
+      return (((m.getXcor() > c.getXcor() -1.5)&&(m.getXcor() < c.getXcor() + 1.5))||
+      ((m.getYcor() > c.getYcor() -1.5)&&(m.getYcor() < c.getYcor() + 1.5)));
   }
   
   void display(){

@@ -66,7 +66,7 @@ void draw(){
   //paraDraw(pipe,vpipe,0);
   itsame.display();
   c.display();
-  print(counter.coinNum);
+  print(c.collected);
   counter.incrementCoinNum(1,itsame,c);
   counter.display();
   for(int n = 0;n<pipes.length;n++){
