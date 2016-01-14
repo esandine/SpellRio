@@ -9,20 +9,20 @@ boolean lost = false;
 int coinCount = 0;
 final int minxcor = 2;
 Pit p;
+CoinCounter counter;
 float backVel;
 Pipe[]pipes = new Pipe[10];
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
-  //p1.setImage(loadImage("pipe.png"));
-  //p1.getImage().resize((int)p1.getXcor(),(int)p1.getYcor());
   size(640, 420);
   vback = new PVector(0, 0);
   vmiddle = new PVector(0, 0);
   vfront = new PVector(0, 5); //just fixing the position of the image
   textSize(13);
   frameRate(24);
+  counter = new CoinCounter();
   groundheight=380;
   spriteVel=0;
   bushVel=0;
@@ -66,7 +66,9 @@ void draw(){
   //paraDraw(pipe,vpipe,0);
   itsame.display();
   c.display();
-  
+  print(counter.coinNum);
+  counter.incrementCoinNum(1,itsame,c);
+  counter.display();
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }

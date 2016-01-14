@@ -14,6 +14,8 @@ class Coin{
     }
     void display(){
       coin = loadImage("coin.png");
+      //image(coin,xcor,ycor);
+      coin.resize(15,15);
       image(coin,xcor,ycor);
     }
     
