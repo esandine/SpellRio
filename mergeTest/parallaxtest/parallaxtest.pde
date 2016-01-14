@@ -1,10 +1,7 @@
 PImage back, middle, front;
-PVector vback, vmiddle, vfront;
-float groundheight;//The height of the brown bar at the bottom of the world
+PVector vback, vmiddle, vfront,vpipe;
 PImage pipe;
-PVector vpipe;
-float spriteVel;
-float bushVel;
+float spriteVel,pipeVel,bushVel,groundheight;
 boolean lost = false;
 int coinCount = 0;
 Coin[]coinArray = new Coin[10];
@@ -20,6 +17,7 @@ void setup(){
   size(640, 420);
   vback = new PVector(0, 0);
   vmiddle = new PVector(0, 0);
+  vpipe = new PVector(0,0);
   vfront = new PVector(0, 5); //just fixing the position of the image
   textSize(13);
   frameRate(24);
@@ -28,24 +26,19 @@ void setup(){
   spriteVel=0;
   bushVel=0;
   backVel=0;
+  pipeVel = 5;
   setPipes();
   for(int i = 0;i < coinArray.length;i++){
-    coinArray[i] = new Coin(((int)random(620)),((int)(240-random(100))));
+    coinArray[i] = new Coin(((int)random(620)),((int)(120-random(100))));
   }
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
-  
   int r = (int)pos.x+img.width;
-
   if(r < width) image(img, r, pos.y);
   if(pos.x < width) image(img, pos.x-img.width, pos.y);  
   if(pos.x < -img.width) pos.x = width;
-  //println("r: " + r + ", pos.x: " +pos.x);
-  
   image(img, pos.x, pos.y);
-  //fill(#ff0000);
-  //rect(pos.x, 0, img.width, img.height);
 }
 
 void paraDrawPit(PImage img, PVector pos, float vel){
@@ -66,7 +59,7 @@ void draw(){
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
   paraDrawPit(front, vfront,spriteVel);
-  //paraDraw(pipe,vpipe,0);
+  //paradraw each pipe to the left. 
   itsame.display();
   c.display();
   counter.incrementCoinNum(1,itsame,c);
@@ -76,6 +69,7 @@ void draw(){
   }
   for(int n = 0; n < coinArray.length; n++){
     coinArray[n].display();
+    counter.incrementCoinNum(1,itsame,coinArray[n]);
   }
   //p.display();
   if((itsame.getHealth() == 0)){
@@ -94,7 +88,7 @@ void draw(){
 }
 
 
-
+// once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
 
   //If "w" is pressed, Mario jumps.
@@ -108,12 +102,26 @@ void keyPressed(){
     spriteVel = -1; 
     backVel = -3;
     bushVel = -2;
+    for(int i =0; i <pipes.length;i++){
+        if(pipes[i].getXcor() == 0){
+          //regenerate at the right side with xcor = maxxcor
+           pipes[i].setXcor(630);
+        }
+        pipes[i].setXcor(pipes[i].getXcor()+1);
+    }           
   }
   if(key=='d'){
     itsame.setDpressed(true);
     spriteVel = 3; 
     backVel = 1;
     bushVel = 2;
+     for(int i =0; i <pipes.length;i++){
+        if(pipes[i].getXcor() == 0){
+          //regenerate at the right side with xcor = maxxcor
+           pipes[i].setXcor(630);
+        }
+        pipes[i].setXcor(pipes[i].getXcor()-1);
+   }
   }
 }
 void keyReleased(){

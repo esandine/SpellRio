@@ -1,4 +1,7 @@
 public class Pipe extends Terrain{
+  PVector vpipe;
+  float pipeVel;
+  
   public Pipe(float x, float y, float l, float h, PImage image){
     super(x,y,l,h,image);
   }
@@ -25,4 +28,13 @@ public class Pipe extends Terrain{
   }
   public void downTrigger(Mario m){
   };
+  
+ /* void paraDraw(PVector pos, float vel){
+    pos.sub(vel, 0, 0);
+    int r = (int)pos.x+img.width;
+    if(r < width) image(img, r, pos.y);
+    if(pos.x < width) image(img, pos.x-img.width, pos.y);  
+    if(pos.x < -img.width) pos.x = width;
+    image(img, pos.x, pos.y);
+}*/
 }
