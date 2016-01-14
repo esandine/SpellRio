@@ -59,7 +59,8 @@ void draw(){
   itsame.moveUpDown(groundheight,currentWorld);
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
-  paraDrawPit(front, vfront,spriteVel);
+  paraDraw(front,vfront,spriteVel);
+  //paraDrawPit(front, vfront,spriteVel);
   //paradraw each pipe to the left. 
   itsame.display();
   c.display();
