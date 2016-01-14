@@ -6,6 +6,7 @@ PVector vpipe;
 float spriteVel;
 float bushVel;
 boolean lost = false;
+int coinCount = 0;
 final int minxcor = 2;
 Pit p;
 float backVel;
@@ -53,7 +54,7 @@ void paraDrawPit(PImage img, PVector pos, float vel){
   image(img, pos.x, pos.y,600,450);
 }
 
-Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
+Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
 
 
 void draw(){
@@ -65,7 +66,8 @@ void draw(){
   paraDrawPit(front, vfront,spriteVel);
   //paraDraw(pipe,vpipe,0);
   itsame.display();
-
+  Coin c = new Coin(300,300);
+  
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }

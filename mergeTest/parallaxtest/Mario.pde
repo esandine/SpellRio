@@ -37,7 +37,7 @@ class Mario{
   void display(){//Displays Mario
   if(getHealth() > 0){
     mario=loadImage("standingMario.gif");
-    image(mario,xcor,ycor);
+    image(mario,xcor,ycor-6);
   }
   }
   void move(float dx,float dy){//Moves Mario a specified distance
