@@ -8,7 +8,7 @@ float bushVel;
 boolean lost = false;
 int coinCount = 0;
 final int minxcor = 2;
-Pit p;
+//Pit p;
 CoinCounter counter;
 float backVel;
 Pipe[]pipes = new Pipe[10];
@@ -28,7 +28,7 @@ void setup(){
   bushVel=0;
   backVel=0;
   setPipes();
-  setPit();
+  //setPit();
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -59,7 +59,7 @@ Coin c = new Coin(300,50);
 void draw(){
   background(255);
   itsame.moveLeftRight(pipes);
-  itsame.moveUpDown(groundheight,pipes,p);
+  itsame.moveUpDown(groundheight,pipes);
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
   paraDrawPit(front, vfront,spriteVel);
@@ -72,7 +72,7 @@ void draw(){
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }
-  p.display();
+  //p.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("Click To Restart",300,200);
@@ -143,7 +143,7 @@ void setPipes(){
       }
     }
   }
-  void setPit(){
+  /*void setPit(){
     p = new Pit(300,300,100,100,color(255,399,0));
     p.display();
-  }
+  }*/

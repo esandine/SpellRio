@@ -1,4 +1,4 @@
-public class Pit extends Terrain{
+/*public class Pit extends Terrain{
   private color pitColor;
   public Pit(float x, float y, float l, float h, int c){
       super(x,y,l,h);
@@ -27,4 +27,4 @@ public class Pit extends Terrain{
   public void leftTrigger(Mario m){}
   public void rightTrigger(Mario m){}
   public void downTrigger(Mario m){}
-}
+}*/

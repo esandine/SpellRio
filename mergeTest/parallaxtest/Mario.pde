@@ -130,7 +130,7 @@ class Mario{
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight, Terrain[] ts, Pit p){
+  void moveUpDown(float groundheight, Terrain[] ts){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.length;i++){
@@ -139,9 +139,9 @@ class Mario{
            setJumpsLeft(2);
          }
        }
-    if(itsame.isInside(p)){
+    /*if(itsame.isInside(p)){
       p.upTrigger(this);
-    }
+    }*/
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);
