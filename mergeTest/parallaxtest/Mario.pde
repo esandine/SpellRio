@@ -115,6 +115,11 @@ class Mario{
      if(apressed){
        move(-3,0);
        for(int i = 0;i<ts.length;i++){
+          if(currentWorld[i].getXcor() >= 630){
+          //regenerate at the right side with xcor = maxxcor
+           currentWorld[i].setXcor(0);
+        }
+        ts[i].move(1,0);
          if(isInside(ts[i])){
            ts[i].rightTrigger(this);
          }
@@ -123,6 +128,11 @@ class Mario{
      if(dpressed){
        move(3,0);
        for(int i = 0;i<ts.length;i++){
+        if(currentWorld[i].getXcor() <= 0){
+          //regenerate at the right side with xcor = maxxcor
+           currentWorld[i].setXcor(630);
+        }
+        ts[i].move(-1,0);
          if(isInside(ts[i])){
            ts[i].leftTrigger(this);
          }

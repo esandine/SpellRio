@@ -107,7 +107,7 @@ void keyPressed(){
           //regenerate at the right side with xcor = maxxcor
            currentWorld[i].setXcor(630);
         }
-        currentWorld[i].setXcor(currentWorld[i].getXcor()+1);
+        //currentWorld[i].setXcor(currentWorld[i].getXcor()+1);
     }           
   }
   if(key=='d'){
