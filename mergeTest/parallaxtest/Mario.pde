@@ -82,6 +82,12 @@ class Mario{
     return health;
   }
   //Mutators
+  void setXcor(int x){
+      xcor = x;
+  }
+  void setYcor(int y){
+      ycor = y;
+  }
   void setJumpsLeft(int n){
     jumpsleft = n;
   }
@@ -147,6 +153,7 @@ class Mario{
   }
   public void die(){
     setHealth(0);
+    lost = true;
   }
   
 }

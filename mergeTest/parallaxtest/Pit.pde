@@ -21,7 +21,7 @@ public class Pit extends Terrain{
     fill(0,0,0);
     rect(getXcor(),getYcor(),getHeight(),getLength());
   }
-  public void upTrigger(Mario m){
+  public void upTrigger(Mario m){  
     m.die();
   }
   public void leftTrigger(Mario m){}

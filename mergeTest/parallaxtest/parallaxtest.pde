@@ -6,6 +6,7 @@ PVector vpipe;
 float spriteVel;
 float bushVel;
 boolean lost = false;
+final int minxcor = 2;
 Pit p;
 float backVel;
 Pipe[]pipes = new Pipe[10];
@@ -42,6 +43,16 @@ void paraDraw(PImage img, PVector pos, float vel){
   //fill(#ff0000);
   //rect(pos.x, 0, img.width, img.height);
 }
+
+void paraDrawPit(PImage img, PVector pos, float vel){
+  pos.sub(vel, 0, 0);
+  int r = (int)pos.x+img.width;
+  if(r < width) image(img, r, pos.y);
+  if(pos.x < width) image(img, pos.x-img.width, pos.y);  
+  if(pos.x < -img.width) pos.x = width;
+  image(img, pos.x, pos.y,600,450);
+}
+
 Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the center
 
 
@@ -51,7 +62,7 @@ void draw(){
   itsame.moveUpDown(groundheight,pipes,p);
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
-  paraDraw(front, vfront,spriteVel);
+  paraDrawPit(front, vfront,spriteVel);
   //paraDraw(pipe,vpipe,0);
   itsame.display();
 
@@ -59,20 +70,25 @@ void draw(){
     pipes[n].display();
   }
   p.display();
-  print(itsame.getHealth());
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("Click To Restart",300,200);
    noLoop();
    lost = true;
    textSize(13);
+   redraw();
   }
+  if(itsame.getYcor() >450){
+    itsame.die();
+  }
+  
     
 }
 
 
 
 void keyPressed(){
+
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
     itsame.setIsJumping(15);
