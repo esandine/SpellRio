@@ -20,6 +20,23 @@ public class Pipe extends Terrain{
     //fill(0,0,0);
     //rect(getXcor(),getYcor(),getLength(),getHeight());
   }
+  public void upTrigger(Mario m){
+    while(m.isInside(this)){
+      m.move(0,.1);
+    }
+  }
+  public void leftTrigger(Mario m){
+    while(m.isInside(this)){
+      m.move(-.1,0);
+    }
+  }
+  public void rightTrigger(Mario m){
+    while(m.isInside(this)){
+      m.move(.1,0);
+    }
+  }
+  public void downTrigger(Mario m){
+  };
 }
 /*class Pipe{
     public int x;

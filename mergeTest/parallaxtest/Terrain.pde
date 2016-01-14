@@ -38,6 +38,10 @@ abstract class Terrain{ //An abstract class for all rectangular Terrain.
     setYcor(getYcor()-dy);
   }
   public abstract void display();
+  public abstract void upTrigger(Mario m);//Triggers when Mario enters from above
+  public abstract void downTrigger(Mario m);
+  public abstract void leftTrigger(Mario m);
+  public abstract void rightTrigger(Mario m);
   public boolean isInside(Mario m){
     return (m.getXcor()>getXcor()) && (m.getXcor()<getXcor()+getLength()) && (m.getYcor()>getYcor()) && (m.getYcor()<getYcor()+getHeight());
   }

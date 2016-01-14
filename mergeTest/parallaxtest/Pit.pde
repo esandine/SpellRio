@@ -1,4 +1,4 @@
-public class Pit extends Terrain{
+/*public class Pit extends Terrain{
   private color pitColor;
   public Pit(float x, float y, float l, float h, int c){
       super(x,y,l,h);
@@ -22,4 +22,4 @@ public class Pit extends Terrain{
     rect(100,400,30,30);
   }
 
-}
+}*/

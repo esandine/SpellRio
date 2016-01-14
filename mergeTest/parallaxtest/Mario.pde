@@ -100,7 +100,7 @@ class Mario{
        move(-3,0);
        for(int i = 0;i<ts.length;i++){
          if(isInside(ts[i])){
-           move(3,0);
+           ts[i].rightTrigger(this);
          }
        }
      }
@@ -108,7 +108,7 @@ class Mario{
        move(3,0);
        for(int i = 0;i<ts.length;i++){
          if(isInside(ts[i])){
-           move(-3,0);
+           ts[i].leftTrigger(this);
          }
        }
     }
@@ -119,7 +119,7 @@ class Mario{
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.length;i++){
          if(isInside(ts[i])){
-           move(0,gravity-10);
+           ts[i].upTrigger(this);
            setJumpsLeft(2);
          }
        }
