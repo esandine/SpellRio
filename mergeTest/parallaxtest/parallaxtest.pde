@@ -84,7 +84,6 @@ void draw(){
     itsame.die();
   }
   
-    
 }
 
 
@@ -115,13 +114,16 @@ void keyPressed(){
     spriteVel = 3; 
     backVel = 1;
     bushVel = 2;
-     for(int i =0; i <pipes.length;i++){
+    for(int i =0; i <pipes.length;i++){
         if(pipes[i].getXcor() == 0){
           //regenerate at the right side with xcor = maxxcor
            pipes[i].setXcor(630);
         }
+       // while(keyPressed){
         pipes[i].setXcor(pipes[i].getXcor()-1);
+        //}
    }
+   
   }
 }
 void keyReleased(){
