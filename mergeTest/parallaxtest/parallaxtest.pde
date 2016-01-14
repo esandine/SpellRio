@@ -55,8 +55,7 @@ void paraDrawPit(PImage img, PVector pos, float vel){
 }
 
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
-
-
+Coin c = new Coin(300,50);
 void draw(){
   background(255);
   itsame.moveLeftRight(pipes);
@@ -66,7 +65,7 @@ void draw(){
   paraDrawPit(front, vfront,spriteVel);
   //paraDraw(pipe,vpipe,0);
   itsame.display();
-  Coin c = new Coin(300,300);
+  c.display();
   
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
