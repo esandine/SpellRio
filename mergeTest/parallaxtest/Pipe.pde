@@ -1,7 +1,4 @@
 public class Pipe extends Terrain{
-  PVector vpipe;
-  float pipeVel;
-  
   public Pipe(float x, float y, float l, float h, PImage image){
     super(x,y,l,h,image);
   }

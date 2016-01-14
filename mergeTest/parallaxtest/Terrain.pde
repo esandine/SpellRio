@@ -4,6 +4,9 @@ abstract class Terrain{ //An abstract class for all rectangular Terrain.
   private float length;
   private float height;
   private PImage img;   
+  PVector vpipe;
+  float pipeVel;
+  
   public Terrain(float x,float y,float l,float h, PImage p){
     xcor = x;
     ycor = y;
