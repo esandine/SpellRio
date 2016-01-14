@@ -101,30 +101,13 @@ void keyPressed(){
     itsame.setApressed(true);
     spriteVel = -1; 
     backVel = -3;
-    bushVel = -2;
-    for(int i =0; i <currentWorld.length;i++){
-        if(currentWorld[i].getXcor() == 0){
-          //regenerate at the right side with xcor = maxxcor
-           currentWorld[i].setXcor(630);
-        }
-        //currentWorld[i].setXcor(currentWorld[i].getXcor()+1);
-    }           
+    bushVel = -2;          
   }
   if(key=='d'){
     itsame.setDpressed(true);
     spriteVel = 3; 
     backVel = 1;
     bushVel = 2;
-    for(int i =0; i <currentWorld.length;i++){
-        if(currentWorld[i].getXcor() == 0){
-          //regenerate at the right side with xcor = maxxcor
-           currentWorld[i].setXcor(630);
-        }
-       // while(keyPressed){
-        currentWorld[i].setXcor(currentWorld[i].getXcor()-1);
-        //}
-   }
-   
   }
 }
 void keyReleased(){
