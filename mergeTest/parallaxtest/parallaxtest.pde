@@ -5,7 +5,7 @@ PImage pipe;
 PVector vpipe;
 float spriteVel;
 float bushVel;
-//Pit p;
+Pit p;
 float backVel;
 Pipe[]pipes = new Pipe[10];
 void setup(){
@@ -25,7 +25,7 @@ void setup(){
   bushVel=0;
   backVel=0;
   setPipes();
-  //setPit();
+  setPit();
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -45,7 +45,7 @@ Mario itsame = new Mario(width/2.0-15,height*5.0/6-50);// Makes Mario in the cen
 void draw(){
   background(255);
   itsame.moveLeftRight(pipes);
-  itsame.moveUpDown(groundheight,pipes);
+  itsame.moveUpDown(groundheight,pipes,p);
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
   paraDraw(front, vfront,spriteVel);
@@ -55,7 +55,7 @@ void draw(){
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
   }
-  //p.display();
+  p.display();
   //p1.display();
   //image(p1.getImage(),p1.getXcor(),p1.getYcor());
 }
@@ -111,7 +111,7 @@ void setPipes(){
       }
     }
   }
-  /*void setPit(){
-    p = new Pit(600,400,20,20,color(255,399,0));
+  void setPit(){
+    p = new Pit(300,300,100,100,color(255,399,0));
     p.display();
-  }*/
+  }

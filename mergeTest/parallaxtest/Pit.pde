@@ -1,4 +1,4 @@
-/*public class Pit extends Terrain{
+public class Pit extends Terrain{
   private color pitColor;
   public Pit(float x, float y, float l, float h, int c){
       super(x,y,l,h);
@@ -19,7 +19,12 @@
   public void display(){
     setColor(255,204,0);
     fill(0,0,0);
-    rect(100,400,30,30);
+    rect(getXcor(),getYcor(),getHeight(),getLength());
   }
-
-}*/
+  public void upTrigger(Mario m){
+    m.die();
+  }
+  public void leftTrigger(Mario m){}
+  public void rightTrigger(Mario m){}
+  public void downTrigger(Mario m){}
+}

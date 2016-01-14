@@ -8,6 +8,7 @@ class Mario{
   float gravity;//ADjusts gravity based on his position
   boolean apressed;//Keeps track of whether a or d are pressed
   boolean dpressed;
+  boolean alive;
   
   Mario(color C, float x, float y){
     c=C;
@@ -18,6 +19,7 @@ class Mario{
     gravity=10;
     apressed=false;
     dpressed=false;
+    alive=true;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -33,8 +35,10 @@ class Mario{
   }
   */
   void display(){//Displays Mario
+  if(getAlive()){
     mario=loadImage("standingMario.gif");
     image(mario,xcor,ycor);
+  }
   }
   void move(float dx,float dy){//Moves Mario a specified distance
     xcor+=dx;
@@ -74,6 +78,9 @@ class Mario{
   boolean getDpressed(){
     return dpressed;
   }
+  boolean getAlive(){
+    return alive;
+  }
   //Mutators
   void setJumpsLeft(int n){
     jumpsleft = n;
@@ -89,6 +96,9 @@ class Mario{
   }
   void setGravity(int g){
     gravity=g;
+  }
+  void setAlive(boolean b){
+    alive=b;
   }
   //jump() triggers when up is pressed.
   void jump(){
@@ -114,7 +124,7 @@ class Mario{
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight, Terrain[] ts){
+  void moveUpDown(float groundheight, Terrain[] ts, Pit p){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.length;i++){
@@ -123,6 +133,9 @@ class Mario{
            setJumpsLeft(2);
          }
        }
+    if(itsame.isInside(p)){
+      p.upTrigger(this);
+    }
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);
@@ -131,6 +144,9 @@ class Mario{
   }
   public boolean isInside(Terrain m){
     return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
+  }
+  public void die(){
+    setAlive(false);
   }
   
 }
