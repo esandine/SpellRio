@@ -8,7 +8,7 @@ class Mario{
   float gravity;//ADjusts gravity based on his position
   boolean apressed;//Keeps track of whether a or d are pressed
   boolean dpressed;
-  boolean alive;
+  int health; 
   
   Mario(color C, float x, float y){
     c=C;
@@ -19,7 +19,7 @@ class Mario{
     gravity=10;
     apressed=false;
     dpressed=false;
-    alive=true;
+    health = 1;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -35,7 +35,7 @@ class Mario{
   }
   */
   void display(){//Displays Mario
-  if(getAlive()){
+  if(getHealth() > 0){
     mario=loadImage("standingMario.gif");
     image(mario,xcor,ycor);
   }
@@ -78,8 +78,8 @@ class Mario{
   boolean getDpressed(){
     return dpressed;
   }
-  boolean getAlive(){
-    return alive;
+  int getHealth(){
+    return health;
   }
   //Mutators
   void setJumpsLeft(int n){
@@ -97,8 +97,8 @@ class Mario{
   void setGravity(int g){
     gravity=g;
   }
-  void setAlive(boolean b){
-    alive=b;
+  void setHealth(int h){
+    health = h;
   }
   //jump() triggers when up is pressed.
   void jump(){
@@ -146,7 +146,7 @@ class Mario{
     return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
   }
   public void die(){
-    setAlive(false);
+    setHealth(0);
   }
   
 }
