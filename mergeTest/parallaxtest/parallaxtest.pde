@@ -7,6 +7,7 @@ float spriteVel;
 float bushVel;
 boolean lost = false;
 int coinCount = 0;
+Coin[]coinArray = new Coin[10];
 final int minxcor = 2;
 Pit p;
 CoinCounter counter;
@@ -28,6 +29,9 @@ void setup(){
   bushVel=0;
   backVel=0;
   setPipes();
+  for(int i = 0;i < coinArray.length;i++){
+    coinArray[i] = new Coin(((int)random(620)),((int)(240-random(100))));
+  }
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -65,11 +69,13 @@ void draw(){
   //paraDraw(pipe,vpipe,0);
   itsame.display();
   c.display();
-  print(c.collected);
   counter.incrementCoinNum(1,itsame,c);
   counter.display();
   for(int n = 0;n<pipes.length;n++){
     pipes[n].display();
+  }
+  for(int n = 0; n < coinArray.length; n++){
+    coinArray[n].display();
   }
   //p.display();
   if((itsame.getHealth() == 0)){

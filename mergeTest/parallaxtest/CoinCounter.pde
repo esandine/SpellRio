@@ -13,8 +13,8 @@ class CoinCounter{
   }
   
   boolean isCollected(Mario m, Coin c){
-      return (((m.getXcor() > c.getXcor() -1.5)&&(m.getXcor() < c.getXcor() + 1.5))||
-      ((m.getYcor() > c.getYcor() -1.5)&&(m.getYcor() < c.getYcor() + 1.5)));
+      return (((m.getXcor() > c.getXcor() -1)&&(m.getXcor() < c.getXcor() + 1))||
+      ((m.getYcor() > c.getYcor() -1)&&(m.getYcor() < c.getYcor() + 1)));
   }
   
   void display(){
