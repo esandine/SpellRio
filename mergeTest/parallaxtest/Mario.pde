@@ -147,7 +147,6 @@ class Mario{
     for(int i = 0;i<ts.length;i++){
          if(isInside(ts[i])){
            ts[i].upTrigger(this);
-           setJumpsLeft(2);
          }
        }
     if(itsame.getYcor()>groundheight){//If mario hits the ground

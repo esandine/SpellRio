@@ -60,8 +60,8 @@ void draw(){
   counter.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
-   text("Click To Restart",300,200);
-   noLoop();
+   text("press R to Restart",width/2,height/2);
+   //noLoop();
    lost = true;
    textSize(13);
    redraw();
@@ -93,6 +93,9 @@ void keyPressed(){
     spriteVel = 3; 
     backVel = 1;
     bushVel = 2;
+  }
+  if(key=='r'){
+    itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
   }
 }
 void keyReleased(){
