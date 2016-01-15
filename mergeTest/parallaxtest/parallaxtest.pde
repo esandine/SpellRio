@@ -110,14 +110,16 @@ void keyReleased(){
   }
 }
 void setTerrain(){
+  int counter = 0;
   for(int i = 0;i<currentWorld.length;i++){
-    if(Math.random()>.333){
+    if(counter<5){
       float height = (float)Math.random()*200+200;
       currentWorld[i]=new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png");
+      counter++;
      }else if(Math.random()>.5){
-      currentWorld[i]=new Pit((float)Math.random()*640,380,30,40,"pitPic.png");
+      currentWorld[i]=new Pit((float)Math.random()*640,400,30,20,"pitPic.png");
      }else{
-       currentWorld[i]= new Coin((float)Math.random()*620,120-(float)Math.random()*100,15,15,"coin.png");
+       currentWorld[i]= new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png");
      }
       
   }
