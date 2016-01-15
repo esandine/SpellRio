@@ -1,3 +1,6 @@
+import ddf.minim.*;
+AudioPlayer player;
+Minim minim;
 PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
 float spriteVel,pipeVel,bushVel,groundheight;
@@ -8,6 +11,9 @@ CoinCounter counter;
 float backVel;
 Terrain[]currentWorld = new Terrain[20];
 void setup(){
+  minim = new Minim(this);
+  player = minim.loadFile("backgroundMusic.mp3",2048);
+  player.play();
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
@@ -145,4 +151,10 @@ void setTerrain(){
         itsame.move(100,100);
       }
     }
+  }
+  
+  void stop(){
+    player.close();
+    minim.stop();
+    super.stop();
   }
