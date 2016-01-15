@@ -1,13 +1,13 @@
 public class Pit extends Terrain{
-  public Pit(float x, float y, float l, float h, PImage p){
-      super(x,y,l,h,p);
+  public Pit(float x, float y, float l, float h, String s){
+      super(x,y,l,h,s);
   }
-  public Pit(PImage p){
-      this(100,100,100,100,p);
+  public Pit(String s){
+      this(100,100,100,100,s);
   }
-  public void display(){
-    display("pitPic.png");
-  }
+  //public void display(){
+  //  display("pitPic.png");
+  //}
   public void upTrigger(Mario m){  
     m.die();
   }

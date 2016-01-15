@@ -82,10 +82,10 @@ class Mario{
     return health;
   }
   //Mutators
-  void setXcor(int x){
+  void setXcor(float x){
       xcor = x;
   }
-  void setYcor(int y){
+  void setYcor(float y){
       ycor = y;
   }
   void setJumpsLeft(int n){

@@ -7,12 +7,12 @@ abstract class Terrain{ //An abstract class for all rectangular Terrain.
   PVector vpipe;
   float pipeVel;
   
-  public Terrain(float x,float y,float l,float h, PImage p){
+  public Terrain(float x,float y,float l,float h, String s){
     xcor = x;
     ycor = y;
     length = l;
     height = h;
-    img=p;
+    img=loadImage(s);
   }
   public float getXcor(){
     return xcor;
@@ -48,14 +48,12 @@ abstract class Terrain{ //An abstract class for all rectangular Terrain.
     setXcor(getXcor()+dx);
     setYcor(getYcor()-dy);
   }
-  public void display(String s){
-    setImage(loadImage(s));
+  public void display(){
     //getImage().resize((int)getXcor(),(int)getYcor());
     image(getImage(),getXcor(),getYcor(),getLength(),getHeight());
     //fill(0,0,0);
     //rect(getXcor(),getYcor(),getLength(),getHeight());
   }
-  public abstract void display();
   public abstract void upTrigger(Mario m);//Triggers when Mario enters from above
   public abstract void downTrigger(Mario m);
   public abstract void leftTrigger(Mario m);

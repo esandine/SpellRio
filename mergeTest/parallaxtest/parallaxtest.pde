@@ -128,15 +128,16 @@ void keyReleased(){
 void setTerrain(){
   for(int i = 0;i<currentWorld.length;i++){
     if(Math.random()>.5){
-      currentWorld[i]=new Pipe(pipe);
       float height = (float)Math.random()*200+200;
-      currentWorld[i].setXcor((float)Math.random()*640);
+      currentWorld[i]=new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png");
+      //float height = (float)Math.random()*200+200;
+      /*currentWorld[i].setXcor((float)Math.random()*640);
       currentWorld[i].setYcor(height);
       currentWorld[i].setLength(50);
       currentWorld[i].setHeight(400-height);
-      currentWorld[i].setImage(pipe);
+      currentWorld[i].setImage(pipe);*/
      }else{
-      currentWorld[i]=new Pit((float)Math.random()*640,380,30,40,pit);
+      currentWorld[i]=new Pit((float)Math.random()*640,380,30,40,"pitPic.png");
      }
       
   }
