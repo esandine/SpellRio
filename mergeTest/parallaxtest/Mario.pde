@@ -9,6 +9,7 @@ class Mario{
   boolean apressed;//Keeps track of whether a or d are pressed
   boolean dpressed;
   int health; 
+  int coinscollected;
   
   Mario(color C, float x, float y){
     c=C;
@@ -20,6 +21,7 @@ class Mario{
     apressed=false;
     dpressed=false;
     health = 1;
+    coinscollected=0;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -81,6 +83,9 @@ class Mario{
   int getHealth(){
     return health;
   }
+  int getCoinsCollected(){
+    return coinscollected;
+  }
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -105,6 +110,9 @@ class Mario{
   }
   void setHealth(int h){
     health = h;
+  }
+  void setCoinsCollected(int c){
+    coinscollected=c;
   }
   //jump() triggers when up is pressed.
   void jump(){

@@ -1,16 +1,12 @@
 PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
-PImage pipe;
-PImage pit;
 float spriteVel,pipeVel,bushVel,groundheight;
 boolean lost = false;
 int coinCount = 0;
-Coin[]coinArray = new Coin[10];
 final int minxcor = 2;
-Pit p;
 CoinCounter counter;
 float backVel;
-Terrain[]currentWorld = new Terrain[10];
+Terrain[]currentWorld = new Terrain[20];
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
@@ -29,9 +25,9 @@ void setup(){
   backVel=0;
   pipeVel = 5;
   setTerrain();
-  for(int i = 0;i < coinArray.length;i++){
-    coinArray[i] = new Coin(((int)random(620)),((int)(120-random(100))));
-  }
+  //for(int i = 0;i < coinArray.length;i++){
+  //  coinArray[i] = new Coin(((int)random(620)),((int)(120-random(100))));
+  //}
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -52,7 +48,6 @@ void paraDrawPit(PImage img, PVector pos, float vel){
 }
 
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
-Coin c = new Coin(300,50);
 void draw(){
   background(255);
   itsame.moveLeftRight(currentWorld);
@@ -63,17 +58,18 @@ void draw(){
   //paraDrawPit(front, vfront,spriteVel);
   //paradraw each pipe to the left. 
   itsame.display();
-  c.display();
-  counter.incrementCoinNum(1,itsame,c);
-  counter.display();
+  //counter.incrementCoinNum(1,itsame,c);
+  //counter.display();
   for(int n = 0;n<currentWorld.length;n++){
     currentWorld[n].display();
   }
-  for(int n = 0; n < coinArray.length; n++){
+  /*for(int n = 0; n < coinArray.length; n++){
     coinArray[n].display();
     counter.incrementCoinNum(1,itsame,coinArray[n]);
-  }
+  }*/
   //p.display();
+  counter.incrementCoinNum(itsame);
+  counter.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("Click To Restart",300,200);
@@ -127,7 +123,7 @@ void keyReleased(){
 }
 void setTerrain(){
   for(int i = 0;i<currentWorld.length;i++){
-    if(Math.random()>.5){
+    if(Math.random()>.333){
       float height = (float)Math.random()*200+200;
       currentWorld[i]=new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png");
       //float height = (float)Math.random()*200+200;
@@ -136,8 +132,10 @@ void setTerrain(){
       currentWorld[i].setLength(50);
       currentWorld[i].setHeight(400-height);
       currentWorld[i].setImage(pipe);*/
-     }else{
+     }else if(Math.random()>.5){
       currentWorld[i]=new Pit((float)Math.random()*640,380,30,40,"pitPic.png");
+     }else{
+       currentWorld[i]= new Coin((float)Math.random()*620,120-(float)Math.random()*100,15,15,"coin.png");
      }
       
   }

@@ -1,28 +1,32 @@
-PImage coin;
-class Coin{
+class Coin extends Terrain{
     boolean collected;
-    int xcor;
-    int ycor;
-    Coin(int x, int y){
-      xcor = x;
-      ycor = y;
+    Coin(float x, float y, float l, float h, String s){
+      super(x,y,l,h,s);
       collected = false;
     }
-    int getXcor(){
-      return xcor;
-    }
-    int getYcor(){
-      return ycor;
-    }
+  public void upTrigger(Mario m){
+    incrementCoinNum(m);
+  }
+  public void downTrigger(Mario m){
+    incrementCoinNum(m);
+  }
+  public void leftTrigger(Mario m){
+    incrementCoinNum(m);
+  }
+  public void rightTrigger(Mario m){
+    incrementCoinNum(m);
+  }
     void display(){
       if(!collected){
-      coin = loadImage("coin.png");
-      //image(coin,xcor,ycor);
-      coin.resize(15,15);
-      image(coin,xcor,ycor);
+        super.display();
       }
     }
-    
+  void incrementCoinNum(Mario m){
+    if(collected == false){
+      m.setCoinsCollected(m.getCoinsCollected()+1);
+      collected = true;
+    }
+  }
 }
     
       

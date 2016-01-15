@@ -3,13 +3,9 @@ class CoinCounter{
   CoinCounter(){
       coinNum = 0;
   }
-  
-  void incrementCoinNum(int x,Mario actor, Coin money){
-    if(isCollected(actor,money) && money.collected == false){
-    coinNum += x;
-    money.collected = true;
+  void incrementCoinNum(Mario m){
+    coinNum=m.getCoinsCollected();
     //delete the coin
-    }
   }
   
   boolean isCollected(Mario m, Coin c){
