@@ -69,7 +69,19 @@ void draw(){
   if(itsame.getYcor() >450){
     itsame.die();
   }
-  
+  if(itsame.getXcor()>550){
+    spriteVel = -3; 
+    backVel = -1;
+    bushVel = -2;
+  }else if(itsame.getXcor()<100){
+    spriteVel = 1; 
+    backVel = 3;
+    bushVel = 2;    
+  }else{
+    spriteVel = 0; 
+    backVel = 0;
+    bushVel = 0;
+  }
 }
 
 
@@ -84,15 +96,15 @@ void keyPressed(){
    }
   if(key=='a'){
     itsame.setApressed(true);
-    spriteVel = -1; 
+    /*spriteVel = -1; 
     backVel = -3;
-    bushVel = -2;          
+    bushVel = -2;  */        
   }
   if(key=='d'){
     itsame.setDpressed(true);
-    spriteVel = 3; 
+    /*spriteVel = 3; 
     backVel = 1;
-    bushVel = 2;
+    bushVel = 2;*/
   }
   if(key=='r'){
     itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
@@ -100,16 +112,16 @@ void keyPressed(){
 }
 void keyReleased(){
   if(key=='a'){
-    itsame.setApressed(false);
+    /*itsame.setApressed(false);
     spriteVel = 0; 
     backVel = 0;
-    bushVel = 0;
+    bushVel = 0;*/
   }
   if(key=='d'){
     itsame.setDpressed(false);
-    spriteVel = 0; 
+    /*spriteVel = 0; 
     backVel = 0;
-    bushVel = 0;
+    bushVel = 0;*/
   }
 }
 void setTerrain(){
