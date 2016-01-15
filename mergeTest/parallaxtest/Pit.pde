@@ -5,9 +5,6 @@ public class Pit extends Terrain{
   public Pit(String s){
       this(100,100,100,100,s);
   }
-  //public void display(){
-  //  display("pitPic.png");
-  //}
   public void upTrigger(Mario m){  
     m.die();
   }

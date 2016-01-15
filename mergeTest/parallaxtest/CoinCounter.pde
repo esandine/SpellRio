@@ -7,12 +7,6 @@ class CoinCounter{
     coinNum=m.getCoinsCollected();
     //delete the coin
   }
-  
-  boolean isCollected(Mario m, Coin c){
-      return (((m.getXcor() > c.getXcor() -1)&&(m.getXcor() < c.getXcor() + 1))||
-      ((m.getYcor() > c.getYcor() -1)&&(m.getYcor() < c.getYcor() + 1)));
-  }
-  
   void display(){
     // show the number of coins collected
     textSize(20);

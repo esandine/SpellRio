@@ -1,4 +1,29 @@
-abstract class Terrain{ //An abstract class for all rectangular Terrain.
+/*
+Terrain - how it works
+Terrain is an abstract class from which most of the objects (pipes,pits,coins,blocks,etc.)
+are extended from.
+
+Instance variables:
+
+xcor and ycor are coordinates of the upper left corner of the terrain
+length and height are the length and height of the piece of terrain
+image is the image that is displayed when the display() function is called
+
+Methods:
+
+Accessors&Mutators for all variables
+move(dx,dy) -- moves the piece of terrain the specified distance left and right. Note
+               for dy positive numbers make the terrain go up.
+display() -- displays the image of the terrain at its correct coordinates and dimensions
+isInside(Mario m) -- returns a boolean whether or not Mario is currently inside the object
+                     It is used to check if he is in a pit, or if he is in
+                     a pipe and needs to be moved out.
+upTrigger(Mario m) -- does a specified action when Mario enters the object from above
+                      (for example m dies if he falls into a pit)
+other triggers are similar
+*/
+
+abstract class Terrain{
   private float xcor;
   private float ycor;
   private float length;
@@ -49,10 +74,7 @@ abstract class Terrain{ //An abstract class for all rectangular Terrain.
     setYcor(getYcor()-dy);
   }
   public void display(){
-    //getImage().resize((int)getXcor(),(int)getYcor());
     image(getImage(),getXcor(),getYcor(),getLength(),getHeight());
-    //fill(0,0,0);
-    //rect(getXcor(),getYcor(),getLength(),getHeight());
   }
   public abstract void upTrigger(Mario m);//Triggers when Mario enters from above
   public abstract void downTrigger(Mario m);

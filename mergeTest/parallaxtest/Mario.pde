@@ -29,13 +29,6 @@ class Mario{
   Mario(){
     this(0,0);
   }
-  /*
-  Mario() {//Default Constructor
-    c = color(220,0,0);//red
-    xcor = width/2;//centered 
-    ycor = height*5/6;//on the ground
-  }
-  */
   void display(){//Displays Mario
   if(getHealth() > 0){
     mario=loadImage("standingMario.gif");
@@ -157,9 +150,6 @@ class Mario{
            setJumpsLeft(2);
          }
        }
-    /*if(itsame.isInside(p)){
-      p.upTrigger(this);
-    }*/
     if(itsame.getYcor()>groundheight){//If mario hits the ground
       itsame.move(0,itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);

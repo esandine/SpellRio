@@ -25,9 +25,6 @@ void setup(){
   backVel=0;
   pipeVel = 5;
   setTerrain();
-  //for(int i = 0;i < coinArray.length;i++){
-  //  coinArray[i] = new Coin(((int)random(620)),((int)(120-random(100))));
-  //}
 }
 void paraDraw(PImage img, PVector pos, float vel){
   pos.sub(vel, 0, 0);
@@ -55,19 +52,10 @@ void draw(){
   paraDraw(back, vback, backVel);
   paraDraw(middle, vmiddle, bushVel);
   paraDraw(front,vfront,spriteVel);
-  //paraDrawPit(front, vfront,spriteVel);
-  //paradraw each pipe to the left. 
   itsame.display();
-  //counter.incrementCoinNum(1,itsame,c);
-  //counter.display();
   for(int n = 0;n<currentWorld.length;n++){
     currentWorld[n].display();
   }
-  /*for(int n = 0; n < coinArray.length; n++){
-    coinArray[n].display();
-    counter.incrementCoinNum(1,itsame,coinArray[n]);
-  }*/
-  //p.display();
   counter.incrementCoinNum(itsame);
   counter.display();
   if((itsame.getHealth() == 0)){
@@ -126,12 +114,6 @@ void setTerrain(){
     if(Math.random()>.333){
       float height = (float)Math.random()*200+200;
       currentWorld[i]=new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png");
-      //float height = (float)Math.random()*200+200;
-      /*currentWorld[i].setXcor((float)Math.random()*640);
-      currentWorld[i].setYcor(height);
-      currentWorld[i].setLength(50);
-      currentWorld[i].setHeight(400-height);
-      currentWorld[i].setImage(pipe);*/
      }else if(Math.random()>.5){
       currentWorld[i]=new Pit((float)Math.random()*640,380,30,40,"pitPic.png");
      }else{
@@ -147,8 +129,3 @@ void setTerrain(){
       }
     }
   }
-  
-  /*void setPit(){
-    p = new Pit(300,300,100,100,color(255,399,0));
-    p.display();
-  }*/
