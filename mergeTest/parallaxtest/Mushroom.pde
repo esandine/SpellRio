@@ -5,7 +5,7 @@ class Mushroom{
     xcor = x;
     ycor = y;
   }
-  public isAcquired(Mario m, Mushroom s){
+  void isAcquired(Mario m, Mushroom s){
     if ((m.getXcor() > s.getXcor() - 1.5) || (m.getYcor() > s.getYcor() - 1.5)) {
       m.setHealth(m.getHealth() + 1);
       mario.resize(30,30);
@@ -14,7 +14,16 @@ class Mushroom{
   void display(){
     mushroom = loadImage("mushroom.png");
     mushroom.resize(10,10);
-    image(mushroom,xcor,300);
+    image(mushroom,xcor,ycor);
+}
+  float getXcor(){
+    return xcor;
+  }
+  float getYcor(){
+    return ycor;
+  }
+   
+  
 }
 
   

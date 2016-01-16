@@ -7,6 +7,15 @@ final int minxcor = 2;
 CoinCounter counter;
 float backVel;
 Terrain[]currentWorld = new Terrain[20];
+Mushroom mushTest;
+
+
+
+
+
+
+
+
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
@@ -19,6 +28,7 @@ void setup(){
   textSize(13);
   frameRate(24);
   counter = new CoinCounter();
+  mushTest = new Mushroom(300,350);
   groundheight=380;
   spriteVel=0;
   bushVel=0;
@@ -43,7 +53,7 @@ void paraDrawPit(PImage img, PVector pos, float vel){
   if(pos.x < -img.width) pos.x = width;
   image(img, pos.x, pos.y,600,450);
 }
-
+// makes original mario
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
 void draw(){
   background(255);
@@ -58,6 +68,8 @@ void draw(){
   }
   counter.incrementCoinNum(itsame);
   counter.display();
+  mushTest.isAcquired(itsame,mushTest);
+  mushTest.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("press R to Restart",width/2,height/2);
