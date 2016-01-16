@@ -34,7 +34,7 @@ class Mario{
   void display(){//Displays Mario
   if(getHealth() > 0){
     mario=loadImage("standingMario.gif");
-    image(mario,xcor,ycor-6);
+    image(mario,height/2,width/2);
   }
   }
   void move(float dx,float dy){//Moves Mario a specified distance
@@ -136,14 +136,14 @@ class Mario{
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   float moveUpDown(float retValue/*, ArrayList<Terrain> ts*/){
-    if(retValue<-50){//If mario hits the ground
+    if(retValue<=-50){//If mario hits the ground
       itsame.setJumpsLeft(2);
-      return -50;
+      retValue=-50;
     }else{
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     retValue+=10-gravity;
-    return retValue;
     }
+    return retValue;
   }
   public boolean isInside(Terrain m){
     return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
