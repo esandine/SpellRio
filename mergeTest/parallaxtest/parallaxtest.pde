@@ -1,4 +1,5 @@
 import java.util.*;
+int matrixMove;
 PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
 float spriteVel,pipeVel,bushVel,groundheight;
@@ -56,6 +57,7 @@ void paraDrawPit(PImage img, PVector pos, float vel){
 }
 // makes original mario
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
+
 void draw(){
   background(255);
   itsame.moveLeftRight(currentWorld);
@@ -82,10 +84,7 @@ void draw(){
   if(itsame.getYcor() >450){
     itsame.die();
   }
-  
 }
-
-
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
 
