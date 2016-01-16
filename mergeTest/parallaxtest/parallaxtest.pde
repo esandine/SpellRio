@@ -57,15 +57,17 @@ void paraDrawPit(PImage img, PVector pos, float vel){
 }
 // makes original mario
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
-
+int horizontal=0;
+float verticle=0;
 void draw(){
-  background(255);
-  itsame.moveLeftRight(currentWorld);
-  itsame.moveUpDown(groundheight,currentWorld);
-  paraDraw(back, vback, backVel);
-  paraDraw(middle, vmiddle, bushVel);
-  paraDraw(front,vfront,spriteVel);
   itsame.display();
+  pushMatrix();
+  horizontal+=itsame.moveLeftRight(currentWorld);
+  verticle=itsame.moveUpDown(verticle/*,currentWorld*/);
+  translate(horizontal,verticle);
+  //paraDraw(back, vback, backVel);
+  //paraDraw(middle, vmiddle, bushVel);
+  //paraDraw(front,vfront,spriteVel);
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
@@ -84,15 +86,17 @@ void draw(){
   if(itsame.getYcor() >450){
     itsame.die();
   }
+  popMatrix();
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
 
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
-    itsame.setIsJumping(15);
+    //itsame.setIsJumping(15);
+    verticle=0;
     itsame.setGravity(0);
-     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+    itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
    }
   if(key=='a'){
     itsame.setApressed(true);

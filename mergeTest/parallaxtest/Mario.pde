@@ -10,6 +10,7 @@ class Mario{
   boolean dpressed;
   int health; 
   int coinscollected;
+  boolean onground;
  
   Mario(color C, float x, float y){
     c=C;
@@ -22,6 +23,7 @@ class Mario{
     dpressed=false;
     health = 1;
     coinscollected=0;
+    onground=false;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -79,6 +81,9 @@ class Mario{
   int getCoinsCollected(){
     return coinscollected;
   }
+  boolean getOnGround(){
+    return onground;
+  }
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -107,52 +112,37 @@ class Mario{
   void setCoinsCollected(int c){
     coinscollected=c;
   }
+  void setOnGround(boolean b){
+    onground = b;
+  }
   //jump() triggers when up is pressed.
   void jump(){
     setJumpsLeft(getJumpsLeft()-1);
     gravity=0;
   }
-  void moveLeftRight(ArrayList<Terrain> currentWorld){//Moves Mario left and right
+  int moveLeftRight(ArrayList<Terrain> currentWorld){//Moves Mario left and right
+      if(apressed&&dpressed){
+        return 0;
+      }
      if(apressed){
-       move(-3,0);
-       for(int i = 0;i<currentWorld.size();i++){
-          if(currentWorld.get(i).getXcor() >= 630){
-          //regenerate at the right side with xcor = maxxcor
-           currentWorld.get(i).setXcor(0);
-        }
-        currentWorld.get(i).move(1,0);
-         if(isInside(currentWorld.get(i))){
-           currentWorld.get(i).rightTrigger(this);
-         }
-       }
+       return 3;
      }
      if(dpressed){
-       move(3,0);
-       for(int i = 0;i<currentWorld.size();i++){
-        if(currentWorld.get(i).getXcor() <= 0){
-          //regenerate at the right side with xcor = maxxcor
-           currentWorld.get(i).setXcor(630);
-        }
-        currentWorld.get(i).move(-1,0);
-         if(isInside(currentWorld.get(i))){
-           currentWorld.get(i).leftTrigger(this);
-         }
-       }
+       return -3;
+    }
+    else{
+      return 0;
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight, ArrayList<Terrain> ts){
-    gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
-    itsame.move(0,10-gravity);
-    for(int i = 0;i<ts.size();i++){
-         if(isInside(ts.get(i))){
-           ts.get(i).upTrigger(this);
-         }
-       }
-    if(itsame.getYcor()>groundheight){//If mario hits the ground
-      itsame.move(0,itsame.getYcor()-groundheight);
+  float moveUpDown(float retValue/*, ArrayList<Terrain> ts*/){
+    if(retValue<-50){//If mario hits the ground
       itsame.setJumpsLeft(2);
-      gravity-=.5;
+      return -50;
+    }else{
+    gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
+    retValue+=10-gravity;
+    return retValue;
     }
   }
   public boolean isInside(Terrain m){
