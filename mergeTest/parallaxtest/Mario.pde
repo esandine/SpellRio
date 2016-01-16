@@ -10,7 +10,7 @@ class Mario{
   boolean dpressed;
   int health; 
   int coinscollected;
-  
+ 
   Mario(color C, float x, float y){
     c=C;
     xcor=x;
