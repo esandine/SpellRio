@@ -11,6 +11,10 @@ class Mario{
   int health; 
   int coinscollected;
   boolean onground;
+  float horizontal;
+  float oldHorizontal;
+  float verticle;
+  float oldVerticle;
  
   Mario(color C, float x, float y){
     c=C;
@@ -24,6 +28,10 @@ class Mario{
     health = 1;
     coinscollected=0;
     onground=false;
+    horizontal=0;
+    oldHorizontal=0;
+    verticle=0;
+    oldVerticle=0;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -84,6 +92,18 @@ class Mario{
   boolean getOnGround(){
     return onground;
   }
+  float getOldHorizontal(){
+    return oldHorizontal;
+  }
+  float getHorizontal(){
+    return horizontal;
+  }
+  float getOldVerticle(){
+    return oldVerticle;
+  }
+  float getVerticle(){
+    return verticle;
+  }
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -119,6 +139,18 @@ class Mario{
   void jump(){
     setJumpsLeft(getJumpsLeft()-1);
     gravity=0;
+  }
+  void setVerticle(float n){
+    verticle=n;
+  }
+  void setHorizontal(float n){
+    horizontal=n;
+  }
+  void setOldVerticle(float n){
+    oldVerticle=n;
+  }
+  void setOldHorizontal(float n){
+    oldHorizontal=n;
   }
   int moveLeftRight(){//Moves Mario left and right
       if(apressed&&dpressed){
@@ -156,16 +188,16 @@ class Mario{
     for(int i=0;i<ts.size();i++){
       if(isInside(ts.get(i),hori,vert)){
         if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
-          print("down");
+          ts.get(i).downTrigger(this,hori,vert,prehori,prevert);
         }
         if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
-          print("up");
+          ts.get(i).upTrigger(this,hori,vert,prehori,prevert);
         }
         if(!isInside(ts.get(i),(hori-prehori)+hori,vert)){
-          print("right");
+          ts.get(i).rightTrigger(this,hori,vert,prehori,prevert);
         }
         if(!isInside(ts.get(i),(prehori-hori)+hori,vert)){
-          print("left");
+          ts.get(i).leftTrigger(this,hori,vert,prehori,prevert);
         }
       }
     }

@@ -5,10 +5,10 @@ public class Pit extends Terrain{
   public Pit(String s){
       this(100,100,100,100,s);
   }
-  public void upTrigger(Mario m){  
+  public void upTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){  
     m.die();
   }
-  public void leftTrigger(Mario m){}
-  public void rightTrigger(Mario m){}
-  public void downTrigger(Mario m){}
+  public void leftTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){}
+  public void rightTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){}
+  public void downTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){}
 }

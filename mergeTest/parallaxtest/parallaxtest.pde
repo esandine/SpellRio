@@ -45,25 +45,21 @@ void paraDraw(PImage img, PVector pos, float vel){
   itsame = new Mario();
 }
 // makes original mario
-float horizontal=0;
-float verticle=0;
-float oldhorizontal=0;
-float oldverticle=0;
 void draw(){
   pushMatrix();
-  oldhorizontal=horizontal;
-  oldverticle=verticle;
+  itsame.setOldHorizontal(itsame.getHorizontal());
+  itsame.setOldVerticle(itsame.getVerticle());
   background(255);
-  horizontal+=itsame.moveLeftRight();
-  verticle=itsame.moveUpDown(verticle);
-  translate(horizontal,verticle);
+  itsame.setHorizontal(itsame.getHorizontal()+itsame.moveLeftRight());
+  itsame.setVerticle(itsame.getVerticle()+itsame.moveUpDown(itsame.getVerticle()));
+  //itsame.triggers(currentWorld,horizontal,verticle,oldhorizontal,oldverticle);
+  translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
   image(middle,0,0);
   image(front,0,0);
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
-  itsame.triggers(currentWorld,horizontal,verticle,oldhorizontal,oldverticle);
   counter.incrementCoinNum(itsame);
   counter.display();
 
@@ -86,11 +82,11 @@ void keyPressed(){
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
     //itsame.setIsJumping(15);
-    if(verticle>10){
-      verticle+=10;
+    if(itsame.getVerticle()>10){
+      itsame.setVerticle(itsame.getVerticle()+10);
     }
     else{
-      verticle=0;
+      itsame.setVerticle(0);
     }
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
