@@ -8,7 +8,7 @@ class Mushroom{
   void isAcquired(Mario m, Mushroom s){
     if ((m.getXcor() > s.getXcor() - 1.5) || (m.getYcor() > s.getYcor() - 1.5)) {
       m.setHealth(m.getHealth() + 1);
-      mario.resize(30,30);
+      mario.resize(50,50);
     }
   }
   void display(){

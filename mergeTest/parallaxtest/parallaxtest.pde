@@ -68,8 +68,8 @@ void draw(){
   }
   counter.incrementCoinNum(itsame);
   counter.display();
-  mushTest.isAcquired(itsame,mushTest);
-  mushTest.display();
+//  mushTest.isAcquired(itsame,mushTest);
+  //mushTest.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("press R to Restart",width/2,height/2);
