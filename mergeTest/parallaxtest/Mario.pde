@@ -112,41 +112,41 @@ class Mario{
     setJumpsLeft(getJumpsLeft()-1);
     gravity=0;
   }
-  void moveLeftRight(Terrain[] ts){//Moves Mario left and right
+  void moveLeftRight(ArrayList<Terrain> currentWorld){//Moves Mario left and right
      if(apressed){
        move(-3,0);
-       for(int i = 0;i<ts.length;i++){
-          if(currentWorld[i].getXcor() >= 630){
+       for(int i = 0;i<currentWorld.size();i++){
+          if(currentWorld.get(i).getXcor() >= 630){
           //regenerate at the right side with xcor = maxxcor
-           currentWorld[i].setXcor(0);
+           currentWorld.get(i).setXcor(0);
         }
-        ts[i].move(1,0);
-         if(isInside(ts[i])){
-           ts[i].rightTrigger(this);
+        currentWorld.get(i).move(1,0);
+         if(isInside(currentWorld.get(i))){
+           currentWorld.get(i).rightTrigger(this);
          }
        }
      }
      if(dpressed){
        move(3,0);
-       for(int i = 0;i<ts.length;i++){
-        if(currentWorld[i].getXcor() <= 0){
+       for(int i = 0;i<currentWorld.size();i++){
+        if(currentWorld.get(i).getXcor() <= 0){
           //regenerate at the right side with xcor = maxxcor
-           currentWorld[i].setXcor(630);
+           currentWorld.get(i).setXcor(630);
         }
-        ts[i].move(-1,0);
-         if(isInside(ts[i])){
-           ts[i].leftTrigger(this);
+        currentWorld.get(i).move(-1,0);
+         if(isInside(currentWorld.get(i))){
+           currentWorld.get(i).leftTrigger(this);
          }
        }
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight, Terrain[] ts){
+  void moveUpDown(float groundheight, ArrayList<Terrain> ts){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     itsame.move(0,10-gravity);
-    for(int i = 0;i<ts.length;i++){
-         if(isInside(ts[i])){
-           ts[i].upTrigger(this);
+    for(int i = 0;i<ts.size();i++){
+         if(isInside(ts.get(i))){
+           ts.get(i).upTrigger(this);
          }
        }
     if(itsame.getYcor()>groundheight){//If mario hits the ground

@@ -1,3 +1,4 @@
+import java.util.*;
 PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
 float spriteVel,pipeVel,bushVel,groundheight;
@@ -6,7 +7,7 @@ int coinCount = 0;
 final int minxcor = 2;
 CoinCounter counter;
 float backVel;
-Terrain[]currentWorld = new Terrain[20];
+ArrayList<Terrain> currentWorld = new ArrayList();
 Mushroom mushTest;
 
 
@@ -63,8 +64,8 @@ void draw(){
   paraDraw(middle, vmiddle, bushVel);
   paraDraw(front,vfront,spriteVel);
   itsame.display();
-  for(int n = 0;n<currentWorld.length;n++){
-    currentWorld[n].display();
+  for(int n = 0;n<currentWorld.size();n++){
+    currentWorld.get(n).display();
   }
   counter.incrementCoinNum(itsame);
   counter.display();
@@ -126,22 +127,23 @@ void keyReleased(){
 }
 void setTerrain(){
   int counter = 0;
-  for(int i = 0;i<currentWorld.length;i++){
+  for(int i = 0;i<15;i++){
     if(counter<5){
       float height = (float)Math.random()*200+200;
-      currentWorld[i]=new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png");
+      currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
       counter++;
-     }else if(Math.random()>.5){
-      currentWorld[i]=new Pit((float)Math.random()*640,400,30,20,"pitPic.png");
+     }else if(counter<10){
+      currentWorld.add(new Pit((float)Math.random()*640,400,30,20,"pitPic.png"));
+      counter++;
      }else{
-       currentWorld[i]= new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png");
+       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }
       
   }
 }
   void movePipes(){
-    for(int n = 0;n<currentWorld.length;n++){
-      if(itsame.isInside(currentWorld[n])){
+    for(int n = 0;n<currentWorld.size();n++){
+      if(itsame.isInside(currentWorld.get(n))){
         itsame.move(100,100);
       }
     }
