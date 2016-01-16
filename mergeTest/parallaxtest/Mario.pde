@@ -192,10 +192,10 @@ class Mario{
     for(int i=0;i<ts.size();i++){
       if(isInside(ts.get(i),hori,vert)){
         if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
-          ts.get(i).upTrigger(this);
+          ts.get(i).downTrigger(this);
         }
         if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
-          ts.get(i).downTrigger(this);
+          ts.get(i).upTrigger(this);
         }
         if(!isInside(ts.get(i),(hori-prehori)+hori,vert)){
           ts.get(i).leftTrigger(this);

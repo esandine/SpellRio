@@ -60,9 +60,6 @@ void draw(){
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
-  counter.incrementCoinNum(itsame);
-  counter.display();
-
 //  mushTest.isAcquired(itsame,mushTest);
   //mushTest.display();
   if((itsame.getHealth() == 0)){
@@ -75,6 +72,9 @@ void draw(){
   }
   popMatrix();
   itsame.display();
+  counter.incrementCoinNum(itsame);
+  counter.display();
+
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
