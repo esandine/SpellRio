@@ -1,5 +1,6 @@
 class Mushroom{
   int xcor, ycor;
+  PImage mushroom;
   public Mushroom(int x, int y){
     xcor = x;
     ycor = y;
@@ -10,6 +11,10 @@ class Mushroom{
       mario.resize(30,30);
     }
   }
+  void display(){
+    mushroom = loadImage("mushroom.png");
+    mushroom.resize(10,10);
+    image(mushroom,xcor,300);
 }
 
   
