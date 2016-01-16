@@ -29,12 +29,12 @@ class Mario{
     this(color(220,0,0),x,y);
   }
   Mario(){
-    this(0,0);
+    this(width/2,360);
   }
   void display(){//Displays Mario
   if(getHealth() > 0){
     mario=loadImage("standingMario.gif");
-    image(mario,height/2,width/2);
+    image(mario,getXcor(),getYcor());
   }
   }
   void move(float dx,float dy){//Moves Mario a specified distance
@@ -136,9 +136,9 @@ class Mario{
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   float moveUpDown(float retValue){
-    if(retValue<=-50){//If mario hits the ground
+    if(retValue<=-10){//If mario hits the ground
       itsame.setJumpsLeft(2);
-      retValue=-50;
+      retValue=-10;
     }else{
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     retValue+=10-gravity;

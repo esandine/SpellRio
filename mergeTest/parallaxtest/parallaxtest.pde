@@ -10,8 +10,7 @@ CoinCounter counter;
 float backVel;
 ArrayList<Terrain> currentWorld = new ArrayList();
 Mushroom mushTest;
-
-
+Mario itsame = new Mario();
 
 
 
@@ -45,9 +44,9 @@ void paraDraw(PImage img, PVector pos, float vel){
   //if(pos.x < width) image(img, pos.x-img.width, pos.y);  
   //if(pos.x < -img.width) pos.x = width;
   image(img, pos.x, pos.y);
+  itsame = new Mario();
 }
 // makes original mario
-Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
 int horizontal=0;
 float verticle=0;
 void draw(){
@@ -105,7 +104,7 @@ void keyPressed(){
     bushVel = 2;
   }
   if(key=='r'){
-    itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
+    itsame = new Mario();// Makes Mario in the center
   }
 }
 void keyReleased(){
