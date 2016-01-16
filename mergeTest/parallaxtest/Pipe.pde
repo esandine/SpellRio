@@ -6,10 +6,10 @@ public class Pipe extends Terrain{
     this(100,100,100,100,s);
   }
   public void upTrigger(Mario m){
-    while(m.isInside(this)){
+    /*while(m.isInside(this)){
        m.move(0,.1);
        m.setJumpsLeft(2);
-    }
+    }*/
   }
   public void leftTrigger(Mario m){
     m.setXcor(getXcor()-.1);

@@ -145,11 +145,29 @@ class Mario{
     }
     return retValue;
   }
-  public boolean isInside(Terrain m){
-    return (getXcor()>m.getXcor()) && (getXcor()<m.getXcor()+m.getLength()) && (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
+  public boolean isInside(Terrain m,float hori,float vert){
+    return (getXcor()>m.getXcor()+hori) && (getXcor()<m.getXcor()+m.getLength()+hori) && (getYcor()>m.getYcor()-15-vert) && (getYcor()<m.getYcor()+m.getHeight()-vert);
   }
   public void die(){
     setHealth(0);
     lost = true;
+  }
+  public void triggers(ArrayList<Terrain> ts,float hori,float vert,float prehori,float prevert){
+    for(int i=0;i<ts.size();i++){
+      if(isInside(ts.get(i),hori,vert)){
+        if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
+          print("down");
+        }
+        if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
+          print("up");
+        }
+        if(!isInside(ts.get(i),(hori-prehori)+hori,vert)){
+          print("right");
+        }
+        if(!isInside(ts.get(i),(prehori-hori)+hori,vert)){
+          print("left");
+        }
+      }
+    }
   }
 }

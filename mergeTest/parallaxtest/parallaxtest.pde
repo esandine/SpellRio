@@ -15,8 +15,6 @@ Mario itsame = new Mario();
 
 
 
-
-
 void setup(){
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
@@ -47,10 +45,14 @@ void paraDraw(PImage img, PVector pos, float vel){
   itsame = new Mario();
 }
 // makes original mario
-int horizontal=0;
+float horizontal=0;
 float verticle=0;
+float oldhorizontal=0;
+float oldverticle=0;
 void draw(){
   pushMatrix();
+  oldhorizontal=horizontal;
+  oldverticle=verticle;
   background(255);
   horizontal+=itsame.moveLeftRight();
   verticle=itsame.moveUpDown(verticle);
@@ -61,8 +63,10 @@ void draw(){
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
+  itsame.triggers(currentWorld,horizontal,verticle,oldhorizontal,oldverticle);
   counter.incrementCoinNum(itsame);
   counter.display();
+
 //  mushTest.isAcquired(itsame,mushTest);
   //mushTest.display();
   if((itsame.getHealth() == 0)){
@@ -137,10 +141,3 @@ void setTerrain(){
       
   }
 }
-  void movePipes(){
-    for(int n = 0;n<currentWorld.size();n++){
-      if(itsame.isInside(currentWorld.get(n))){
-        itsame.move(100,100);
-      }
-    }
-  }
