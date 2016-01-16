@@ -120,7 +120,7 @@ class Mario{
     setJumpsLeft(getJumpsLeft()-1);
     gravity=0;
   }
-  int moveLeftRight(ArrayList<Terrain> currentWorld){//Moves Mario left and right
+  int moveLeftRight(){//Moves Mario left and right
       if(apressed&&dpressed){
         return 0;
       }
@@ -135,7 +135,7 @@ class Mario{
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  float moveUpDown(float retValue/*, ArrayList<Terrain> ts*/){
+  float moveUpDown(float retValue){
     if(retValue<=-50){//If mario hits the ground
       itsame.setJumpsLeft(2);
       retValue=-50;
@@ -152,5 +152,4 @@ class Mario{
     setHealth(0);
     lost = true;
   }
-  
 }

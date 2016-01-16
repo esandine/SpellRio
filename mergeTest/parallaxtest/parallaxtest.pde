@@ -46,15 +46,6 @@ void paraDraw(PImage img, PVector pos, float vel){
   //if(pos.x < -img.width) pos.x = width;
   image(img, pos.x, pos.y);
 }
-
-/*void paraDrawPit(PImage img, PVector pos, float vel){
- // pos.sub(vel, 0, 0);
-  //int r = (int)pos.x+img.width;
-  //if(r < width) image(img, r, pos.y);
-  //if(pos.x < width) image(img, pos.x-img.width, pos.y);  
-  //if(pos.x < -img.width) pos.x = width;
-  image(img, pos.x, pos.y,600,450);
-}*/
 // makes original mario
 Mario itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
 int horizontal=0;
@@ -62,8 +53,8 @@ float verticle=0;
 void draw(){
   pushMatrix();
   background(255);
-  horizontal+=itsame.moveLeftRight(currentWorld);
-  verticle=itsame.moveUpDown(verticle/*,currentWorld*/);
+  horizontal+=itsame.moveLeftRight();
+  verticle=itsame.moveUpDown(verticle);
   translate(horizontal,verticle);
   image(back,0,0);
   image(middle,0,0);
@@ -92,7 +83,12 @@ void keyPressed(){
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
     //itsame.setIsJumping(15);
-    verticle=0;
+    if(verticle>10){
+      verticle+=10;
+    }
+    else{
+      verticle=0;
+    }
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
    }
