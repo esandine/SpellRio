@@ -52,7 +52,7 @@ void draw(){
   background(255);
   itsame.setHorizontal(itsame.getHorizontal()+itsame.moveLeftRight());
   itsame.setVerticle(itsame.moveUpDown(itsame.getVerticle()));
-  //itsame.triggers(currentWorld,horizontal,verticle,oldhorizontal,oldverticle);
+  itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
   image(middle,0,0);

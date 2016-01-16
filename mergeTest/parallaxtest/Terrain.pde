@@ -76,10 +76,10 @@ abstract class Terrain{
   public void display(){
     image(getImage(),getXcor(),getYcor(),getLength(),getHeight());
   }
-  public abstract void upTrigger(Mario m,float hori,float vert,float oldhori,float oldvert);//Triggers when Mario enters from above
-  public abstract void downTrigger(Mario m,float hori,float vert,float oldhori,float oldvert);
-  public abstract void leftTrigger(Mario m,float hori,float vert,float oldhori,float oldvert);
-  public abstract void rightTrigger(Mario m,float hori,float vert,float oldhori,float oldvert);
+  public abstract void upTrigger(Mario m);//Triggers when Mario enters from above
+  public abstract void downTrigger(Mario m);
+  public abstract void leftTrigger(Mario m);
+  public abstract void rightTrigger(Mario m);
   public boolean isInside(Mario m){
     return (m.getXcor()>getXcor()) && (m.getXcor()<getXcor()+getLength()) && (m.getYcor()>getYcor()) && (m.getYcor()<getYcor()+getHeight());
   }

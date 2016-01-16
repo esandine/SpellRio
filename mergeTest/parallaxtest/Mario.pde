@@ -184,20 +184,24 @@ class Mario{
     setHealth(0);
     lost = true;
   }
-  public void triggers(ArrayList<Terrain> ts,float hori,float vert,float prehori,float prevert){
+  public void triggers(ArrayList<Terrain> ts){
+    float hori = getHorizontal();
+    float prehori = getOldHorizontal();
+    float vert = getVerticle();
+    float prevert = getOldVerticle();
     for(int i=0;i<ts.size();i++){
       if(isInside(ts.get(i),hori,vert)){
         if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
-          ts.get(i).downTrigger(this,hori,vert,prehori,prevert);
+          ts.get(i).upTrigger(this);
         }
         if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
-          ts.get(i).upTrigger(this,hori,vert,prehori,prevert);
+          ts.get(i).downTrigger(this);
         }
         if(!isInside(ts.get(i),(hori-prehori)+hori,vert)){
-          ts.get(i).rightTrigger(this,hori,vert,prehori,prevert);
+          ts.get(i).leftTrigger(this);
         }
         if(!isInside(ts.get(i),(prehori-hori)+hori,vert)){
-          ts.get(i).leftTrigger(this,hori,vert,prehori,prevert);
+          ts.get(i).rightTrigger(this);
         }
       }
     }

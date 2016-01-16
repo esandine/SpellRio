@@ -4,16 +4,16 @@ class Coin extends Terrain{
       super(x,y,l,h,s);
       collected = false;
     }
-  public void upTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){
+  public void upTrigger(Mario m){
     incrementCoinNum(m);
   }
-  public void downTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){
+  public void downTrigger(Mario m){
     incrementCoinNum(m);
   }
-  public void leftTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){
+  public void leftTrigger(Mario m){
     incrementCoinNum(m);
   }
-  public void rightTrigger(Mario m, float hori,float vert,float oldhori,float oldvert){
+  public void rightTrigger(Mario m){
     incrementCoinNum(m);
   }
     void display(){
