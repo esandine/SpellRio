@@ -7,7 +7,8 @@ public class Pipe extends Terrain{
   }
   public void upTrigger(Mario m){
     while(m.isInside(this)){
-      m.move(0,.1);
+       m.move(0,.1);
+       m.setJumpsLeft(2);
     }
   }
   public void leftTrigger(Mario m){

@@ -37,19 +37,19 @@ class Mario{
   }
   void move(float dx,float dy){//Moves Mario a specified distance
     xcor+=dx;
-    ycor-=dy;
-    /*if(xcor>width){//the wrap around
+    if(xcor>width){//the wrap around
       xcor=0;
     }
     if(xcor<0){
       xcor=width;
     }
+    ycor-=dy;
     if(ycor<0){
       ycor=height;
     }
     if(ycor>height){
       ycor=0;
-    }*/
+    }
   }
   //Accessors
   float getXcor(){
@@ -120,9 +120,7 @@ class Mario{
           //regenerate at the right side with xcor = maxxcor
            currentWorld[i].setXcor(0);
         }
-       if(getXcor()>600){
-         ts[i].move(-5,0);
-       }
+        ts[i].move(1,0);
          if(isInside(ts[i])){
            ts[i].rightTrigger(this);
          }
@@ -135,9 +133,7 @@ class Mario{
           //regenerate at the right side with xcor = maxxcor
            currentWorld[i].setXcor(630);
         }
-        if(getXcor()<40){
-        ts[i].move(5,0);
-        }
+        ts[i].move(-1,0);
          if(isInside(ts[i])){
            ts[i].leftTrigger(this);
          }
@@ -151,7 +147,6 @@ class Mario{
     for(int i = 0;i<ts.length;i++){
          if(isInside(ts[i])){
            ts[i].upTrigger(this);
-           setJumpsLeft(2);
          }
        }
     if(itsame.getYcor()>groundheight){//If mario hits the ground

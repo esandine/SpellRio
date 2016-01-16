@@ -1,6 +1,3 @@
-import ddf.minim.*;
-AudioPlayer player;
-Minim minim;
 PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
 float spriteVel,pipeVel,bushVel,groundheight;
@@ -11,9 +8,6 @@ CoinCounter counter;
 float backVel;
 Terrain[]currentWorld = new Terrain[20];
 void setup(){
-  minim = new Minim(this);
-  player = minim.loadFile("backgroundMusic.mp3",2048);
-  player.play();
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
@@ -66,8 +60,8 @@ void draw(){
   counter.display();
   if((itsame.getHealth() == 0)){
    textSize(20);
-   text("Click To Restart",300,200);
-   noLoop();
+   text("press R to Restart",width/2,height/2);
+   //noLoop();
    lost = true;
    textSize(13);
    redraw();
@@ -75,19 +69,7 @@ void draw(){
   if(itsame.getYcor() >450){
     itsame.die();
   }
-  if(itsame.getXcor()>550){
-    spriteVel = -3; 
-    backVel = -1;
-    bushVel = -2;
-  }else if(itsame.getXcor()<100){
-    spriteVel = 1; 
-    backVel = 3;
-    bushVel = 2;    
-  }else{
-    spriteVel = 0; 
-    backVel = 0;
-    bushVel = 0;
-  }
+  
 }
 
 
@@ -102,29 +84,32 @@ void keyPressed(){
    }
   if(key=='a'){
     itsame.setApressed(true);
-    /*spriteVel = -1; 
+    spriteVel = -1; 
     backVel = -3;
-    bushVel = -2;  */        
+    bushVel = -2;          
   }
   if(key=='d'){
     itsame.setDpressed(true);
-    /*spriteVel = 3; 
+    spriteVel = 3; 
     backVel = 1;
-    bushVel = 2;*/
+    bushVel = 2;
+  }
+  if(key=='r'){
+    itsame = new Mario(width/2.0-15,((height*5.0/6-50)-100));// Makes Mario in the center
   }
 }
 void keyReleased(){
   if(key=='a'){
-    /*itsame.setApressed(false);
+    itsame.setApressed(false);
     spriteVel = 0; 
     backVel = 0;
-    bushVel = 0;*/
+    bushVel = 0;
   }
   if(key=='d'){
     itsame.setDpressed(false);
-    /*spriteVel = 0; 
+    spriteVel = 0; 
     backVel = 0;
-    bushVel = 0;*/
+    bushVel = 0;
   }
 }
 void setTerrain(){
@@ -148,10 +133,4 @@ void setTerrain(){
         itsame.move(100,100);
       }
     }
-  }
-  
-  void stop(){
-    player.close();
-    minim.stop();
-    super.stop();
   }
