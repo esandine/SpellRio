@@ -90,6 +90,7 @@ void keyPressed(){
     }
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+    itsame.setGroundSurface(-10);
    }
   if(key=='a'){
     itsame.setApressed(true);

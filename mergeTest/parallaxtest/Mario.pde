@@ -15,6 +15,7 @@ class Mario{
   float oldHorizontal;
   float verticle;
   float oldVerticle;
+  float groundsurface;
  
   Mario(color C, float x, float y){
     c=C;
@@ -32,6 +33,7 @@ class Mario{
     oldHorizontal=0;
     verticle=0;
     oldVerticle=0;
+    groundsurface=-10;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -104,6 +106,9 @@ class Mario{
   float getVerticle(){
     return verticle;
   }
+  float getGroundSurface(){
+    return groundsurface;
+  }
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -152,6 +157,9 @@ class Mario{
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
+  void setGroundSurface(float n){
+    groundsurface=n;
+  }
   void moveLeftRight(ArrayList<Terrain> ts){//Moves Mario left and right
       if(apressed&&dpressed){
         addHorizontal(0);
@@ -177,12 +185,15 @@ class Mario{
     else{
       addHorizontal(0);
     }
+    if(!checkPipes(ts)){
+      setGroundSurface(-10);
+    }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   void moveUpDown(ArrayList<Terrain> ts){
-    if(getVerticle()<=-10){//If mario hits the ground
+    if(getVerticle()<=getGroundSurface()){//If mario hits the ground
       itsame.setJumpsLeft(2);
-      setVerticle(-10);
+      setVerticle(getGroundSurface());
     }else{
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     addVerticle(10-gravity);
@@ -195,7 +206,13 @@ class Mario{
     }
   }
   public boolean isInside(Terrain m,float hori,float vert){
-    return (getXcor()>m.getXcor()+hori) && (getXcor()<m.getXcor()+m.getLength()+hori) && (getYcor()>m.getYcor()-15-vert) && (getYcor()<m.getYcor()+m.getHeight()-vert);
+    return isInsideHorizontal(m)&&isInsideVerticle(m);
+  }
+  public boolean isInsideHorizontal(Terrain m){
+    return (getXcor()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
+  }
+  public boolean isInsideVerticle(Terrain m){
+    return (getYcor()>m.getYcor()-m.getHeight()-getVerticle())&&(getYcor()<m.getYcor()+m.getHeight()-getVerticle());
   }
   public void die(){
     setHealth(0);
@@ -232,5 +249,13 @@ class Mario{
         }
       }
     }
+  }
+  boolean checkPipes(ArrayList<Terrain> ts){
+    for(int i = 0;i<5;i++){
+      if(isInsideHorizontal(ts.get(i))){
+        return true;
+      }
+    }
+    return false;
   }
 }
