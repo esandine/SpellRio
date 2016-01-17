@@ -152,30 +152,29 @@ class Mario{
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
-  int moveLeftRight(){//Moves Mario left and right
+  void moveLeftRight(){//Moves Mario left and right
       if(apressed&&dpressed){
-        return 0;
+        addHorizontal(0);
       }
      if(apressed){
-       return 3;
+       addHorizontal(3);
      }
      if(dpressed){
-       return -3;
+       addHorizontal(-3);
     }
     else{
-      return 0;
+      addHorizontal(0);
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  float moveUpDown(float retValue){
-    if(retValue<=-10){//If mario hits the ground
+  void moveUpDown(){
+    if(getVerticle()<=-10){//If mario hits the ground
       itsame.setJumpsLeft(2);
-      retValue=-10;
+      setVerticle(-10);
     }else{
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
-    retValue+=10-gravity;
+    addVerticle(10-gravity);
     }
-    return retValue;
   }
   public boolean isInside(Terrain m,float hori,float vert){
     return (getXcor()>m.getXcor()+hori) && (getXcor()<m.getXcor()+m.getLength()+hori) && (getYcor()>m.getYcor()-15-vert) && (getYcor()<m.getYcor()+m.getHeight()-vert);
@@ -184,8 +183,16 @@ class Mario{
     setHealth(0);
     lost = true;
   }
+  public void addHorizontal(float n){
+    setHorizontal(getHorizontal()+n);
+  }
+  public void addVerticle(float n){
+    setVerticle(getVerticle()+n);
+  }
   public void triggers(ArrayList<Terrain> ts){
-    float hori = getHorizontal();
+    for(int i=0;i<ts.size();i++){
+      print(isInside(ts.get(0),getHorizontal(),getVerticle()));
+    /*float hori = getHorizontal();
     float prehori = getOldHorizontal();
     float vert = getVerticle();
     float prevert = getOldVerticle();
@@ -207,7 +214,7 @@ class Mario{
           ts.get(i).rightTrigger(this);
           println("left");
         }
-      }
+      }*/
     }
   }
 }
