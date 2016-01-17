@@ -142,8 +142,16 @@ class Mario{
   }
   //jump() triggers when up is pressed.
   void jump(){
-    setJumpsLeft(getJumpsLeft()-1);
-    gravity=0;
+        //itsame.setIsJumping(15);
+    if(getVerticle()>10){
+      setVerticle(getVerticle()+10);
+    }
+    else{
+      setVerticle(0);
+    }
+    setGravity(0);
+    setJumpsLeft(itsame.getJumpsLeft()-1);
+    setGroundSurface(-10);
   }
   void setVerticle(float n){
     verticle=n;

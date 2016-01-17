@@ -14,25 +14,21 @@ Mario itsame = new Mario();
 
 
 
-
+//Setup is called at the beginning of the game
 void setup(){
+  //It load sthe grond, middle, and background
   back = loadImage("back2.png");
   middle = loadImage("middle.png");
   front = loadImage("front2.png");
+  //Makes the size of the screen 640x420 also sets the framerate and textsize
   size(640, 420);
-  vback = new PVector(0, 0);
-  vmiddle = new PVector(0, 0);
-  vpipe = new PVector(0,0);
-  vfront = new PVector(0, 5); //just fixing the position of the image
   textSize(13);
   frameRate(24);
+  //Initiallizes the coin counter and mushroom
   counter = new CoinCounter();
   mushTest = new Mushroom(300,350);
+  //Sets the groundheight and creates the Terrain
   groundheight=380;
-  spriteVel=0;
-  bushVel=0;
-  backVel=0;
-  pipeVel = 5;
   setTerrain();
 }
 void paraDraw(PImage img, PVector pos, float vel){
@@ -78,19 +74,9 @@ void draw(){
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
-
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
-    //itsame.setIsJumping(15);
-    if(itsame.getVerticle()>10){
-      itsame.setVerticle(itsame.getVerticle()+10);
-    }
-    else{
-      itsame.setVerticle(0);
-    }
-    itsame.setGravity(0);
-    itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
-    itsame.setGroundSurface(-10);
+     itsame.jump();
    }
   if(key=='a'){
     itsame.setApressed(true);
@@ -130,7 +116,7 @@ void setTerrain(){
       currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
       counter++;
      }else if(counter<10){
-      currentWorld.add(new Pit((float)Math.random()*640,400,30,20,"pitPic.png"));
+      currentWorld.add(new Pit((float)Math.random()*640,399,30,20,"pitPic.png"));
       counter++;
      }else{
        currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
