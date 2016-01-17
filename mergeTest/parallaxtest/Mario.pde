@@ -152,28 +152,46 @@ class Mario{
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
-  void moveLeftRight(){//Moves Mario left and right
+  void moveLeftRight(ArrayList<Terrain> ts){//Moves Mario left and right
       if(apressed&&dpressed){
         addHorizontal(0);
       }
      if(apressed){
        addHorizontal(3);
+       for(int i=0;i<ts.size();i++){
+          if(isInside(ts.get(i),getHorizontal(),getVerticle())){
+            ts.get(i).rightTrigger(this);
+            println("right");
+          }
+       }
      }
      if(dpressed){
        addHorizontal(-3);
+       for(int i=0;i<ts.size();i++){
+          if(isInside(ts.get(i),getHorizontal(),getVerticle())){
+            ts.get(i).leftTrigger(this);
+            println("left");
+          }
+       }
     }
     else{
       addHorizontal(0);
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(){
+  void moveUpDown(ArrayList<Terrain> ts){
     if(getVerticle()<=-10){//If mario hits the ground
       itsame.setJumpsLeft(2);
       setVerticle(-10);
     }else{
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     addVerticle(10-gravity);
+    for(int i=0;i<ts.size();i++){
+          if(isInside(ts.get(i),getHorizontal(),getVerticle())){
+            ts.get(i).upTrigger(this);
+            println("Up");
+          }
+       }
     }
   }
   public boolean isInside(Terrain m,float hori,float vert){
@@ -190,9 +208,7 @@ class Mario{
     setVerticle(getVerticle()+n);
   }
   public void triggers(ArrayList<Terrain> ts){
-    for(int i=0;i<ts.size();i++){
-      print(isInside(ts.get(0),getHorizontal(),getVerticle()));
-    /*float hori = getHorizontal();
+    float hori = getHorizontal();
     float prehori = getOldHorizontal();
     float vert = getVerticle();
     float prevert = getOldVerticle();
@@ -214,7 +230,7 @@ class Mario{
           ts.get(i).rightTrigger(this);
           println("left");
         }
-      }*/
+      }
     }
   }
 }

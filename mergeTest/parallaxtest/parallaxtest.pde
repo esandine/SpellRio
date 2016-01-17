@@ -50,9 +50,9 @@ void draw(){
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
   background(255);
-  itsame.moveLeftRight();
-  itsame.moveUpDown();
-  itsame.triggers(currentWorld);
+  itsame.moveLeftRight(currentWorld);
+  itsame.moveUpDown(currentWorld);
+  //itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
   image(middle,0,0);
