@@ -124,7 +124,7 @@ void keyReleased(){
 }
 void setTerrain(){
   int counter = 0;
-  for(int i = 0;i<5;i++){
+  for(int i = 0;i<15;i++){
     if(counter<5){
       float height = (float)Math.random()*200+200;
       currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
