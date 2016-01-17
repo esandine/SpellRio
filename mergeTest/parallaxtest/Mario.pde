@@ -193,15 +193,19 @@ class Mario{
       if(isInside(ts.get(i),hori,vert)){
         if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
           ts.get(i).downTrigger(this);
+          //println("down");
         }
         if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
           ts.get(i).upTrigger(this);
+          //println("up");
         }
-        if(!isInside(ts.get(i),(hori-prehori)+hori,vert)){
+        if(!isInside(ts.get(i),hori+(prehori-hori),vert)){
           ts.get(i).leftTrigger(this);
+          //println("Left");
         }
-        if(!isInside(ts.get(i),(prehori-hori)+hori,vert)){
+        if((hori>prehori)&&(!isInside(ts.get(i),prehori,vert))){
           ts.get(i).rightTrigger(this);
+          println("left");
         }
       }
     }

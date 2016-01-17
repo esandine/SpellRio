@@ -6,9 +6,7 @@ public class Pipe extends Terrain{
     this(100,100,100,100,s);
   }
   public void upTrigger(Mario m){
-    while(m.isInside(this,m.getHorizontal(),m.getVerticle())){
-      m.setVerticle(m.getVerticle()+.1);
-    }
+    m.setVerticle(m.getOldVerticle());
   }
   public void leftTrigger(Mario m){
     m.setHorizontal(m.getHorizontal());
