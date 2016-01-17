@@ -10,7 +10,7 @@ public class Pipe extends Terrain{
     m.setJumpsLeft(2);
   }
   public void leftTrigger(Mario m){
-    m.setHorizontal(m.getHorizontal());
+    m.setHorizontal(m.getOldHorizontal());
   }
   public void rightTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
