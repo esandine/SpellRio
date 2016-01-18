@@ -15,7 +15,7 @@ class Mario{
   float oldHorizontal;
   float verticle;
   float oldVerticle;
-  float groundsurface;
+  //float groundsurface;
  
   Mario(color C, float x, float y){
     c=C;
@@ -28,12 +28,11 @@ class Mario{
     dpressed=false;
     health = 1;
     coinscollected=0;
-    onground=false;
     horizontal=0;
     oldHorizontal=0;
     verticle=0;
     oldVerticle=0;
-    groundsurface=-10;
+    //groundsurface=-10;
   }
   Mario(float x, float y){
     this(color(220,0,0),x,y);
@@ -91,9 +90,6 @@ class Mario{
   int getCoinsCollected(){
     return coinscollected;
   }
-  boolean getOnGround(){
-    return onground;
-  }
   float getOldHorizontal(){
     return oldHorizontal;
   }
@@ -106,9 +102,9 @@ class Mario{
   float getVerticle(){
     return verticle;
   }
-  float getGroundSurface(){
-    return groundsurface;
-  }
+  //float getGroundSurface(){
+  //  return groundsurface;
+  //}
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -137,22 +133,7 @@ class Mario{
   void setCoinsCollected(int c){
     coinscollected=c;
   }
-  void setOnGround(boolean b){
-    onground = b;
-  }
   //jump() triggers when up is pressed.
-  void jump(){
-        //itsame.setIsJumping(15);
-    if(getVerticle()>10){
-      setVerticle(getVerticle()+10);
-    }
-    else{
-      setVerticle(0);
-    }
-    setGravity(0);
-    setJumpsLeft(itsame.getJumpsLeft()-1);
-    setGroundSurface(-10);
-  }
   void setVerticle(float n){
     verticle=n;
   }
@@ -165,9 +146,9 @@ class Mario{
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
-  void setGroundSurface(float n){
-    groundsurface=n;
-  }
+  //void setGroundSurface(float n){
+  //  groundsurface=n;
+  //}
   void moveLeftRight(ArrayList<Terrain> ts){//Moves Mario left and right
       if(apressed&&dpressed){
         addHorizontal(0);
@@ -193,24 +174,21 @@ class Mario{
     else{
       addHorizontal(0);
     }
-    if(!checkPipes(ts)){
-      setGroundSurface(-10);
-    }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(ArrayList<Terrain> ts){
-    if(getVerticle()<=getGroundSurface()){//If mario hits the ground
-      itsame.setJumpsLeft(2);
-      setVerticle(getGroundSurface());
-    }else{
+  void moveUpDown(float groundheight, ArrayList<Terrain> ts){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
-    addVerticle(10-gravity);
-    for(int i=0;i<ts.size();i++){
-          if(isInside(ts.get(i),getHorizontal(),getVerticle())){
-            ts.get(i).upTrigger(this);
-            println("Up");
-          }
+    itsame.move(0,10-gravity);
+    for(int i = 0;i<ts.size();i++){
+         if(isInside(ts.get(i),horizontal,verticle)){
+           ts.get(i).upTrigger(this);
+           setJumpsLeft(2);
+         }
        }
+    if(itsame.getYcor()>groundheight){//If mario hits the ground
+      itsame.move(0,itsame.getYcor()-groundheight);
+      itsame.setJumpsLeft(2);
+      gravity-=.5;
     }
   }
   public boolean isInside(Terrain m,float hori,float vert){
@@ -220,7 +198,7 @@ class Mario{
     return (getXcor()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
   }
   public boolean isInsideVerticle(Terrain m){
-    return (getYcor()>m.getYcor()-m.getHeight()-getVerticle())&&(getYcor()<m.getYcor()+m.getHeight()-getVerticle());
+    return (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
   }
   public void die(){
     setHealth(0);

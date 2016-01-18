@@ -47,7 +47,6 @@ void draw(){
   itsame.setOldVerticle(itsame.getVerticle());
   background(255);
   itsame.moveLeftRight(currentWorld);
-  itsame.moveUpDown(currentWorld);
   //itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
@@ -59,6 +58,7 @@ void draw(){
   mushTest.isAcquired(itsame,mushTest);
   mushTest.display();
   popMatrix();
+  itsame.moveUpDown(groundheight,currentWorld);
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("press R to Restart",width/2,height/2);
@@ -76,7 +76,9 @@ void draw(){
 void keyPressed(){
   //If "w" is pressed, Mario jumps.
    if(key=='w'&&itsame.getJumpsLeft()>0){
-     itsame.jump();
+    itsame.setIsJumping(15);
+    itsame.setGravity(0);
+     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
    }
   if(key=='a'){
     itsame.setApressed(true);
