@@ -56,8 +56,8 @@ void draw(){
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
-//  mushTest.isAcquired(itsame,mushTest);
-  //mushTest.display();
+  mushTest.isAcquired(itsame,mushTest);
+  mushTest.display();
   popMatrix();
   if((itsame.getHealth() == 0)){
    textSize(20);
