@@ -6,14 +6,16 @@ public class Pipe extends Terrain{
     this(100,100,100,100,s);
   }
   public void upTrigger(Mario m){
-    m.setGroundSurface(getHeight()-20);
-    m.setJumpsLeft(2);
+    while(m.isInside(this)){
+       m.move(0,.1);
+       m.setJumpsLeft(2);
+    }
   }
   public void leftTrigger(Mario m){
-    m.setHorizontal(m.getOldHorizontal());
+    m.setXcor(getXcor()-.1);
   }
   public void rightTrigger(Mario m){
-    m.setHorizontal(m.getOldHorizontal());
+    m.setXcor(getXcor()+getLength()+.1);
   }
   public void downTrigger(Mario m){
   };
