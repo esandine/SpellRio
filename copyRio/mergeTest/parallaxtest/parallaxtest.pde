@@ -10,7 +10,6 @@ final int minxcor = 2;
 CoinCounter counter;
 float backVel;
 ArrayList<Terrain> currentWorld = new ArrayList();
-Mushroom mushTest;
 Mario itsame = new Mario();
 AudioPlayer player;
 Minim minim;
@@ -31,10 +30,9 @@ void setup(){
   frameRate(24);
   //Initiallizes the coin counter and mushroom
   counter = new CoinCounter();
-  mushTest = new Mushroom(300,350);
   //Sets the groundheight and creates the Terrain
   groundheight=380;
-  setTerrain();
+  setTerrain(); 
 }
 void paraDraw(PImage img, PVector pos, float vel){
   //pos.sub(vel, 0, 0);
@@ -60,8 +58,6 @@ void draw(){
   for(int n = 0;n<currentWorld.size();n++){
     currentWorld.get(n).display();
   }
-  mushTest.isAcquired(itsame,mushTest);
-  mushTest.display();
   popMatrix();
   itsame.moveUpDown(groundheight,currentWorld);
   if((itsame.getHealth() == 0)){
@@ -117,7 +113,7 @@ void keyReleased(){
 }
 void setTerrain(){
   int counter = 0;
-  for(int i = 0;i<15;i++){
+  for(int i = 0;i<16;i++){
     if(counter<5){
       float height = (float)Math.random()*200+200;
       currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
@@ -125,11 +121,14 @@ void setTerrain(){
      }else if(counter<10){
       currentWorld.add(new Pit((float)Math.random()*640,399,30,20,"pitPic.png"));
       counter++;
-     }else{
+     }else if(counter<15){
        currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
+     }else{
+       currentWorld.add(new Mushroom(300.0,350.0,20.0,20.0,"mushroom.png"));
      }
       
   }
+  //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
 }
 
 void stop(){

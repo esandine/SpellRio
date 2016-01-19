@@ -158,7 +158,7 @@ class Mario{
        for(int i=0;i<ts.size();i++){
           if(isInside(ts.get(i),getHorizontal(),getVerticle())){
             ts.get(i).rightTrigger(this);
-            println("right");
+            //println("right");
           }
        }
      }
@@ -167,7 +167,7 @@ class Mario{
        for(int i=0;i<ts.size();i++){
           if(isInside(ts.get(i),getHorizontal(),getVerticle())){
             ts.get(i).leftTrigger(this);
-            println("left");
+            //println("left");
           }
        }
     }
@@ -231,7 +231,7 @@ class Mario{
         }
         if((hori>prehori)&&(!isInside(ts.get(i),prehori,vert))){
           ts.get(i).rightTrigger(this);
-          println("left");
+          //println("left");
         }
       }
     }
