@@ -17,6 +17,6 @@ public class Pipe extends Terrain{
   public void rightTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
   }
-  public void downTrigger(Mario m){
+  public void downTrigger(Mario m,ArrayList<Terrain> ts){
   };
 }

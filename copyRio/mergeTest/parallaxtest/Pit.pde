@@ -10,5 +10,5 @@ public class Pit extends Terrain{
   }
   public void leftTrigger(Mario m){}
   public void rightTrigger(Mario m){}
-  public void downTrigger(Mario m){}
+  public void downTrigger(Mario m,ArrayList<Terrain> ts){}
 }

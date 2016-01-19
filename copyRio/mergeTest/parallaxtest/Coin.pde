@@ -7,7 +7,7 @@ class Coin extends Terrain{
   public void upTrigger(Mario m){
     incrementCoinNum(m);
   }
-  public void downTrigger(Mario m){
+  public void downTrigger(Mario m,ArrayList<Terrain> ts){
     incrementCoinNum(m);
   }
   public void leftTrigger(Mario m){

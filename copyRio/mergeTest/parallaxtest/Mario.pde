@@ -181,8 +181,12 @@ class Mario{
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.size();i++){
          if(isInside(ts.get(i),horizontal,verticle)){
+           if(10-gravity>0){
+             ts.get(i).downTrigger(this,ts);
+           }else{
            ts.get(i).upTrigger(this);
            setJumpsLeft(2);
+           }
          }
        }
     if(itsame.getYcor()>groundheight){//If mario hits the ground
@@ -218,7 +222,7 @@ class Mario{
     for(int i=0;i<ts.size();i++){
       if(isInside(ts.get(i),hori,vert)){
         if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
-          ts.get(i).downTrigger(this);
+          ts.get(i).downTrigger(this,ts);
           //println("down");
         }
         if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){

@@ -71,10 +71,14 @@ void draw(){
    textSize(13);
    redraw();
   }
+  for(int n = 0;n<currentWorld.size();n++){
+       if((currentWorld.get(n)).getCollected()){
+         currentWorld.remove(n);
+       }
+  }
   itsame.display();
   counter.incrementCoinNum(itsame);
   counter.display();
-
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){
@@ -116,7 +120,7 @@ void keyReleased(){
 }
 void setTerrain(){
   int counter = 0;
-  for(int i = 0;i<16;i++){
+  for(int i = 0;i<17;i++){
     if(counter<5){
       float height = (float)Math.random()*200+200;
       currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
@@ -124,10 +128,11 @@ void setTerrain(){
      }else if(counter<10){
       currentWorld.add(new Pit((float)Math.random()*640,399,30,20,"pitPic.png"));
       counter++;
-     }else if(counter<15){
-       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
+//     }else if(counter<15){
+//       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }else{
-       currentWorld.add(new Mushroom(300.0,350.0,20.0,20.0,"mushroom.png"));
+       currentWorld.add(new ItemBlock((float)Math.random()*620,(float)Math.random()*400+20,30,30,"itemblock.JPG"));
+//       print("made somtething");
      }
       
   }

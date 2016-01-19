@@ -15,7 +15,7 @@ class Mushroom extends Terrain{
       mario.resize(100,100);
       setCollected(true);
   }
-  public void downTrigger(Mario m){
+  public void downTrigger(Mario m,ArrayList<Terrain> ts){
       m.setHealth(2);
       mario.resize(100,100);
       setCollected(true);
