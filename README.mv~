@@ -5,20 +5,6 @@ Directions to Compile/Run:
 Directions to use it:
 
 Day by Day feature log:
-1/19/16:
-Ely Sandine
-New Features:
--Made Item blocks work. When they are hit they drop a coin
--Commented out music because it was annoying
--Made item blocks be removed after they are hit
-BugFix:
--None
-Bugs Added:
--None so far
-Goals:
--fix the error where mario starts teleporting up and down across the screen. 
--make item blocks drop things other than coins
--clean up the code it is rather messy
 demo-1/18/16:
 Ely Sandine:
 New Features:
