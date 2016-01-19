@@ -17,13 +17,16 @@ Minim minim;
 
 //Setup is called at the beginning of the game
 void setup(){
+  
   minim = new Minim(this);
   player = minim.loadFile("backgroundMusic.mp3",2048);
-  player.play();
+  if(itsame.getHealth() > 0){
+    player.play();
+  }
   //It load sthe grond, middle, and background
-  back = loadImage("back2.png");
+  back = loadImage("Mario.jpg");
   middle = loadImage("middle.png");
-  front = loadImage("front2.png");
+  front = loadImage("qwre.png");
   //Makes the size of the screen 640x420 also sets the framerate and textsize
   size(640, 420);
   textSize(13);
