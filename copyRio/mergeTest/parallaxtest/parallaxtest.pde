@@ -1,4 +1,4 @@
-import ddf.minim.*;
+//import ddf.minim.*;
 import java.util.*;
 int matrixMove;
 PImage back, middle, front;
@@ -11,18 +11,18 @@ CoinCounter counter;
 float backVel;
 ArrayList<Terrain> currentWorld = new ArrayList();
 Mario itsame = new Mario();
-AudioPlayer player;
-Minim minim;
+//AudioPlayer player;
+//Minim minim;
 
 
 //Setup is called at the beginning of the game
 void setup(){
   
-  minim = new Minim(this);
+  /*minim = new Minim(this);
   player = minim.loadFile("backgroundMusic.mp3",2048);
   if(itsame.getHealth() > 0){
     player.play();
-  }
+  }*/
   //It load sthe grond, middle, and background
   back = loadImage("Mario.jpg");
   middle = loadImage("middle.png");
@@ -133,9 +133,9 @@ void setTerrain(){
   }
   //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
 }
-
+/*
 void stop(){
   player.close();
   minim.stop();
   super.stop();
-}
+}*/
