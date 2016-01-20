@@ -25,8 +25,13 @@ public class ItemBlock extends Terrain implements Collectable{
     while(m.isInsideVerticle(this)){
       m.move(0,-.1);
     }
-    ts.add(new Coin(getXcor(),getYcor(),15,15,"coin.png"));
+    if(random(10)<1){
+    ts.add(new Mushroom(getXcor(),getYcor(),15,15,"mushroom.png"));
     setCollected(true);
+    }else{
+      ts.add(new Coin(getXcor(),getYcor(),15,15,"coin.png"));
+      setCollected(true);
+    }
   }
   public void setCollected(boolean b){
     collected=b;

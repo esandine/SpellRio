@@ -1,40 +1,59 @@
 class Mushroom extends Terrain{
-  boolean collected;
-  public Mushroom(float x, float y,float l, float h, String s){
-     super(x,y,l,h,s);
-     collected=false;
-  }
-  public void setCollected(boolean b){
-    collected=b;
-  }
-  public boolean getCollected(){
-    return collected;
-  }
+    boolean collected;
+    Mushroom(float x, float y, float l, float h, String s){
+      super(x,y,l,h,s);
+      collected = false;
+    }
   public void upTrigger(Mario m){
-      m.setHealth(2);
-      mario.resize(100,100);
-      setCollected(true);
+    incrementHealthNum(m);
   }
   public void downTrigger(Mario m,ArrayList<Terrain> ts){
-      m.setHealth(2);
-      mario.resize(100,100);
-      setCollected(true);
+    incrementHealthNum(m);
   }
   public void leftTrigger(Mario m){
-      m.setHealth(2);
-      mario.resize(100,100);
-      setCollected(true);
+    incrementHealthNum(m);
   }
   public void rightTrigger(Mario m){
-      m.setHealth(2);
-      mario.resize(100,100);
-      setCollected(true);
+    incrementHealthNum(m);
   }
-  void display(){
-    if(!collected){
-      display();
+    void display(){
+      if(!collected){
+        super.display();
+      }
+    }
+  void incrementHealthNum(Mario m){
+    if(collected == false){
+      m.setHealth(2);
+      print(m.getHealth());
+      collected = true;
     }
   }
 }
+    
+      
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
