@@ -13,7 +13,7 @@ ArrayList<Terrain> currentWorld = new ArrayList();
 Mario itsame = new Mario();
 //AudioPlayer player;
 //Minim minim;
-
+boolean paused;
 
 //Setup is called at the beginning of the game
 void setup(){
@@ -26,6 +26,7 @@ void setup(){
   back = loadImage("Mario.jpg");
   middle = loadImage("middle.png");
   front = loadImage("qwre.png");
+  paused = false;
   //Makes the size of the screen 640x420 also sets the framerate and textsize
   size(640, 420);
   textSize(13);
@@ -35,6 +36,7 @@ void setup(){
   //Sets the groundheight and creates the Terrain
   groundheight=380;
   setTerrain(); 
+  
 }
 void paraDraw(PImage img, PVector pos, float vel){
   //pos.sub(vel, 0, 0);
@@ -47,7 +49,7 @@ void paraDraw(PImage img, PVector pos, float vel){
 }
 // makes original mario
 void draw(){
-  if(!itsame.getLost()){
+  if(!itsame.getLost() && !paused){
     
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
@@ -105,6 +107,7 @@ void keyPressed(){
   if(key=='r'){
     itsame = new Mario();// Makes Mario in the center
   }
+  
 }
 void keyReleased(){
   if(key=='a'){
@@ -112,6 +115,11 @@ void keyReleased(){
     spriteVel = 0; 
     backVel = 0;
     bushVel = 0;
+  }
+  if(key == 'p'){
+    // pause test
+   paused = !paused;
+   print(paused);
   }
   if(key=='d'){
     itsame.setDpressed(false);
