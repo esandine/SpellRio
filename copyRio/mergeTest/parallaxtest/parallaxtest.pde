@@ -50,6 +50,10 @@ void draw(){
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
+  if(itsame.getLost()){
+    noLoop();
+  }
+  
   background(255);
   itsame.moveLeftRight(currentWorld);
   //itsame.triggers(currentWorld);
