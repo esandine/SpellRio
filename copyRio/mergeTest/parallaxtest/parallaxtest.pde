@@ -131,7 +131,7 @@ void setTerrain(){
 //     }else if(counter<15){
 //       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }else{
-       currentWorld.add(new ItemBlock((float)Math.random()*620,(float)Math.random()*400+20,30,30,"itemblock.JPG"));
+       currentWorld.add(new ItemBlock((float)Math.random()*620,(float)Math.random()*400+20,30,30,"itemblock.png"));
 //       print("made somtething");
      }
       
