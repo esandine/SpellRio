@@ -1,11 +1,14 @@
 public class ItemBlock extends Terrain implements Collectable{
   public boolean collected;
+  PImage shroom;
   public ItemBlock(float x, float y, float l, float h, String s){
     super(x,y,l,h,s);
     collected = false;
+    shroom = loadImage("mushroom.png");
   }
   public ItemBlock(String s){
     this(100,100,100,100,s);
+     shroom = loadImage("mushroom.png");
   }
   public void upTrigger(Mario m){
     while(m.isInsideVerticle(this)){

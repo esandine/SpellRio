@@ -17,7 +17,6 @@ Mario itsame = new Mario();
 
 //Setup is called at the beginning of the game
 void setup(){
-  
   /*minim = new Minim(this);
   player = minim.loadFile("backgroundMusic.mp3",2048);
   if(itsame.getHealth() > 0){
