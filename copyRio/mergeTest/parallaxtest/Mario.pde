@@ -32,6 +32,7 @@ class Mario{
     oldHorizontal=0;
     verticle=0;
     oldVerticle=0;
+    lost = false;
     //groundsurface=-10;
   }
   Mario(float x, float y){
@@ -101,6 +102,9 @@ class Mario{
   }
   float getVerticle(){
     return verticle;
+  }
+  boolean getLost(){
+    return lost;
   }
   //float getGroundSurface(){
   //  return groundsurface;

@@ -47,13 +47,11 @@ void paraDraw(PImage img, PVector pos, float vel){
 }
 // makes original mario
 void draw(){
+  if(!itsame.getLost()){
+    
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
-  if(itsame.getLost()){
-    noLoop();
-  }
-  
   background(255);
   itsame.moveLeftRight(currentWorld);
   //itsame.triggers(currentWorld);
@@ -66,6 +64,7 @@ void draw(){
   }
   popMatrix();
   itsame.moveUpDown(groundheight,currentWorld);
+}
   if((itsame.getHealth() == 0)){
    textSize(20);
    text("press R to Restart",width/2,height/2);
