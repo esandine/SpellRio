@@ -185,7 +185,9 @@ class Mario{
   }
   //moveUpDown moves Mario either vertically up, or vertically down
   void moveUpDown(float groundheight, ArrayList<ArrayList<Terrain>> ts){
+    if(gravity<50){
     gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
+    }
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.size();i++){
       for(int ii = 0;ii<ts.get(i).size();ii++){
@@ -194,7 +196,6 @@ class Mario{
              ts.get(i).get(ii).downTrigger(this,ts.get(i));
            }else{
            ts.get(i).get(ii).upTrigger(this);
-           
            }
          }
        }

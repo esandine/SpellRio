@@ -139,27 +139,28 @@ void keyReleased(){
     bushVel = 0;
   }
 }
+//make my terrain
 void setTerrain(){
   int counter = 0;
-  for(int i = 0;i<17;i++){
-    if(counter<5){
+  for(int i = 0;i<50;i++){
+    if(counter<20){
       float height = (float)Math.random()*200+200;
-      currentWorld.add(new Pipe((float)Math.random()*640,height,50,400-height,"pipe.png"));
+      currentWorld.add(new Pipe((float)Math.random()*2250,height,50,400-height,"pipe.png"));
       counter++;
-     }else if(counter<10){
-      currentWorld.add(new Pit((float)Math.random()*640,399,30,20,"pitPic.png"));
+     }else if(counter<30){
+      currentWorld.add(new Pit((float)Math.random()*2250,399,30,20,"pitPic.png"));
       counter++;
 //     }else if(counter<15){
 //       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }else{
        if(random(5)<2){
          float saveRandom = ((float)random(10)+200);
-         float saveRandomX = ((float)Math.random()*620);
+         float saveRandomX = ((float)Math.random()*2250);
          for(int dj=0;dj<2;dj++){
            currentWorld.add(new ItemBlock((saveRandomX +(30*dj)),saveRandom,30,30,"itemblock.png"));
          }
        }else{
-       currentWorld.add(new ItemBlock(((float)Math.random()*620),((float)random(10)+200),30,30,"questionblock.png"));
+       currentWorld.add(new ItemBlock(((float)Math.random()*2250),((float)random(10)+200),30,30,"questionblock.png"));
      }
      }     
   }
