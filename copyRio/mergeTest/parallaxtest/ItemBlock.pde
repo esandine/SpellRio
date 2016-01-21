@@ -25,7 +25,9 @@ public class ItemBlock extends Terrain implements Collectable{
     while(m.isInsideVerticle(this)){
       m.move(0,-.1);
     }
-    if(random(10)<1){
+    if(random(10)<0){
+      ts.add(new Mushroom(getXcor(),getYcor(),15,15,"oneUpShroom.png"));
+    }else if(random(10)<10){
     ts.add(new Mushroom(getXcor(),getYcor(),15,15,"mushroom.png"));
     setCollected(true);
     }else{
