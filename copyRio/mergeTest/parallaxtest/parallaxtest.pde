@@ -25,7 +25,7 @@ void setup(){
     player.play();
   }*/
   //It load sthe grond, middle, and background
-  back = loadImage("Mario.jpg");
+  back = loadImage("backTest.png");
   middle = loadImage("middle.png");
   front = loadImage("qwre.png");
   paused = false;
@@ -54,7 +54,7 @@ void paraDraw(PImage img, PVector pos, float vel){
 // makes original mario
 void draw(){
   if(!itsame.getLost() && !paused){
-  print(itsame.getHealth());  
+  //print(itsame.getHealth());  
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
@@ -63,7 +63,7 @@ void draw(){
   //procrastination.oneMove();
   //itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
-  image(back,0,0);
+  image(back,2250,420);
   image(middle,0,0);
   image(front,0,0);
   for(int n = 0;n<currents.size();n++){
