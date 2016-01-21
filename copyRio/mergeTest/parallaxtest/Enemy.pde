@@ -28,6 +28,7 @@ public abstract class Enemy extends Terrain{
     m.setHealth(m.getHealth()-1);
   }
   public void move(float x,float y){
+    if(getHealth() == 1){
     setXcor(getXcor()+x);
     setYcor(getYcor()-y);
     if(getXcor()<0){
@@ -35,6 +36,7 @@ public abstract class Enemy extends Terrain{
     }
     if(getXcor()>640){
       setXcor(0);
+    }
     }
   }
   public abstract void oneMove();
