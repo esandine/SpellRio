@@ -24,7 +24,6 @@ class Mushroom extends Terrain{
   void incrementHealthNum(Mario m){
     if(collected == false){
       m.setHealth(2);
-      print(m.getHealth());
       collected = true;
     }
   }
