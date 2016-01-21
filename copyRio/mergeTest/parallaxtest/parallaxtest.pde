@@ -54,7 +54,7 @@ void paraDraw(PImage img, PVector pos, float vel){
 // makes original mario
 void draw(){
   if(!itsame.getLost() && !paused){
-    
+  print(itsame.getHealth());  
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
@@ -115,7 +115,7 @@ void keyPressed(){
     backVel = 1;
     bushVel = 2;
   }
-  if(key=='r'){
+  if(key=='r' && itsame.getHealth() == 0){
     itsame = new Mario();// Makes Mario in the center
   }
   
