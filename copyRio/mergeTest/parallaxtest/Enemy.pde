@@ -5,10 +5,6 @@ public abstract class Enemy extends Terrain{
   public Enemy(String s){
     this(200,200,100,100,s);
   }
-  public void display(){
-    fill(255,0,0);
-    rect(getXcor(),getYcor(),getLength(),getHeight());
-  }
   public void upTrigger(Mario m){
     while(m.isInsideVerticle(this)){
       m.move(0,-.1);
@@ -32,6 +28,12 @@ public abstract class Enemy extends Terrain{
   public void move(float x,float y){
     setXcor(getXcor()+x);
     setYcor(getYcor()-y);
+    if(getXcor()<0){
+      setXcor(640);
+    }
+    if(getXcor()>640){
+      setXcor(0);
+    }
   }
   public abstract void oneMove();
 }

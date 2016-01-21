@@ -167,11 +167,11 @@ void setTerrain(){
   //currentWorld.add(new Enemy("test"));
 }
 void setEnemies(){
-  for(int i = 0;i<5;i++){
+  for(int i = 0;i<7;i++){
     if(i<3){
-      currentEnemies.add(new Goomba(((float)Math.random()*620),400,15,15,"tester"));
+      currentEnemies.add(new Goomba(((float)Math.random()*620),370,30,30,"goomba.png"));
     }else{
-      currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),15,30,"tester"));
+      currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),30,15,"Bullet.png"));
     }
   }
 }
