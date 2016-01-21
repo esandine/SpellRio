@@ -1,0 +1,90 @@
+Directions to use it:
+ 
+ Day by Day feature log:
+-1/20/16:
+-Ely Sandine
+-New Features:
+-Made an abstract subclass of Terrain called Enemy. It is like terrain but can move
+-Added Goombas and Bullets as subclasses of Enemy. They currently only differ in their speeds of movement.
+-Added the ArrayList currentEnemies that contains all the enemies.
+-Added the 2D ArrayList currents that contains currentWorld and currentEnemies
+-Modified mario's moves to deal with 2D array
+-Made it so all the Enemies move each draw
+BugFix:
+-None
+Bugs Added:
+-Goombas can travel through walls.
+-Any contact wit Mario and Enemy appears to kill him instead of decreasing health. (Needs more investigation)
+Goals:
+-Fix Goombas moving through walls
+-Also make it so Mario can stomp on enemies to kill them
+-1/19/16:
+-Ely Sandine
+-New Features:
+--Made Item blocks work. When they are hit they drop a coin
+--Commented out music because it was annoying
+--Made item blocks be removed after they are hit
+-BugFix:
+--None
+-Bugs Added:
+--None so far
+-Goals:
+--fix the error where mario starts teleporting up and down across the screen. 
+--make item blocks drop things other than coins
+--clean up the code it is rather messy
+-demo-1/18/16:
++
++DEMO day: 1/18/16:
++
+ Ely Sandine:
+ New Features:
+ -Made Mario stay in the center of the screen
+@@ -35,6 +23,8 @@ Bug Introduced:
+ Goals:
+ -Fix double jumping coins.
+ -Make Blocks that when hit drop coins
++
++
+ Dhiraj Patel:
+ Added features:
+ -Added Music to the backround
+@@ -43,5 +33,38 @@ Added features:
+ Bugfix:
+ Bug Introduced:
+ -Mushrooms don't really work
+-Goas:
+--Make Mushrooms work
++Goals:
++-Make Mushrooms work
++
++
++Day: 1/19/16:
++
++Ely Sandine
++New Features:
++-Made Item blocks work. When they are hit they drop a coin
++-Commented out music because it was annoying
++-Made item blocks be removed after they are hit
++BugFix:
++-None
++Bugs Added:
++-None so far
++Goals:
++-fix the error where mario starts teleporting up and down across the screen.
++-make item blocks drop things other than coins
++-clean up the code it is rather messy
++
++Dhiraj Patel
++New Features:
++-Made mushrooms work. When the ItemBlock is hit, they have a 1/10th chance of containing a mushroom or else a coin, and the mushroom if then collected 
++sets health to 2.
++- added second type of itemblock, called question block, which makes the shrooms, regular blocks have only coins.
++Bugs Added:
++- Before, the shroom block would cause game to freeze and mario was stuck at the block.
++Bugs Fixed:
++- Fixed the freeze problem, by isolating its cause using the print function and then debugging. Works well now!
++Goals:
++- fix the really really annoying error that we dont know why its happening; the one where mario randomly starts teleporting up and down across the screen.
++- Make a new enemy, Goomba or Koopa Troopa's.
++
++
