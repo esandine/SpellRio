@@ -9,7 +9,9 @@ public abstract class Enemy extends Terrain{
     while(m.isInsideVerticle(this)){
       m.move(0,-.1);
     }
-    m.setHealth(m.getHealth()-1);
+    // while mario is on top of goomba, then kill goomba. 
+    die();
+    print("GGGG:"+getHealth());
   }
   public void leftTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());

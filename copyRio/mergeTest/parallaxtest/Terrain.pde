@@ -31,13 +31,16 @@ abstract class Terrain{
   private PImage img;   
   PVector vpipe;
   float pipeVel;
-  
+  boolean timeForDeath;
+  int health;
   public Terrain(float x,float y,float l,float h, String s){
     xcor = x;
     ycor = y;
     length = l;
     height = h;
-    img=loadImage(s);
+    timeForDeath = false;
+    img=loadImage(s); 
+    health = 1;
   }
   public float getXcor(){
     return xcor;
@@ -54,6 +57,9 @@ abstract class Terrain{
   public PImage getImage(){
     return img;
   }
+  public int getHealth(){
+    return health;
+  }
   public void setXcor(float n){
     xcor = n;
   }
@@ -68,6 +74,12 @@ abstract class Terrain{
   }
   public void setImage(PImage nimg){
     img = nimg;
+  }
+  public void setHealth(int newHealth){
+    health = newHealth;
+  }
+  public void setDeathTime(boolean x){
+    timeForDeath = x; 
   }
   public void move(float dx,float dy){
     setXcor(getXcor()+dx);
@@ -85,5 +97,11 @@ abstract class Terrain{
   }
   public boolean getCollected(){//Always false unless the sub class overwrites it.
     return false;
+  }
+  void die(){
+    if(timeForDeath){
+      setHealth(0);
+      setDeathTime(true);
+    }
   }
 }

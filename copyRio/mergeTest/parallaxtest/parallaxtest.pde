@@ -170,7 +170,7 @@ void setEnemies(){
   for(int i = 0;i<7;i++){
     if(i<3){
       currentEnemies.add(new Goomba(((float)Math.random()*620),370,30,30,"goomba.png"));
-    }else{
+    }else if(random(10)<1){
       currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),30,15,"Bullet.png"));
     }
   }
