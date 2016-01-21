@@ -154,13 +154,12 @@ void setTerrain(){
 //       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }else{
        if(random(5)<2){
-         float saveRandom = ((float)random(10)+200);
          float saveRandomX = ((float)Math.random()*2250);
-         for(int dj=0;dj<2;dj++){
-           currentWorld.add(new ItemBlock((saveRandomX +(30*dj)),saveRandom,30,30,"itemblock.png"));
+         for(int dj=0;dj<random(5)+1;dj++){
+           currentWorld.add(new ItemBlock((saveRandomX +(30*dj)),200,30,30,"itemblock.png"));
          }
        }else{
-       currentWorld.add(new ItemBlock(((float)Math.random()*2250),((float)random(10)+200),30,30,"questionblock.png"));
+       currentWorld.add(new ItemBlock(((float)Math.random()*2250),200,30,30,"questionblock.png"));
      }
      }     
   }
@@ -170,7 +169,7 @@ void setTerrain(){
 void setEnemies(){
   for(int i = 0;i<7;i++){
     if(i<3){
-      currentEnemies.add(new Goomba(((float)Math.random()*620),370,30,30,"goomba.png"));
+      currentEnemies.add(new Goomba(((float)Math.random()*620),370,30,30,"goomba.png")); // changge this terrible pic
     }else if(random(10)<1){
       currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),30,15,"Bullet.png"));
     }
