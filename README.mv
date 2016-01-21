@@ -18,6 +18,22 @@ Bugs Added:
 Goals:
 -Fix Goombas moving through walls
 -Also make it so Mario can stomp on enemies to kill them
+
+Dhiraj Patel:
+New Features:
+-- less amount of Bullet Bills coming through
+-- new type of shroom introduced, called the oneUpShroom, just increases mario life by 1, so even if fall into pit, basically should restart
+-- tried to get goomba to die if jumped on top of ...
+BugAdded:
+-- Goomba's aren't dying!
+BugsFixed:
+-- none, it was too late in the night
+Goals:
+fix the goomba's not dying
+add even more powerups
+make the blocks in the air look better, and like come more organized!
+
+
 -1/19/16:
 -Ely Sandine
 -New Features:
