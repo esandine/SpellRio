@@ -10,11 +10,13 @@ final int minxcor = 2;
 CoinCounter counter;
 float backVel;
 ArrayList<Terrain> currentWorld = new ArrayList();
+ArrayList<Terrain> currentEnemies = new ArrayList();
+ArrayList<ArrayList<Terrain>> currents = new ArrayList();
 Mario itsame = new Mario();
 //AudioPlayer player;
 //Minim minim;
 boolean paused;
-Goomba procrastination = new Goomba("dont do it");
+//Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
 void setup(){
   /*minim = new Minim(this);
@@ -36,7 +38,9 @@ void setup(){
   //Sets the groundheight and creates the Terrain
   groundheight=380;
   setTerrain(); 
-  
+  setEnemies();
+  currents.add(currentWorld);
+  currents.add(currentEnemies);
 }
 void paraDraw(PImage img, PVector pos, float vel){
   //pos.sub(vel, 0, 0);
@@ -55,19 +59,24 @@ void draw(){
   itsame.setOldHorizontal(itsame.getHorizontal());
   itsame.setOldVerticle(itsame.getVerticle());
   background(255);
-  itsame.moveLeftRight(currentWorld);
-  procrastination.oneMove();
+  itsame.moveLeftRight(currents);
+  //procrastination.oneMove();
   //itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
   image(middle,0,0);
   image(front,0,0);
-  for(int n = 0;n<currentWorld.size();n++){
-    currentWorld.get(n).display();
+  for(int n = 0;n<currents.size();n++){
+    for(int nn = 0;nn<currents.get(n).size();nn++){
+      currents.get(n).get(nn).display();
+    }
   }
-  procrastination.display();
+  for(int i = 0;i<currentEnemies.size();i++){
+    ((Enemy)currentEnemies.get(i)).oneMove();
+  }
+  //procrastination.display();
   popMatrix();
-  itsame.moveUpDown(groundheight,currentWorld);
+  itsame.moveUpDown(groundheight,currents);
 }
   if((itsame.getHealth() == 0)){
    textSize(20);
@@ -156,6 +165,15 @@ void setTerrain(){
   }
   //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
   //currentWorld.add(new Enemy("test"));
+}
+void setEnemies(){
+  for(int i = 0;i<5;i++){
+    if(i<3){
+      currentEnemies.add(new Goomba(((float)Math.random()*620),400,15,15,"tester"));
+    }else{
+      currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),15,30,"tester"));
+    }
+  }
 }
 /*
 void stop(){
