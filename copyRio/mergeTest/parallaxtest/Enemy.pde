@@ -1,4 +1,4 @@
-public class Enemy extends Terrain{
+public abstract class Enemy extends Terrain{
   public Enemy(float x, float y, float l, float h, String s){
     super(x,y,l,h,s);
   }
@@ -33,4 +33,5 @@ public class Enemy extends Terrain{
     setXcor(getXcor()+x);
     setYcor(getYcor()-y);
   }
+  public abstract void oneMove();
 }

@@ -14,7 +14,7 @@ Mario itsame = new Mario();
 //AudioPlayer player;
 //Minim minim;
 boolean paused;
-Enemy procrastination = new Enemy("dont do it");
+Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
 void setup(){
   /*minim = new Minim(this);
@@ -56,7 +56,7 @@ void draw(){
   itsame.setOldVerticle(itsame.getVerticle());
   background(255);
   itsame.moveLeftRight(currentWorld);
-  procrastination.move(1,0);
+  procrastination.oneMove();
   //itsame.triggers(currentWorld);
   translate(itsame.getHorizontal(),itsame.getVerticle());
   image(back,0,0);
