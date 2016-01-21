@@ -194,7 +194,7 @@ class Mario{
              ts.get(i).get(ii).downTrigger(this,ts.get(i));
            }else{
            ts.get(i).get(ii).upTrigger(this);
-           setJumpsLeft(2);
+           
            }
          }
        }

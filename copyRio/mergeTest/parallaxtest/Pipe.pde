@@ -10,6 +10,7 @@ public class Pipe extends Terrain{
     while(m.isInsideVerticle(this)){
       m.move(0,.1);
     }
+    m.setJumpsLeft(2);
   }
   public void leftTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
