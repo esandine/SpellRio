@@ -1,5 +1,5 @@
 PImage mario;
-class Mario{
+class Mario {
   color c;//his color
   float xcor;//coordinates of the point that represents him
   float ycor;
@@ -15,13 +15,13 @@ class Mario{
   float horizontal;
   float oldHorizontal;
   //float groundsurface;
-  
+
   // POWER-UPS BOOLEANS:
   boolean hasAGreenPowerUp;
   boolean obtainedIceFlower;
-  
-  
-  Mario(color C, float x, float y){
+
+
+  Mario(color C, float x, float y) {
     c=C;
     xcor=x;
     ycor=y;
@@ -40,209 +40,209 @@ class Mario{
     obtainedIceFlower = false;
     //groundsurface=-10;
   }
-  Mario(float x, float y){
-    this(color(220,0,0),x,y);
+  Mario(float x, float y) {
+    this(color(220, 0, 0), x, y);
   }
-  Mario(){
-    this(width/2,360);
+  Mario() {
+    this(width/2, 360);
   }
-  void display(){//Displays Mario
-  if(getHealth() > 0){
-    if(obtainedIceFlower){
-      mario = loadImage("iceSuitMario.png");
-    }else{
-    mario=loadImage("standingMario.gif");}
-    image(mario,getXcor(),getYcor());
+  void display() {//Displays Mario
+    if (getHealth() > 0) {
+      if (obtainedIceFlower) {
+        mario = loadImage("iceSuitMario.png");
+      } else {
+        mario=loadImage("standingMario.gif");
+      }
+      image(mario, getXcor(), getYcor());
+    }
   }
-  }
-  void move(float dx,float dy){//Moves Mario a specified distance
+  void move(float dx, float dy) {//Moves Mario a specified distance
     xcor+=dx;
-    if(xcor>width){//the wrap around
+    if (xcor>width) {//the wrap around
       xcor=0;
     }
-    if(xcor<0){
+    if (xcor<0) {
       xcor=width;
     }
     ycor-=dy;
-    if(ycor<0){
+    if (ycor<0) {
       ycor=height;
     }
-    if(ycor>height){
+    if (ycor>height) {
       ycor=0;
     }
   }
   //Accessors
-  float getXcor(){
+  float getXcor() {
     return xcor;
   }
-  float getYcor(){
+  float getYcor() {
     return ycor;
   }
-  color getC(){
+  color getC() {
     return c;
   }
-  int getJumpsLeft(){
+  int getJumpsLeft() {
     return jumpsleft;
   }
-  int getIsJumping(){
+  int getIsJumping() {
     return isjumping;
   }
-  boolean getApressed(){
+  boolean getApressed() {
     return apressed;
   }
-  boolean getDpressed(){
+  boolean getDpressed() {
     return dpressed;
   }
-  int getHealth(){
+  int getHealth() {
     return health;
   }
-  int getCoinsCollected(){
+  int getCoinsCollected() {
     return coinscollected;
   }
-  float getOldHorizontal(){
+  float getOldHorizontal() {
     return oldHorizontal;
   }
-  float getHorizontal(){
+  float getHorizontal() {
     return horizontal;
   }
-  boolean getLost(){
+  boolean getLost() {
     return lost;
   }
-  boolean getHasAGreenPowerUp(){
+  boolean getHasAGreenPowerUp() {
     return hasAGreenPowerUp;
   }
-  boolean getObtainedIceFlower(){
+  boolean getObtainedIceFlower() {
     return obtainedIceFlower;
   }
   //float getGroundSurface(){
   //  return groundsurface;
   //}
-  boolean getWon(){
+  boolean getWon() {
     return won;
   }
   //Mutators
-  void setXcor(float x){
-      xcor = x;
+  void setXcor(float x) {
+    xcor = x;
   }
-  void setYcor(float y){
-      ycor = y;
+  void setYcor(float y) {
+    ycor = y;
   }
-  void setJumpsLeft(int n){
+  void setJumpsLeft(int n) {
     jumpsleft = n;
   }
-  void setIsJumping(int n){
+  void setIsJumping(int n) {
     isjumping = n;
   }
-  void setApressed(boolean tf){
+  void setApressed(boolean tf) {
     apressed=tf;
   }
-  void setDpressed(boolean tf){
+  void setDpressed(boolean tf) {
     dpressed=tf;
   }
-  void setGravity(int g){
+  void setGravity(int g) {
     gravity=g;
   }
-  void setHealth(int h){
+  void setHealth(int h) {
     health = h;
   }
-  void setCoinsCollected(int c){
+  void setCoinsCollected(int c) {
     coinscollected=c;
   }
   //jump() triggers when up is pressed.
-  void setHorizontal(float n){
+  void setHorizontal(float n) {
     horizontal=n;
   }
 
-  void setOldHorizontal(float n){
+  void setOldHorizontal(float n) {
     oldHorizontal=n;
   }
-  void setWon(boolean b){
+  void setWon(boolean b) {
     won=b;
   }
-  void setHasAGreenPowerUp(boolean b){
+  void setHasAGreenPowerUp(boolean b) {
     hasAGreenPowerUp = b;
   }
-  void setObtainedIceFlower(boolean b){
+  void setObtainedIceFlower(boolean b) {
     obtainedIceFlower = b;
   }
   //void setGroundSurface(float n){
   //  groundsurface=n;
   //}
-  void moveLeftRight(ArrayList<ArrayList<Terrain>> ts){//Moves Mario left and right
-      if(apressed&&dpressed){
-        addHorizontal(0);
+  void moveLeftRight(ArrayList<ArrayList<Terrain>> ts) {//Moves Mario left and right
+    if (apressed&&dpressed) {
+      addHorizontal(0);
+    }
+    if (apressed) {
+      addHorizontal(3);
+      for (int i = 0; i<ts.size(); i++) {
+        for (int ii=0; ii<ts.get(i).size(); ii++) {
+          if (isInside((ts.get(i).get(ii)), getHorizontal(), getYcor())) {
+            ts.get(i).get(ii).rightTrigger(this);
+            //println("right");
+          }
+        }
       }
-     if(apressed){
-       addHorizontal(3);
-       for(int i = 0;i<ts.size();i++){
-         for(int ii=0;ii<ts.get(i).size();ii++){
-            if(isInside((ts.get(i).get(ii)),getHorizontal(),getYcor())){
-              ts.get(i).get(ii).rightTrigger(this);
-              //println("right");
-            }
-         }
-       }
-     }
-     if(dpressed){
-       addHorizontal(-3);
-       for(int i = 0;i<ts.size();i++){
-         for(int ii=0;ii<ts.get(i).size();ii++){
-            if(isInside(ts.get(i).get(ii),getHorizontal(),getYcor())){
-              ts.get(i).get(ii).leftTrigger(this);
-              //println("left");
-            }
-         }
-       }
     }
-    if(getHorizontal()>0){
+    if (dpressed) {
+      addHorizontal(-3);
+      for (int i = 0; i<ts.size(); i++) {
+        for (int ii=0; ii<ts.get(i).size(); ii++) {
+          if (isInside(ts.get(i).get(ii), getHorizontal(), getYcor())) {
+            ts.get(i).get(ii).leftTrigger(this);
+            //println("left");
+          }
+        }
+      }
+    }
+    if (getHorizontal()>0) {
       setHorizontal(0);
-    }
-    else{
+    } else {
       addHorizontal(0);
     }
   }
   //moveUpDown moves Mario either vertically up, or vertically down
-  void moveUpDown(float groundheight, ArrayList<ArrayList<Terrain>> ts){
-    if(gravity<50){
-    gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
+  void moveUpDown(float groundheight, ArrayList<ArrayList<Terrain>> ts) {
+    if (gravity<50) {
+      gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
     }
-    itsame.move(0,10-gravity);
-    for(int i = 0;i<ts.size();i++){
-      for(int ii = 0;ii<ts.get(i).size();ii++){
-         if(isInside(ts.get(i).get(ii),horizontal,0)){
-           if(10-gravity>0){
-             ts.get(i).get(ii).downTrigger(this,ts.get(i));
-           }else{
-           ts.get(i).get(ii).upTrigger(this);
-           }
-         }
-       }
+    itsame.move(0, 10-gravity);
+    for (int i = 0; i<ts.size(); i++) {
+      for (int ii = 0; ii<ts.get(i).size(); ii++) {
+        if (isInside(ts.get(i).get(ii), horizontal, 0)) {
+          if (10-gravity>0) {
+            ts.get(i).get(ii).downTrigger(this, ts.get(i));
+          } else {
+            ts.get(i).get(ii).upTrigger(this);
+          }
+        }
+      }
     }
-    if(itsame.getYcor()>groundheight){//If mario hits the ground
-      itsame.move(0,itsame.getYcor()-groundheight);
+    if (itsame.getYcor()>groundheight) {//If mario hits the ground
+      itsame.move(0, itsame.getYcor()-groundheight);
       itsame.setJumpsLeft(2);
       gravity-=.5;
     }
   }
-  public boolean isInside(Terrain m,float hori,float vert){
+  public boolean isInside(Terrain m, float hori, float vert) {
     return isInsideHorizontal(m)&&isInsideVerticle(m);
   }
-  public boolean isInsideHorizontal(Terrain m){
+  public boolean isInsideHorizontal(Terrain m) {
     return (getXcor()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
   }
-  public boolean isInsideVerticle(Terrain m){
+  public boolean isInsideVerticle(Terrain m) {
     return (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
   }
-  public void die(){
+  public void die() {
     setHealth(0);
     lost = true;
   }
-  public void addHorizontal(float n){
+  public void addHorizontal(float n) {
     setHorizontal(getHorizontal()+n);
   }
-  boolean checkPipes(ArrayList<Terrain> ts){
-    for(int i = 0;i<5;i++){
-      if(isInsideHorizontal(ts.get(i))){
+  boolean checkPipes(ArrayList<Terrain> ts) {
+    for (int i = 0; i<5; i++) {
+      if (isInsideHorizontal(ts.get(i))) {
         return true;
       }
     }
