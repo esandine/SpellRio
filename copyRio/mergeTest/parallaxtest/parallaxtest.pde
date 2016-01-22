@@ -108,6 +108,9 @@ void draw(){
   itsame.display();
   counter.incrementCoinNum(itsame);
   counter.display();
+  println("Mario HP:" + itsame.getHealth());
+  println(itsame.getHasAGreenPowerUp());
+
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed(){

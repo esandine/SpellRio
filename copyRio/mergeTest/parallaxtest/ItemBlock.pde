@@ -18,7 +18,6 @@ public class ItemBlock extends Terrain implements Collectable{
   }
   public void leftTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
-    print("12");
   }
   public void rightTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
@@ -29,8 +28,8 @@ public class ItemBlock extends Terrain implements Collectable{
     }
     if(random(10)<3){
       ts.add(new Mushroom(getXcor(),getYcor(),15,15,"oneUpShroom.png"));
-    }else if(random(10)<8){
-    ts.add(new Mushroom(getXcor(),getYcor(),15,15,"mushroom.png"));
+    }else if(random(10)>3){
+    ts.add(new Mushroom(getXcor(),getYcor(),15,15,"oneUpShroom.png"));
     setCollected(true);
     }else{
       ts.add(new Coin(getXcor(),getYcor(),15,15,"coin.png"));

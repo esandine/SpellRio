@@ -8,6 +8,10 @@ public class Pit extends Terrain{
   public void upTrigger(Mario m){  
     if(!m.getHasAGreenPowerUp()){
     m.die();
+    }else{
+      m.setHealth(m.getHealth()-1);
+      m.setHasAGreenPowerUp(false);
+      m.setHorizontal(m.getHorizontal() - 15);
     }
   }
   public void leftTrigger(Mario m){}
