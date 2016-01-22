@@ -57,12 +57,11 @@ void draw(){
   //print(itsame.getHealth());  
   pushMatrix();
   itsame.setOldHorizontal(itsame.getHorizontal());
-  itsame.setOldVerticle(itsame.getVerticle());
   background(255);
   itsame.moveLeftRight(currents);
   //procrastination.oneMove();
   //itsame.triggers(currentWorld);
-  translate(itsame.getHorizontal(),itsame.getVerticle());
+  translate(itsame.getHorizontal(),0);
   image(back,2250,420);
   image(middle,0,0);
   image(front,0,0);

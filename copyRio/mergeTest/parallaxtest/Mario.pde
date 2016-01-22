@@ -13,8 +13,6 @@ class Mario{
   boolean onground;
   float horizontal;
   float oldHorizontal;
-  float verticle;
-  float oldVerticle;
   //float groundsurface;
  
   Mario(color C, float x, float y){
@@ -30,8 +28,6 @@ class Mario{
     coinscollected=0;
     horizontal=0;
     oldHorizontal=0;
-    verticle=0;
-    oldVerticle=0;
     lost = false;
     //groundsurface=-10;
   }
@@ -97,12 +93,6 @@ class Mario{
   float getHorizontal(){
     return horizontal;
   }
-  float getOldVerticle(){
-    return oldVerticle;
-  }
-  float getVerticle(){
-    return verticle;
-  }
   boolean getLost(){
     return lost;
   }
@@ -138,15 +128,10 @@ class Mario{
     coinscollected=c;
   }
   //jump() triggers when up is pressed.
-  void setVerticle(float n){
-    verticle=n;
-  }
   void setHorizontal(float n){
     horizontal=n;
   }
-  void setOldVerticle(float n){
-    oldVerticle=n;
-  }
+
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
@@ -161,7 +146,7 @@ class Mario{
        addHorizontal(3);
        for(int i = 0;i<ts.size();i++){
          for(int ii=0;ii<ts.get(i).size();ii++){
-            if(isInside((ts.get(i).get(ii)),getHorizontal(),getVerticle())){
+            if(isInside((ts.get(i).get(ii)),getHorizontal(),getYcor())){
               ts.get(i).get(ii).rightTrigger(this);
               //println("right");
             }
@@ -172,7 +157,7 @@ class Mario{
        addHorizontal(-3);
        for(int i = 0;i<ts.size();i++){
          for(int ii=0;ii<ts.get(i).size();ii++){
-            if(isInside(ts.get(i).get(ii),getHorizontal(),getVerticle())){
+            if(isInside(ts.get(i).get(ii),getHorizontal(),getYcor())){
               ts.get(i).get(ii).leftTrigger(this);
               //println("left");
             }
@@ -191,7 +176,7 @@ class Mario{
     itsame.move(0,10-gravity);
     for(int i = 0;i<ts.size();i++){
       for(int ii = 0;ii<ts.get(i).size();ii++){
-         if(isInside(ts.get(i).get(ii),horizontal,verticle)){
+         if(isInside(ts.get(i).get(ii),horizontal,0)){
            if(10-gravity>0){
              ts.get(i).get(ii).downTrigger(this,ts.get(i));
            }else{
@@ -221,35 +206,6 @@ class Mario{
   }
   public void addHorizontal(float n){
     setHorizontal(getHorizontal()+n);
-  }
-  public void addVerticle(float n){
-    setVerticle(getVerticle()+n);
-  }
-  public void triggers(ArrayList<Terrain> ts){
-    float hori = getHorizontal();
-    float prehori = getOldHorizontal();
-    float vert = getVerticle();
-    float prevert = getOldVerticle();
-    for(int i=0;i<ts.size();i++){
-      if(isInside(ts.get(i),hori,vert)){
-        if(!isInside(ts.get(i),hori,(vert-prevert)+vert)){
-          ts.get(i).downTrigger(this,ts);
-          //println("down");
-        }
-        if(!isInside(ts.get(i),hori,(prevert-vert)+vert)){
-          ts.get(i).upTrigger(this);
-          //println("up");
-        }
-        if(!isInside(ts.get(i),hori+(prehori-hori),vert)){
-          ts.get(i).leftTrigger(this);
-          //println("Left");
-        }
-        if((hori>prehori)&&(!isInside(ts.get(i),prehori,vert))){
-          ts.get(i).rightTrigger(this);
-          //println("left");
-        }
-      }
-    }
   }
   boolean checkPipes(ArrayList<Terrain> ts){
     for(int i = 0;i<5;i++){
