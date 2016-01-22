@@ -27,9 +27,9 @@ public class ItemBlock extends Terrain implements Collectable{
       m.move(0,-.1);
     }
     if(random(10)<3){
-      ts.add(new Mushroom(getXcor(),getYcor(),15,15,"oneUpShroom.png"));
+      ts.add(new Mushroom(getXcor(),getYcor(),15,15,"iceFlower.png"));
     }else if(random(10)>3){
-    ts.add(new Mushroom(getXcor(),getYcor(),15,15,"oneUpShroom.png"));
+    ts.add(new Mushroom(getXcor(),getYcor(),15,15,"iceFlower.png"));
     setCollected(true);
     }else{
       ts.add(new Coin(getXcor(),getYcor(),15,15,"coin.png"));

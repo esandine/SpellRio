@@ -8,7 +8,10 @@ class Mushroom extends Terrain{
         identifier = "redShroom";
       }else if(s.equals("oneUpShroom.png")){
         identifier = "greenShroom";
+      }else if(s.equals("iceFlower.png")){
+        identifier = "iceFlower");
       }
+      
     }
   public void upTrigger(Mario m){
     incrementHealthNum(m);
@@ -39,7 +42,12 @@ class Mushroom extends Terrain{
         collected = true;
         print("greenShroomObtained");
         m.setHasAGreenPowerUp(true);
-        print(m.getHasAGreenPowerUp());
+        //print(m.getHasAGreenPowerUp());
+      }
+      if(identifier.equals("iceFlower")){
+        m.setObtainedIceFlower(true);
+        m.setHealth(2);
+        
       }
     }
   }

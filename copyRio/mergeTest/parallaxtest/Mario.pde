@@ -15,7 +15,12 @@ class Mario{
   float horizontal;
   float oldHorizontal;
   //float groundsurface;
+  
+  // POWER-UPS BOOLEANS:
   boolean hasAGreenPowerUp;
+  boolean obtainedIceFlower;
+  
+  
   Mario(color C, float x, float y){
     c=C;
     xcor=x;
@@ -32,6 +37,7 @@ class Mario{
     lost = false;
     won = false;
     hasAGreenPowerUp = false;
+    obtainedIceFlower = false;
     //groundsurface=-10;
   }
   Mario(float x, float y){
@@ -102,6 +108,9 @@ class Mario{
   boolean getHasAGreenPowerUp(){
     return hasAGreenPowerUp;
   }
+  boolean getObtainedIceFlower(){
+    return obtainedIceFlower;
+  }
   //float getGroundSurface(){
   //  return groundsurface;
   //}
@@ -149,6 +158,9 @@ class Mario{
   }
   void setHasAGreenPowerUp(boolean b){
     hasAGreenPowerUp = b;
+  }
+  void setObtainedIceFlower(boolean b){
+    obtainedIceFlower = b;
   }
   //void setGroundSurface(float n){
   //  groundsurface=n;
