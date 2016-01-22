@@ -18,6 +18,7 @@ public class ItemBlock extends Terrain implements Collectable{
   }
   public void leftTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
+    print("12");
   }
   public void rightTrigger(Mario m){
     m.setHorizontal(m.getOldHorizontal());
