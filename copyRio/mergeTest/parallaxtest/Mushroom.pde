@@ -9,7 +9,7 @@ class Mushroom extends Terrain{
       }else if(s.equals("oneUpShroom.png")){
         identifier = "greenShroom";
       }else if(s.equals("iceFlower.png")){
-        identifier = "iceFlower");
+        identifier = "iceFlower";
       }
       
     }
