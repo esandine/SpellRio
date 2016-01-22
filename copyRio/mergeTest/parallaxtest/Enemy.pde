@@ -14,6 +14,7 @@ public abstract class Enemy extends Terrain implements Collectable{
     this(200,200,100,100,s);
   }
   public void upTrigger(Mario m){
+    print("test");
     /*while(m.isInsideVerticle(this)){
       m.move(0,-.1);
     }*/

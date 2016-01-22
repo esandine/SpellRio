@@ -86,10 +86,12 @@ void draw(){
    textSize(13);
    redraw();
   }
-  for(int n = 0;n<currentWorld.size();n++){
-       if((currentWorld.get(n)).getCollected()){
-         currentWorld.remove(n);
+  for(int n = 0;n<currents.size();n++){
+    for(int nn = 0;nn<currents.get(n).size();nn++){
+       if((currents.get(n).get(nn)).getCollected()){
+         currents.get(n).remove(currents.get(n).get(nn));
        }
+    }
   }
   itsame.display();
   counter.incrementCoinNum(itsame);
