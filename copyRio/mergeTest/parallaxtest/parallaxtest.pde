@@ -5,6 +5,7 @@ PImage back, middle, front;
 PVector vback, vmiddle, vfront,vpipe;
 float spriteVel,pipeVel,bushVel,groundheight;
 boolean lost = false;
+boolean won = false;
 int coinCount = 0;
 final int minxcor = 2;
 CoinCounter counter;
@@ -76,14 +77,26 @@ void draw(){
   //procrastination.display();
   popMatrix();
   itsame.moveUpDown(groundheight,currents);
-}
-  if((itsame.getHealth() == 0)){
+  }
+  if((itsame.getHealth() == 0 && !lost)){
+   fill(204,102,0);
    textSize(20);
    text("press R to Restart",width/2,height/2);
    //noLoop();
    lost = true;
    textSize(13);
    redraw();
+   paused = !paused;
+  }
+  if(itsame.getWon()&&!won){
+   print("won");
+   fill(204,102,0);
+   textSize(20);
+   text("You Won! press R to Restart",width/2,height/2);
+   textSize(13);
+   redraw();
+   paused = !paused;
+   won=true;
   }
   for(int n = 0;n<currents.size();n++){
     for(int nn = 0;nn<currents.get(n).size();nn++){
@@ -116,10 +129,6 @@ void keyPressed(){
     backVel = 1;
     bushVel = 2;
   }
-  if(key=='r' && itsame.getHealth() == 0){
-    itsame = new Mario();// Makes Mario in the center
-  }
-  
 }
 void keyReleased(){
   if(key=='a'){
@@ -139,6 +148,10 @@ void keyReleased(){
     backVel = 0;
     bushVel = 0;
   }
+  if(key=='r'){
+    paused = !paused;
+    itsame = new Mario();// Makes Mario in the center
+  }
 }
 //make my terrain
 void setTerrain(){
@@ -146,32 +159,33 @@ void setTerrain(){
   for(int i = 0;i<50;i++){
     if(counter<20){
       float height = (float)Math.random()*200+200;
-      currentWorld.add(new Pipe((float)Math.random()*2250,height,50,400-height,"pipe.png"));
+      currentWorld.add(new Pipe((float)Math.random()*1930+320,height,50,400-height,"pipe.png"));
       counter++;
      }else if(counter<30){
-      currentWorld.add(new Pit((float)Math.random()*2250,399,30,20,"pitPic.png"));
+      currentWorld.add(new Pit((float)Math.random()*1930+320,399,30,20,"pitPic.png"));
       counter++;
 //     }else if(counter<15){
 //       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
      }else{
        if(random(5)<2){
-         float saveRandomX = ((float)Math.random()*2250);
+         float saveRandomX = ((float)Math.random()*1930+320);
          for(int dj=0;dj<random(5)+1;dj++){
            currentWorld.add(new ItemBlock((saveRandomX +(30*dj)),200,30,30,"itemblock.png"));
          }
        }else{
-       currentWorld.add(new ItemBlock(((float)Math.random()*2250),200,30,30,"questionblock.png"));
+       currentWorld.add(new ItemBlock(((float)Math.random()*1930+320),200,30,30,"questionblock.png"));
      }
      }     
   }
+  currentWorld.add(new Flag());
   //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
   //currentWorld.add(new Enemy("test"));
 }
 void setEnemies(){
-  for(int i = 0;i<7;i++){
+  for(int i = 0;i<5;i++){
     if(i<3){
       currentEnemies.add(new Goomba(((float)Math.random()*620),370,30,30,"goomba.png")); // changge this terrible pic
-    }else if(random(10)<1){
+    }else{
       currentEnemies.add(new Bullet(((float)Math.random()*620),((float)Math.random()*400),30,15,"Bullet.png"));
     }
   }

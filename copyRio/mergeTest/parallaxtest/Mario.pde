@@ -9,6 +9,7 @@ class Mario{
   boolean apressed;//Keeps track of whether a or d are pressed
   boolean dpressed;
   int health; 
+  boolean won;
   int coinscollected;
   boolean onground;
   float horizontal;
@@ -29,6 +30,7 @@ class Mario{
     horizontal=0;
     oldHorizontal=0;
     lost = false;
+    won = false;
     //groundsurface=-10;
   }
   Mario(float x, float y){
@@ -99,6 +101,9 @@ class Mario{
   //float getGroundSurface(){
   //  return groundsurface;
   //}
+  boolean getWon(){
+    return won;
+  }
   //Mutators
   void setXcor(float x){
       xcor = x;
@@ -135,6 +140,9 @@ class Mario{
   void setOldHorizontal(float n){
     oldHorizontal=n;
   }
+  void setWon(boolean b){
+    won=b;
+  }
   //void setGroundSurface(float n){
   //  groundsurface=n;
   //}
@@ -163,6 +171,9 @@ class Mario{
             }
          }
        }
+    }
+    if(getHorizontal()>0){
+      setHorizontal(0);
     }
     else{
       addHorizontal(0);

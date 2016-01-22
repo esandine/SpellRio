@@ -40,9 +40,9 @@ public abstract class Enemy extends Terrain implements Collectable{
     setXcor(getXcor()+x);
     setYcor(getYcor()-y);
     if(getXcor()<0){
-      setXcor(640);
+      setXcor(2250);
     }
-    if(getXcor()>640){
+    if(getXcor()>2250){
       setXcor(0);
     }
     }
