@@ -1,18 +1,6 @@
 Directions to use it:
  
  Day by Day feature log:
--1/21/16:
--Ely Sandine:
--New Features:
--Made it so that when you land on an enemy it dies. In addition, made the flag terrain that when you hit it you win. Made enemys spawn across the whole screen
--Bugs Added:
--If you die near the flag you glitch out.
-Bugs Fixed:
--Made it impossible to die near flag by moving it out!
-Goals:
--Make it so that Goombas can travel on top of pipes. 
--Fix the forementioned bug
--Make it so at the beginning of the game mario starts in the center
 -1/20/16:
 -Ely Sandine
 -New Features:
