@@ -11,7 +11,7 @@ public class Pit extends Terrain{
     }else{
       m.setHealth(m.getHealth()-1);
       m.setHasAGreenPowerUp(false);
-      m.setHorizontal(m.getHorizontal() - 15);
+      m.addHorizontal(-30);
     }
   }
   public void leftTrigger(Mario m){}
