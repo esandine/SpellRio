@@ -47,5 +47,5 @@ public abstract class Enemy extends Terrain implements Collectable{
     }
     }
   }
-  public abstract void oneMove();
+  public abstract void oneMove(ArrayList<Terrain> t);
 }

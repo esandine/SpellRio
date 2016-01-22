@@ -5,7 +5,7 @@ public class Bullet extends Enemy{
    public Bullet(String s){
      this(150,150,15,15,s);
    }
-   public void oneMove(){
+   public void oneMove(ArrayList<Terrain> t){
      move(-3,0);
    }
 }

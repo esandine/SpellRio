@@ -72,7 +72,7 @@ void draw(){
     }
   }
   for(int i = 0;i<currentEnemies.size();i++){
-    ((Enemy)currentEnemies.get(i)).oneMove();
+    ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
   }
   //procrastination.display();
   popMatrix();
@@ -108,8 +108,8 @@ void draw(){
   itsame.display();
   counter.incrementCoinNum(itsame);
   counter.display();
-  println("Mario HP:" + itsame.getHealth());
-  println(itsame.getHasAGreenPowerUp());
+  //println("Mario HP:" + itsame.getHealth());
+  //println(itsame.getHasAGreenPowerUp());
 
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
