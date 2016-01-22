@@ -33,6 +33,7 @@ abstract class Terrain{
   float pipeVel;
   boolean timeForDeath;
   int health;
+  String identifier;
   public Terrain(float x,float y,float l,float h, String s){
     xcor = x;
     ycor = y;
@@ -41,6 +42,9 @@ abstract class Terrain{
     timeForDeath = false;
     img=loadImage(s); 
     health = 1;
+    if(s.equals("pitPic.png")){
+      identifier = "pit";
+    }
   }
   public float getXcor(){
     return xcor;
@@ -53,6 +57,9 @@ abstract class Terrain{
   }
   public float getHeight(){
     return height;
+  }
+  public String getIdentifier(){
+    return identifier;
   }
   public PImage getImage(){
     return img;

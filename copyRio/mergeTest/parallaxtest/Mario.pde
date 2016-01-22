@@ -15,7 +15,7 @@ class Mario{
   float horizontal;
   float oldHorizontal;
   //float groundsurface;
- 
+  boolean hasAGreenPowerUp;
   Mario(color C, float x, float y){
     c=C;
     xcor=x;
@@ -31,6 +31,7 @@ class Mario{
     oldHorizontal=0;
     lost = false;
     won = false;
+    hasAGreenPowerUp = false;
     //groundsurface=-10;
   }
   Mario(float x, float y){
@@ -98,6 +99,9 @@ class Mario{
   boolean getLost(){
     return lost;
   }
+  boolean getHasAGreenPowerUp(){
+    return hasAGreenPowerUp;
+  }
   //float getGroundSurface(){
   //  return groundsurface;
   //}
@@ -142,6 +146,9 @@ class Mario{
   }
   void setWon(boolean b){
     won=b;
+  }
+  void setHasAGreenPowerUp(boolean b){
+    hasAGreenPowerUp = b;
   }
   //void setGroundSurface(float n){
   //  groundsurface=n;

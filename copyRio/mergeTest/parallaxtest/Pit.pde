@@ -6,7 +6,9 @@ public class Pit extends Terrain{
       this(100,100,100,100,s);
   }
   public void upTrigger(Mario m){  
+    if(!m.getHasAGreenPowerUp()){
     m.die();
+    }
   }
   public void leftTrigger(Mario m){}
   public void rightTrigger(Mario m){}
