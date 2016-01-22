@@ -2,8 +2,8 @@
 import java.util.*;
 int matrixMove;
 PImage back, middle, front;
-PVector vback, vmiddle, vfront,vpipe;
-float spriteVel,pipeVel,bushVel,groundheight;
+PVector vback, vmiddle, vfront, vpipe;
+float spriteVel, pipeVel, bushVel, groundheight;
 boolean lost = false;
 boolean won = false;
 int coinCount = 0;
@@ -19,12 +19,12 @@ Mario itsame = new Mario();
 boolean paused;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
-void setup(){
+void setup() {
   /*minim = new Minim(this);
-  player = minim.loadFile("backgroundMusic.mp3",2048);
-  if(itsame.getHealth() > 0){
-    player.play();
-  }*/
+   player = minim.loadFile("backgroundMusic.mp3",2048);
+   if(itsame.getHealth() > 0){
+   player.play();
+   }*/
   //It load sthe grond, middle, and background
   back = loadImage("backTest.png");
   middle = loadImage("middle.png");
@@ -43,7 +43,7 @@ void setup(){
   currents.add(currentWorld);
   currents.add(currentEnemies);
 }
-void paraDraw(PImage img, PVector pos, float vel){
+void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
   //int r = (int)pos.x+img.width;
   //if(r < width) image(img, r, pos.y);
@@ -53,56 +53,56 @@ void paraDraw(PImage img, PVector pos, float vel){
   itsame = new Mario();
 }
 // makes original mario
-void draw(){
-  if(!itsame.getLost() && !paused){
-  //print(itsame.getHealth());  
-  pushMatrix();
-  itsame.setOldHorizontal(itsame.getHorizontal());
-  background(255);
-  itsame.moveLeftRight(currents);
-  //procrastination.oneMove();
-  //itsame.triggers(currentWorld);
-  translate(itsame.getHorizontal(),0);
-  image(back,2250,420);
-  image(middle,0,0);
-  image(front,0,0);
-  for(int n = 0;n<currents.size();n++){
-    for(int nn = 0;nn<currents.get(n).size();nn++){
-      currents.get(n).get(nn).display();
+void draw() {
+  if (!itsame.getLost() && !paused) {
+    //print(itsame.getHealth());  
+    pushMatrix();
+    itsame.setOldHorizontal(itsame.getHorizontal());
+    background(255);
+    itsame.moveLeftRight(currents);
+    //procrastination.oneMove();
+    //itsame.triggers(currentWorld);
+    translate(itsame.getHorizontal(), 0);
+    image(back, 2250, 420);
+    image(middle, 0, 0);
+    image(front, 0, 0);
+    for (int n = 0; n<currents.size(); n++) {
+      for (int nn = 0; nn<currents.get(n).size(); nn++) {
+        currents.get(n).get(nn).display();
+      }
     }
+    for (int i = 0; i<currentEnemies.size(); i++) {
+      ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
+    }
+    //procrastination.display();
+    popMatrix();
+    itsame.moveUpDown(groundheight, currents);
   }
-  for(int i = 0;i<currentEnemies.size();i++){
-    ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
+  if ((itsame.getHealth() == 0 && !lost)) {
+    fill(204, 102, 0);
+    textSize(20);
+    text("press R to Restart", width/2, height/2);
+    //noLoop();
+    lost = true;
+    textSize(13);
+    redraw();
+    paused = !paused;
   }
-  //procrastination.display();
-  popMatrix();
-  itsame.moveUpDown(groundheight,currents);
+  if (itsame.getWon()&&!won) {
+    print("won");
+    fill(204, 102, 0);
+    textSize(20);
+    text("You Won! press R to Restart", width/2, height/2);
+    textSize(13);
+    redraw();
+    paused = !paused;
+    won=true;
   }
-  if((itsame.getHealth() == 0 && !lost)){
-   fill(204,102,0);
-   textSize(20);
-   text("press R to Restart",width/2,height/2);
-   //noLoop();
-   lost = true;
-   textSize(13);
-   redraw();
-   paused = !paused;
-  }
-  if(itsame.getWon()&&!won){
-   print("won");
-   fill(204,102,0);
-   textSize(20);
-   text("You Won! press R to Restart",width/2,height/2);
-   textSize(13);
-   redraw();
-   paused = !paused;
-   won=true;
-  }
-  for(int n = 0;n<currents.size();n++){
-    for(int nn = 0;nn<currents.get(n).size();nn++){
-       if((currents.get(n).get(nn)).getCollected()){
-         currents.get(n).remove(currents.get(n).get(nn));
-       }
+  for (int n = 0; n<currents.size(); n++) {
+    for (int nn = 0; nn<currents.get(n).size(); nn++) {
+      if ((currents.get(n).get(nn)).getCollected()) {
+        currents.get(n).remove(currents.get(n).get(nn));
+      }
     }
   }
   itsame.display();
@@ -110,92 +110,101 @@ void draw(){
   counter.display();
   //println("Mario HP:" + itsame.getHealth());
   //println(itsame.getHasAGreenPowerUp());
-
 }
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
-void keyPressed(){
+void keyPressed() {
   //If "w" is pressed, Mario jumps.
-   if(key=='w'&&itsame.getJumpsLeft()>0){
+  if (key=='w'&&itsame.getJumpsLeft()>0) {
     itsame.setIsJumping(15);
     itsame.setGravity(0);
-     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
-   }
-  if(key=='a'){
+    itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+  }
+  if (key=='a') {
     itsame.setApressed(true);
     spriteVel = -1; 
     backVel = -3;
-    bushVel = -2;          
+    bushVel = -2;
   }
-  if(key=='d'){
+  if (key=='d') {
     itsame.setDpressed(true);
     spriteVel = 3; 
     backVel = 1;
     bushVel = 2;
   }
 }
-void keyReleased(){
-  if(key=='a'){
+void keyReleased() {
+  if (key=='a') {
     itsame.setApressed(false);
     spriteVel = 0; 
     backVel = 0;
     bushVel = 0;
   }
-  if(key == 'p'){
+  if (key == 'p') {
     // pause test
-   paused = !paused;
-   print(paused);
+    paused = !paused;
+    print(paused);
   }
-  if(key=='d'){
+  if (key=='d') {
     itsame.setDpressed(false);
     spriteVel = 0; 
     backVel = 0;
     bushVel = 0;
   }
-  if(key=='r'){
+  if (key=='r') {
     paused = !paused;
     itsame = new Mario();// Makes Mario in the center
   }
+  if (key=='k') {
+    if (itsame.hasShell) {
+      itsame.setHasShell(false);
+      currentEnemies.add(new Shell(itsame));
+    }
+  }
 }
 //make my terrain
-void setTerrain(){
+void setTerrain() {
   int counter = 0;
-  for(int i = 0;i<50;i++){
-    if(counter<20){
+  for (int i = 0; i<50; i++) {
+    if (counter<20) {
       float height = (float)Math.random()*200+200;
-      currentWorld.add(new Pipe((float)Math.random()*1930+320,height,50,400-height,"pipe.png"));
+      currentWorld.add(new Pipe((float)Math.random()*1930+320, height, 50, 400-height, "pipe.png"));
       counter++;
-     }else if(counter<30){
-      currentWorld.add(new Pit((float)Math.random()*1930+320,399,30,20,"pitPic.png"));
+    } else if (counter<30) {
+      currentWorld.add(new Pit((float)Math.random()*1930+320, 399, 30, 20, "pitPic.png"));
       counter++;
-//     }else if(counter<15){
-//       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
-     }else{
-       if(random(5)<2){
-         float saveRandomX = ((float)Math.random()*1930+320);
-         for(int dj=0;dj<random(5)+1;dj++){
-           currentWorld.add(new ItemBlock((saveRandomX +(30*dj)),200,30,30,"itemblock.png"));
-         }
-       }else{
-       currentWorld.add(new ItemBlock(((float)Math.random()*1930+320),200,30,30,"questionblock.png"));
-     }
-     }     
+      //     }else if(counter<15){
+      //       currentWorld.add(new Coin((float)Math.random()*620,(float)Math.random()*400+20,15,15,"coin.png"));
+    } else {
+      if (random(5)<2) {
+        float saveRandomX = ((float)Math.random()*1930+320);
+        for (int dj=0; dj<random(5)+1; dj++) {
+          currentWorld.add(new ItemBlock((saveRandomX +(30*dj)), 200, 30, 30, "itemblock.png"));
+        }
+      } else {
+        currentWorld.add(new ItemBlock(((float)Math.random()*1930+320), 200, 30, 30, "questionblock.png"));
+      }
+    }
   }
   currentWorld.add(new Flag());
   //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
   //currentWorld.add(new Enemy("test"));
 }
-void setEnemies(){
-  for(int i = 0;i<20;i++){
-    if(i<15){
-      currentEnemies.add(new Goomba(((float)Math.random()*2250),370,30,30,"goomba.png")); // changge this terrible pic
-    }else{
-      currentEnemies.add(new Bullet(((float)Math.random()*2250),((float)Math.random()*400),30,15,"Bullet.png"));
+void setEnemies() {
+  for (int i = 0; i<20; i++) {
+    if (i<15) {
+      if(Math.random()>.5){
+      currentEnemies.add(new Koopa(((float)Math.random()*2250), 370, 30, 30, "koopa.png")); // changge this terrible pic
+      }else{
+        currentEnemies.add(new Goomba(((float)Math.random()*2250), 370, 30, 30, "goomba.png")); // changge this terrible pic
+      }
+    } else {
+      currentEnemies.add(new Bullet(((float)Math.random()*2250), ((float)Math.random()*400), 30, 15, "Bullet.png"));
     }
   }
 }
 /*
 void stop(){
-  player.close();
-  minim.stop();
-  super.stop();
-}*/
+ player.close();
+ minim.stop();
+ super.stop();
+ }*/
