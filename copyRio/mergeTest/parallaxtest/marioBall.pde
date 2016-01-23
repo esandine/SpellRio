@@ -8,12 +8,12 @@ public class marioBall extends Enemy {
   int radius = 50;
 
 
-
   public marioBall(float x, float y, float l, float h, String s, String qwer) {
     super(x, y, l, h, s);
     bulletType=qwer;
     direction = 1;
     bulletType = qwer;
+    gravity = 10;
   }
   public marioBall(Mario m, String qwer) {
     this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 5, 5, "iceball.png", qwer);
@@ -38,8 +38,12 @@ public class marioBall extends Enemy {
     oldXcor = x;
   }
   public void oneMove(ArrayList<Terrain> t) {
+    if(getYcor()>400){
+      gravity = -5;
+    }
+    gravity +=.5;
     setOldXcor(getXcor());
-    move(direction*5, 0);
+    move(direction*5, -gravity);
     for (int i = 0; i<t.size(); i++) {
       if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
         //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){

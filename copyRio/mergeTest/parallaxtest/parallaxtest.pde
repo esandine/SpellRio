@@ -200,9 +200,9 @@ void setTerrain() {
   int counter = 0;
   for (int i = 0; i<50; i++) {
     if (counter<20) {
-      float height = (float)Math.random()*200+200;
+      float height = (float)Math.random()*200+300;
       if (i>1) {
-        currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+Math.random()*100)+currentWorld.get(i-1).getLength(), height, 50, 400-height, "pipe.png"));
+        currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+Math.random()*100)+currentWorld.get(i-1).getLength(), height-100, 50, 500-height, "pipe.png"));
         counter++;
         print(i);
       } else {
