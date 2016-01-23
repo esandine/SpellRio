@@ -52,9 +52,9 @@ class Mario {
   void display() {//Displays Mario
     if (getHealth() > 0) {
       if (obtainedIceFlower) {
-        mario = loadImage("iceSuitMario.png");
-        setLoaded(true);
-        print(getLoaded());
+        //mario = loadImage("iceSuitMario.png");
+        //setLoaded(true);
+        print(getObtainedIceFlower());
       } else {
         mario=loadImage("standingMario.gif");
       }

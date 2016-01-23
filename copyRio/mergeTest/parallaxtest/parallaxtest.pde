@@ -12,6 +12,7 @@ CoinCounter counter;
 float backVel;
 ArrayList<Terrain> currentWorld = new ArrayList();
 ArrayList<Terrain> currentEnemies = new ArrayList();
+ArrayList<Terrain> currentBalls = new ArrayList();
 ArrayList<ArrayList<Terrain>> currents = new ArrayList();
 Mario itsame = new Mario();
 //AudioPlayer player;
@@ -46,6 +47,7 @@ void setup() {
   setEnemies();
   currents.add(currentWorld);
   currents.add(currentEnemies);
+  currents.add(currentBalls);
   
   
 }
@@ -80,6 +82,9 @@ void draw() {
     for (int i = 0; i<currentEnemies.size(); i++) {
       ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
     }
+    for (int i = 0; i<currentBalls.size(); i++) {
+      ((Ball)currentBalls.get(i)).oneMove(currentWorld);
+    }
     //procrastination.display();
     popMatrix();
     itsame.moveUpDown(groundheight, currents);
@@ -112,15 +117,15 @@ void draw() {
     }
   }
   itsame.display();
-  print(itsame.getLoaded());
+  //print(itsame.getLoaded());
   counter.incrementCoinNum(itsame);
   counter.display();
   //println("Mario HP:" + itsame.getHealth());
   //println(itsame.getHasAGreenPowerUp());
-  if(itsame.getLoaded()){
+  /*if(itsame.getLoaded()){
     iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
     iceShot.display(itsame);
-  }
+  }*/
     
   
 
@@ -187,8 +192,8 @@ void keyReleased() {
       itsame.setHasShell(false);
       currentEnemies.add(new Shell(itsame));
     }
-    if(itsame.getLoaded()){
-      ellipse(300,300,50,50);
+    if(itsame.getObtainedIceFlower()){
+      currentBalls.add(new Ball(itsame));
     }
   }
   
