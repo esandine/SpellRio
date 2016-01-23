@@ -19,6 +19,10 @@ Mario itsame = new Mario();
 boolean paused;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
+
+marioBall iceShot;
+
+
 void setup() {
   /*minim = new Minim(this);
    player = minim.loadFile("backgroundMusic.mp3",2048);
@@ -42,6 +46,8 @@ void setup() {
   setEnemies();
   currents.add(currentWorld);
   currents.add(currentEnemies);
+  
+  
 }
 void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
@@ -106,11 +112,33 @@ void draw() {
     }
   }
   itsame.display();
+  print(itsame.getLoaded());
   counter.incrementCoinNum(itsame);
   counter.display();
   //println("Mario HP:" + itsame.getHealth());
   //println(itsame.getHasAGreenPowerUp());
+  if(itsame.getLoaded()){
+    iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
+    iceShot.display(itsame);
+  }
+    
+  
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 // once pipe exits to the left, make it reappear as a difference height (randomized). 
 void keyPressed() {
   //If "w" is pressed, Mario jumps.
@@ -159,7 +187,11 @@ void keyReleased() {
       itsame.setHasShell(false);
       currentEnemies.add(new Shell(itsame));
     }
+    if(itsame.getLoaded()){
+      ellipse(300,300,50,50);
+    }
   }
+  
 }
 //make my terrain
 void setTerrain() {
@@ -192,9 +224,9 @@ void setTerrain() {
 void setEnemies() {
   for (int i = 0; i<20; i++) {
     if (i<15) {
-      if(Math.random()>.5){
-      currentEnemies.add(new Koopa(((float)Math.random()*2250), 370, 30, 30, "koopa.png")); // changge this terrible pic
-      }else{
+      if (Math.random()>.5) {
+        currentEnemies.add(new Koopa(((float)Math.random()*2250), 370, 30, 30, "koopa.png")); // changge this terrible pic
+      } else {
         currentEnemies.add(new Goomba(((float)Math.random()*2250), 370, 30, 30, "goomba.png")); // changge this terrible pic
       }
     } else {

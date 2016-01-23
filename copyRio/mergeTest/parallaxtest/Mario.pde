@@ -20,6 +20,7 @@ class Mario {
   boolean hasAGreenPowerUp;
   boolean obtainedIceFlower;
   boolean hasShell;
+  boolean loaded;
 
 
   Mario(color C, float x, float y) {
@@ -52,6 +53,8 @@ class Mario {
     if (getHealth() > 0) {
       if (obtainedIceFlower) {
         mario = loadImage("iceSuitMario.png");
+        setLoaded(true);
+        print(getLoaded());
       } else {
         mario=loadImage("standingMario.gif");
       }
@@ -75,6 +78,9 @@ class Mario {
     }
   }
   //Accessors
+  boolean getLoaded(){
+    return loaded;
+  }
   float getXcor() {
     return xcor;
   }
@@ -127,6 +133,9 @@ class Mario {
     return won;
   }
   //Mutators
+  void setLoaded(boolean b){
+    loaded = b;
+  }
   void setXcor(float x) {
     xcor = x;
   }
