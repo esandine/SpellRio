@@ -35,6 +35,8 @@ class Mushroom extends Terrain {
         m.setHealth(2);
         collected = true;
         print("redShroomObtained");
+        m.setVsize(50);
+        m.setHsize(30);
       }
       if (identifier.equals("greenShroom")) {
         m.setHealth(m.getHealth()+1);
@@ -48,6 +50,7 @@ class Mushroom extends Terrain {
         collected=true;
         print("iceflower");
         m.setHealth(2);
+        m.setMario("iceSuitMario.png");
       }
     }
   }

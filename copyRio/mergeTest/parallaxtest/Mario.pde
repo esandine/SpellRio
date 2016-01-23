@@ -1,5 +1,5 @@
-PImage mario;
 class Mario {
+  PImage mario;
   color c;//his color
   float xcor;//coordinates of the point that represents him
   float ycor;
@@ -21,6 +21,8 @@ class Mario {
   boolean obtainedIceFlower;
   boolean hasShell;
   boolean loaded;
+  float vsize;
+  float hsize;
 
 
   Mario(color C, float x, float y) {
@@ -42,6 +44,8 @@ class Mario {
     obtainedIceFlower = false;
     hasShell=false;
     //groundsurface=-10;
+    vsize = 30;
+    hsize = 15;
   }
   Mario(float x, float y) {
     this(color(220, 0, 0), x, y);
@@ -58,7 +62,7 @@ class Mario {
       } else {
         mario=loadImage("standingMario.gif");
       }
-      image(mario, getXcor(), getYcor());
+      image(mario, getXcor(), getYcor(),hsize,vsize);
     }
   }
   void move(float dx, float dy) {//Moves Mario a specified distance
@@ -132,6 +136,15 @@ class Mario {
   boolean getWon() {
     return won;
   }
+  float getVsize(){
+    return vsize;
+  }
+  float getHsize(){
+    return hsize;
+  }
+  void setMario(String s){
+    mario = loadImage(s);
+  }
   //Mutators
   void setLoaded(boolean b){
     loaded = b;
@@ -182,6 +195,12 @@ class Mario {
   }
   void setHasShell(boolean b){
     hasShell=b;
+  }
+  void setVsize(float n){
+    vsize = n;
+  }
+  void setHsize(float n){
+    hsize = n;
   }
   //void setGroundSurface(float n){
   //  groundsurface=n;
