@@ -51,7 +51,7 @@ class Mario {
     this(color(220, 0, 0), x, y);
   }
   Mario() {
-    this(width/2, 360);
+    this(width/2, 380);
   }
   void display() {//Displays Mario
     if (getHealth() > 0) {
@@ -254,8 +254,8 @@ class Mario {
         }
       }
     }
-    if (itsame.getYcor()>groundheight) {//If mario hits the ground
-      itsame.move(0, itsame.getYcor()-groundheight);
+    if (itsame.getYcor()+itsame.getVsize()>groundheight) {//If mario hits the ground
+      itsame.move(0, itsame.getYcor()+itsame.getVsize()-groundheight);
       itsame.setJumpsLeft(2);
       gravity-=.5;
     }
@@ -264,10 +264,10 @@ class Mario {
     return isInsideHorizontal(m)&&isInsideVerticle(m);
   }
   public boolean isInsideHorizontal(Terrain m) {
-    return (getXcor()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
+    return (getXcor()+getHsize()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
   }
   public boolean isInsideVerticle(Terrain m) {
-    return (getYcor()>m.getYcor()-15) && (getYcor()<m.getYcor()+m.getHeight());
+    return (getYcor()+getVsize()>m.getYcor()) && (getYcor()<m.getYcor()+m.getHeight());
   }
   public void die() {
     setHealth(0);

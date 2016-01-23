@@ -21,8 +21,6 @@ boolean paused;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
 
-marioBall iceShot;
-
 
 void setup() {
   /*minim = new Minim(this);
@@ -42,7 +40,7 @@ void setup() {
   //Initiallizes the coin counter and mushroom
   counter = new CoinCounter();
   //Sets the groundheight and creates the Terrain
-  groundheight=380;
+  groundheight=400;
   setTerrain(); 
   setEnemies();
   currents.add(currentWorld);
