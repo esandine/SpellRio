@@ -79,6 +79,11 @@ void draw() {
     }
     for (int i = 0; i<currentEnemies.size(); i++) {
       ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
+      for (int b = 0; b<currentBalls.size(); b++) {
+        if ((currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getXcor()+currentEnemies.get(i).getLength()>currentBalls.get(b).getXcor()+currentBalls.get(b).getLength())&&(currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getYcor()+currentEnemies.get(i).getHeight()>currentBalls.get(b).getYcor()+currentBalls.get(b).getLength())) {
+          currentEnemies.remove(i);
+        }
+      }
     }
     for (int i = 0; i<currentBalls.size(); i++) {
       ((marioBall)currentBalls.get(i)).oneMove(currentWorld);
