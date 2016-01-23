@@ -1,7 +1,7 @@
 public class Shell extends Enemy{
   int direction = 1;
   public Shell(Mario m){
-    super(-m.getHorizontal(),m.getYcor(),15,15,"shell.png");
+    super(m.getXcor()-m.getHorizontal(),m.getYcor(),15,15,"shell.png");
   }
    float oldXcor;
    float getOldXcor(){
@@ -12,7 +12,7 @@ public class Shell extends Enemy{
    }
    public void oneMove(ArrayList<Terrain> t){
      setOldXcor(getXcor());
-     move(direction*1,0);
+     move(direction*5,0);
      for(int i = 0;i<t.size();i++){
        //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
          if((getXcor()<t.get(i).getXcor()+t.get(i).getLength())&&(!(getOldXcor()<t.get(i).getXcor()+t.get(i).getLength()))&&(t.get(i).getYcor()+t.get(i).getHeight()>=400)){

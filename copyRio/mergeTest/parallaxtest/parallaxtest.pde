@@ -164,6 +164,10 @@ void keyPressed() {
     backVel = 1;
     bushVel = 2;
   }
+  if(key == 'g'){
+    fill(255,0,0);
+    rect(0,0,height,width);
+  }
 }
 void keyReleased() {
   if (key=='a') {
@@ -184,8 +188,10 @@ void keyReleased() {
     bushVel = 0;
   }
   if (key=='r') {
+    if(itsame.getHealth()>1){
     paused = !paused;
     itsame = new Mario();// Makes Mario in the center
+    }
   }
   if (key=='k') {
     if (itsame.hasShell) {
