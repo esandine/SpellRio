@@ -48,8 +48,6 @@ void setup() {
   currents.add(currentWorld);
   currents.add(currentEnemies);
   currents.add(currentBalls);
-  
-  
 }
 void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
@@ -83,7 +81,7 @@ void draw() {
       ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
     }
     for (int i = 0; i<currentBalls.size(); i++) {
-      ((Ball)currentBalls.get(i)).oneMove(currentWorld);
+      ((marioBall)currentBalls.get(i)).oneMove(currentWorld);
     }
     //procrastination.display();
     popMatrix();
@@ -123,16 +121,9 @@ void draw() {
   //println("Mario HP:" + itsame.getHealth());
   //println(itsame.getHasAGreenPowerUp());
   /*if(itsame.getLoaded()){
-    iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
-    iceShot.display(itsame);
-  }*/
-    
-  
-
-
-
-
-
+   iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
+   iceShot.display(itsame);
+   }*/
 }
 
 
@@ -164,9 +155,9 @@ void keyPressed() {
     backVel = 1;
     bushVel = 2;
   }
-  if(key == 'g'){
-    fill(255,0,0);
-    rect(0,0,height,width);
+  if (key == 'g') {
+    fill(255, 0, 0);
+    rect(0, 0, height, width);
   }
 }
 void keyReleased() {
@@ -188,21 +179,21 @@ void keyReleased() {
     bushVel = 0;
   }
   if (key=='r') {
-    if(itsame.getHealth()>1){
-    paused = !paused;
-    itsame = new Mario();// Makes Mario in the center
+    if (itsame.getHealth()>1) {
+      paused = !paused;
+      itsame = new Mario();// Makes Mario in the center
     }
   }
   if (key=='k') {
+    print(itsame.getObtainedIceFlower());
     if (itsame.hasShell) {
       itsame.setHasShell(false);
       currentEnemies.add(new Shell(itsame));
     }
-    if(itsame.getObtainedIceFlower()){
-      currentBalls.add(new Ball(itsame));
+    if (itsame.getObtainedIceFlower()) {
+      currentBalls.add(new marioBall(itsame, "iceFlower"));
     }
   }
-  
 }
 //make my terrain
 void setTerrain() {
@@ -210,8 +201,13 @@ void setTerrain() {
   for (int i = 0; i<50; i++) {
     if (counter<20) {
       float height = (float)Math.random()*200+200;
-      currentWorld.add(new Pipe((float)Math.random()*1930+320, height, 50, 400-height, "pipe.png"));
-      counter++;
+      if (i>1) {
+        currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+Math.random()*100)+currentWorld.get(i-1).getLength(), height, 50, 400-height, "pipe.png"));
+        counter++;
+        print(i);
+      } else {
+        currentWorld.add(new Pipe((float)(Math.random()*100)+30, height, 50, 400-height, "pipe.png"));
+      }
     } else if (counter<30) {
       currentWorld.add(new Pit((float)Math.random()*1930+320, 399, 30, 20, "pitPic.png"));
       counter++;

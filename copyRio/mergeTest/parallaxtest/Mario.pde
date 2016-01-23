@@ -54,7 +54,7 @@ class Mario {
       if (obtainedIceFlower) {
         //mario = loadImage("iceSuitMario.png");
         //setLoaded(true);
-        print(getObtainedIceFlower());
+        //print(getObtainedIceFlower());
       } else {
         mario=loadImage("standingMario.gif");
       }

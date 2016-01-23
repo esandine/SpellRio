@@ -1,8 +1,5 @@
-public class marioBall{
+public class marioBall extends Enemy {
   public PImage bullet;
-  boolean released;
-  float xcor;
-  float ycor;
   float gravity;
   int direction;
   String bulletType;
@@ -10,42 +7,49 @@ public class marioBall{
   float speed =0.5;
   int radius = 50;
 
-  
-  
-  public marioBall(float x,float y,int d,String qwer,String s){
-    bullet = loadImage(s);
-    released = false;
-    xcor = x;
-    ycor = y;
-    this.x = x; 
-    direction = d;
+
+
+  public marioBall(float x, float y, float l, float h, String s, String qwer) {
+    super(x, y, l, h, s);
+    bulletType=qwer;
+    direction = 1;
     bulletType = qwer;
   }
+  public marioBall(Mario m, String qwer) {
+    this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 5, 5, "iceball.png", qwer);
+  }
   // ACCESSORS:
-  public String getBulletType(){
+  public String getBulletType() {
     return bulletType;
   }  
-  public int getDirection(){
+  public int getDirection() {
     return direction;
   }
   // MUTATORS:
- public void setBulletType(String s){
-   bulletType = s;
- }
-  // if mario has obtained the ice flower then set the type variable to ice, and then set a new boolean called loaded to true, which makes pressing k release the buttons. 
-  public void isLoaded(Mario m){
-    if (m.obtainedIceFlower){
-      setBulletType("ice");
-      m.setLoaded(true);
-    }
+  public void setBulletType(String s) {
+    bulletType = s;
   }
-  void display(Mario m){
-    if(m.getLoaded()){
-      //image(bullet,xcor,ycor);
-      smooth();
-      ellipseMode(RADIUS);
-      fill(0,255,255);
-      x+= speed * direction;     
-    }  
+  // if mario has obtained the ice flower then set the type variable to ice, and then set a new boolean called loaded to true, which makes pressing k release the buttons.
+  float oldXcor;
+  float getOldXcor() {
+    return oldXcor;
+  }
+  void setOldXcor(float x) {
+    oldXcor = x;
+  }
+  public void oneMove(ArrayList<Terrain> t) {
+    setOldXcor(getXcor());
+    move(direction*5, 0);
+    for (int i = 0; i<t.size(); i++) {
+      if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
+        //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
+        if ((getXcor()<t.get(i).getXcor()+t.get(i).getLength())&&(!(getOldXcor()<t.get(i).getXcor()+t.get(i).getLength()))&&(t.get(i).getYcor()+t.get(i).getHeight()>=400)) {
+          direction = 1;
+        }
+        if ((getXcor()+getLength()>t.get(i).getXcor())&&(!((getOldXcor()+getLength()>t.get(i).getXcor())))) {
+          direction = -1;
+        }
+      }
+    }
   }
 }

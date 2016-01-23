@@ -41,11 +41,12 @@ class Mushroom extends Terrain{
         m.setHealth(m.getHealth()+1);
         collected = true;
         print("greenShroomObtained");
-        m.setHasAGreenPowerUp(true);
+        //m.setHasAGreenPowerUp(true);
         //print(m.getHasAGreenPowerUp());
       }
       if(identifier.equals("iceFlower")){
         m.setObtainedIceFlower(true);
+        //print("Jjsfjfgjzf");
         m.setHealth(2);
         
       }
