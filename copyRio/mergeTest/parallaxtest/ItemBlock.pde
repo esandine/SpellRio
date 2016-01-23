@@ -1,8 +1,10 @@
 public class ItemBlock extends Terrain implements Collectable {
   public boolean collected;
+  String identifier;
   public ItemBlock(float x, float y, float l, float h, String s) {
     super(x, y, l, h, s);
     collected = false;
+    identifier = s;
   }
   public ItemBlock(String s) {
     this(100, 100, 100, 100, s);
@@ -24,13 +26,13 @@ public class ItemBlock extends Terrain implements Collectable {
     while (m.isInsideVerticle(this)) {
       m.move(0, -.1);
     }
-    if (number<7) {
+    if (identifier=="itemblock.png") {
       ts.add(new Coin(getXcor(), getYcor(), 15, 15, "coin.png"));
       print("coin obtained");
-    } else if (number<8) {
+    } else if (number<3) {
       ts.add(new Mushroom(getXcor(), getYcor(), 15, 15, "iceFlower.png"));
       setCollected(true);
-    } else if (number<9) {
+    } else if (number<6) {
       ts.add(new Mushroom(getXcor(), getYcor(), 15, 15, "mushroom.png"));
       setCollected(true);
     } else {

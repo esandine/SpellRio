@@ -1,4 +1,4 @@
-public class Shell extends Enemy {
+public class Shell extends Enemy{
   int direction = 1;
   public Shell(Mario m) {
     super(m.getXcor()-m.getHorizontal(), m.getYcor(), 15, 15, "shell.png");
@@ -25,4 +25,4 @@ public class Shell extends Enemy {
       }
     }
   }
-}
+  }

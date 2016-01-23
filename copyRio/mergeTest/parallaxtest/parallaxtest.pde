@@ -86,7 +86,7 @@ void draw() {
       }
     }
     for (int i = 0; i<currentBalls.size(); i++) {
-      ((marioBall)currentBalls.get(i)).oneMove(currentWorld);
+      ((Enemy)currentBalls.get(i)).oneMove(currentWorld);
     }
     //procrastination.display();
     popMatrix();
@@ -193,7 +193,7 @@ void keyReleased() {
     print(itsame.getObtainedIceFlower());
     if (itsame.hasShell) {
       itsame.setHasShell(false);
-      currentEnemies.add(new Shell(itsame));
+      currentBalls.add(new Shell(itsame));
     }
     if (itsame.getObtainedIceFlower()) {
       currentBalls.add(new marioBall(itsame, "iceFlower"));
@@ -203,7 +203,7 @@ void keyReleased() {
 //make my terrain
 void setTerrain() {
   int counter = 0;
-  for (int i = 0; i<50; i++) {
+  for (int i = 0; i<40; i++) {
     if (counter<20) {
       float height = (float)Math.random()*200+300;
       if (i>1) {
@@ -222,7 +222,7 @@ void setTerrain() {
       if (random(5)<2) {
         float saveRandomX = ((float)Math.random()*1930+320);
         for (int dj=0; dj<random(5)+1; dj++) {
-          currentWorld.add(new ItemBlock((saveRandomX +(30*dj)), 200, 30, 30, "itemblock.png"));
+          currentWorld.add(new ItemBlock((saveRandomX +(30*dj)), 150, 30, 30, "itemblock.png"));
         }
       } else {
         currentWorld.add(new ItemBlock(((float)Math.random()*1930+320), 200, 30, 30, "questionblock.png"));

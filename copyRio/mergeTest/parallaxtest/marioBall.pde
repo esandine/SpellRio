@@ -15,6 +15,14 @@ public class marioBall extends Enemy {
     bulletType = qwer;
     gravity = 10;
   }
+  public void upTrigger(Mario m) {
+  }
+  public void leftTrigger(Mario m) {
+  }
+  public void rightTrigger(Mario m) {
+  }
+  public void downTrigger(Mario m, ArrayList<Terrain> ts) {
+  }
   public marioBall(Mario m, String qwer) {
     this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 5, 5, "iceball.png", qwer);
   }
@@ -38,7 +46,7 @@ public class marioBall extends Enemy {
     oldXcor = x;
   }
   public void oneMove(ArrayList<Terrain> t) {
-    if(getYcor()>400){
+    if (getYcor()>400) {
       gravity = -5;
     }
     gravity +=.5;
