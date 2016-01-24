@@ -22,7 +22,7 @@ boolean paused;
 boolean startScreen;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
-PImage bgImageLoad;
+PImage bgImageLoad, deathScreen;
 
 void setup() {
   /*minim = new Minim(this);
@@ -54,6 +54,9 @@ void setup() {
   startScreen = true;
   bgImageLoad = loadImage("newGameCreator.png");
   bgImageLoad.resize(width, height);
+  
+  deathScreen = loadImage("deathScreen.png");
+  deathScreen.resize(width,height);
   front.resize(2250, 465);
   itsame = new Mario();
   
@@ -72,7 +75,10 @@ void draw() {
   if (startScreen) {
     background(bgImageLoad);
   }else if(itsame.getHealth() == 0){
-    background(0);
+    background(deathScreen);
+    textSize(20);
+    fill(255);
+    text("GAME OVER! Press R to Restart!", width/3 - 45, 400);
   }
     else {
     if (!itsame.getLost() && !paused) {
