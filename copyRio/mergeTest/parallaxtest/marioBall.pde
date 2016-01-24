@@ -11,7 +11,11 @@ public class marioBall extends Enemy {
   public marioBall(float x, float y, float l, float h, String s, String qwer) {
     super(x, y, l, h, s);
     bulletType=qwer;
+    if(itsame.getFacingLeft()){
+      direction = -1;
+    }else{
     direction = 1;
+    }
     bulletType = qwer;
     gravity = 10;
   }
