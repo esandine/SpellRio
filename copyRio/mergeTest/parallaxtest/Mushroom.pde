@@ -8,7 +8,7 @@ class Mushroom extends Terrain {
       identifier = "redShroom";
     } else if (s.equals("oneUpShroom.png")) {
       identifier = "greenShroom";
-    } else if (s.equals("iceFlower.png")) {
+    } else if (s.equals("fireFlower.png")) {
       identifier = "iceFlower";
     }
   }
@@ -50,7 +50,7 @@ class Mushroom extends Terrain {
         collected=true;
         print("iceflower");
         m.setHealth(2);
-        m.setMario("iceSuitMario.png");
+        m.setMario("standingFireMario.png");
       }
     }
   }

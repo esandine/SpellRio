@@ -171,7 +171,11 @@ void keyPressed() {
     itsame.setIsJumping(15);
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+    if(itsame.getObtainedIceFlower()){
+          itsame.setMario("jumpingFireMario.png");
+    }else{
     itsame.setMario("jumpingMario.png");
+    }
   }
   if (key=='a') {
     itsame.setApressed(true);

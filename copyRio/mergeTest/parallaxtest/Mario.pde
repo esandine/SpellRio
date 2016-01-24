@@ -255,7 +255,11 @@ class Mario {
       itsame.move(0, itsame.getYcor()+itsame.getVsize()-groundheight);
       itsame.setJumpsLeft(2);
       gravity-=.5;
+      if(itsame.getObtainedIceFlower()){
+        itsame.setMario("standingFireMario.png");
+      }else{
       itsame.setMario("standingMario.png");
+      }
     }
   }
   public boolean isInside(Terrain m, float hori, float vert) {

@@ -31,7 +31,7 @@ public class ItemBlock extends Terrain implements Collectable {
       ts.add(new Coin(getXcor(), getYcor(), 15, 15, "coin.png"));
       print("coin obtained");
     } else if (number<3) {
-      ts.add(new Mushroom(getXcor(), getYcor(), 15, 15, "iceFlower.png"));
+      ts.add(new Mushroom(getXcor(), getYcor(), 15, 15, "fireFlower.png"));
       setCollected(true);
     } else if (number<6) {
       ts.add(new Mushroom(getXcor(), getYcor(), 15, 15, "mushroom.png"));
