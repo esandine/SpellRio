@@ -34,7 +34,7 @@ class Mushroom extends Terrain {
       if (identifier.equals("redShroom")) {
         m.setHealth(2);
         collected = true;
-        print("redShroomObtained");
+        //print("redShroomObtained");
         m.setVsize(50);
         m.setHsize(30);
         m.setHasARedPowerUp(true);
@@ -42,14 +42,14 @@ class Mushroom extends Terrain {
       if (identifier.equals("greenShroom")) {
         m.setHealth(m.getHealth()+1);
         collected = true;
-        print("greenShroomObtained");
+        //print("greenShroomObtained");
         m.setHasAGreenPowerUp(true);
         //print(m.getHasAGreenPowerUp());
       }
       if (identifier.equals("iceFlower")) {
         m.setObtainedIceFlower(true);
         collected=true;
-        print("iceflower");
+        //print("iceflower");
         m.setHealth(2);
         m.setMario("standingFireMario.png");
       }

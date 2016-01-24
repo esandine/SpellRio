@@ -57,8 +57,8 @@ public class marioBall extends Enemy {
     setOldXcor(getXcor());
     move(direction*5, -gravity);
     for (int i = 0; i<t.size(); i++) {
-      if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
-        //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
+      //if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
+        if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
         if ((getXcor()<t.get(i).getXcor()+t.get(i).getLength())&&(!(getOldXcor()<t.get(i).getXcor()+t.get(i).getLength()))&&(t.get(i).getYcor()+t.get(i).getHeight()>=400)) {
           return true;
         }
@@ -66,7 +66,7 @@ public class marioBall extends Enemy {
           return true;
         }
       }
-    }
+    //}
     return false;
   }
 }

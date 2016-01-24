@@ -79,7 +79,7 @@ void draw() {
     text("Press R to Restart!", width/3+5, 300);
   } else if (itsame.getWon()&&!won) {
     background(0);
-    print("won");
+    //print("won");
     fill(204, 102, 0);
     textSize(20);
     text("You Won! press R to Restart", width/2-50, height/2);
@@ -208,7 +208,7 @@ void keyReleased() {
   if (key == 'p') {
     // pause test
     paused = !paused;
-    print(paused);
+    //print(paused);
   }
   if (key=='d') {
     itsame.setDpressed(false);
@@ -229,7 +229,7 @@ void keyReleased() {
     //}
   }
   if (key=='k') {
-    print(itsame.getObtainedIceFlower());
+    //print(itsame.getObtainedIceFlower());
     if (itsame.hasShell) {
       itsame.setHasShell(false);
       currentBalls.add(new Shell(itsame));
@@ -253,7 +253,7 @@ void setTerrain() {
       if (i>1) {
         currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+(Math.random()*200 + 50))+currentWorld.get(i-1).getLength(), height-100, 50, 500-height, "pipe.png"));
         counter++;
-        print(i);
+        //print(i);
       } else {
         currentWorld.add(new Pipe((float)(Math.random()*100)+30, height, 50, 400-height, "pipe.png"));
       }
