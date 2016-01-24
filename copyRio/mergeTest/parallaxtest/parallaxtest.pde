@@ -18,6 +18,7 @@ Mario itsame = new Mario();
 //AudioPlayer player;
 //Minim minim;
 boolean paused;
+boolean startScreen;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
 
@@ -46,6 +47,8 @@ void setup() {
   currents.add(currentWorld);
   currents.add(currentEnemies);
   currents.add(currentBalls);
+  paused =true;
+  startScreen = true;
 }
 void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
@@ -58,75 +61,84 @@ void paraDraw(PImage img, PVector pos, float vel) {
 }
 // makes original mario
 void draw() {
-  if (!itsame.getLost() && !paused) {
-    //print(itsame.getHealth());  
-    itsame.moveUpDown(groundheight, currents);
-    if ((itsame.getHealth() == 0 && !lost)) {
+  if (startScreen) {
+    background(0);
+    fill(165,42,42);
+    rect(width/4,height/4,width/2,height/2);
+    textSize(20);
+    fill(0,0,0);
+    text("New Game: Hit n to begin!",200,height/3);
+  } else {
+    if (!itsame.getLost() && !paused) {
+      //print(itsame.getHealth());  
+      itsame.moveUpDown(groundheight, currents);
+      if ((itsame.getHealth() == 0 && !lost)) {
+        fill(204, 102, 0);
+        textSize(20);
+        text("press R to Restart", width/2, height/2);
+        //noLoop();
+        lost = true;
+        textSize(13);
+        redraw();
+        paused = !paused;
+      }
+      pushMatrix();
+      itsame.setOldHorizontal(itsame.getHorizontal());
+      background(255);
+      itsame.moveLeftRight(currents);
+      //procrastination.oneMove();
+      //itsame.triggers(currentWorld);
+      translate(itsame.getHorizontal(), 0);
+      image(back, 2250, 420);
+      image(middle, 0, 0);
+      image(front, 0, 0);
+      for (int n = 0; n<currents.size(); n++) {
+        for (int nn = 0; nn<currents.get(n).size(); nn++) {
+          currents.get(n).get(nn).display();
+        }
+      }
+      for (int i = 0; i<currentEnemies.size(); i++) {
+        ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
+        for (int b = 0; b<currentBalls.size(); b++) {
+          if ((currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getXcor()+currentEnemies.get(i).getLength()>currentBalls.get(b).getXcor()+currentBalls.get(b).getLength())&&(currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getYcor()+currentEnemies.get(i).getHeight()>currentBalls.get(b).getYcor()+currentBalls.get(b).getLength())) {
+            currentEnemies.remove(i);
+          }
+        }
+      }
+      for (int i = 0; i<currentBalls.size(); i++) {
+        ((Enemy)currentBalls.get(i)).oneMove(currentWorld);
+      }
+      //procrastination.display();
+      popMatrix();
+    }
+    if (itsame.getWon()&&!won) {
+      print("won");
       fill(204, 102, 0);
       textSize(20);
-      text("press R to Restart", width/2, height/2);
-      //noLoop();
-      lost = true;
+      text("You Won! press R to Restart", width/2, height/2);
       textSize(13);
       redraw();
       paused = !paused;
+      won=true;
     }
-    pushMatrix();
-    itsame.setOldHorizontal(itsame.getHorizontal());
-    background(255);
-    itsame.moveLeftRight(currents);
-    //procrastination.oneMove();
-    //itsame.triggers(currentWorld);
-    translate(itsame.getHorizontal(), 0);
-    image(back, 2250, 420);
-    image(middle, 0, 0);
-    image(front, 0, 0);
     for (int n = 0; n<currents.size(); n++) {
       for (int nn = 0; nn<currents.get(n).size(); nn++) {
-        currents.get(n).get(nn).display();
-      }
-    }
-    for (int i = 0; i<currentEnemies.size(); i++) {
-      ((Enemy)currentEnemies.get(i)).oneMove(currentWorld);
-      for (int b = 0; b<currentBalls.size(); b++) {
-        if ((currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getXcor()+currentEnemies.get(i).getLength()>currentBalls.get(b).getXcor()+currentBalls.get(b).getLength())&&(currentEnemies.get(i).getXcor()<currentBalls.get(b).getXcor())&&(currentEnemies.get(i).getYcor()+currentEnemies.get(i).getHeight()>currentBalls.get(b).getYcor()+currentBalls.get(b).getLength())) {
-          currentEnemies.remove(i);
+        if ((currents.get(n).get(nn)).getCollected()) {
+          currents.get(n).remove(currents.get(n).get(nn));
         }
       }
     }
-    for (int i = 0; i<currentBalls.size(); i++) {
-      ((Enemy)currentBalls.get(i)).oneMove(currentWorld);
-    }
-    //procrastination.display();
-    popMatrix();
+    itsame.display();
+    //print(itsame.getLoaded());
+    counter.incrementCoinNum(itsame);
+    counter.display();
+    //println("Mario HP:" + itsame.getHealth());
+    //println(itsame.getHasAGreenPowerUp());
+    /*if(itsame.getLoaded()){
+     iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
+     iceShot.display(itsame);
+     }*/
   }
-  if (itsame.getWon()&&!won) {
-    print("won");
-    fill(204, 102, 0);
-    textSize(20);
-    text("You Won! press R to Restart", width/2, height/2);
-    textSize(13);
-    redraw();
-    paused = !paused;
-    won=true;
-  }
-  for (int n = 0; n<currents.size(); n++) {
-    for (int nn = 0; nn<currents.get(n).size(); nn++) {
-      if ((currents.get(n).get(nn)).getCollected()) {
-        currents.get(n).remove(currents.get(n).get(nn));
-      }
-    }
-  }
-  itsame.display();
-  //print(itsame.getLoaded());
-  counter.incrementCoinNum(itsame);
-  counter.display();
-  //println("Mario HP:" + itsame.getHealth());
-  //println(itsame.getHasAGreenPowerUp());
-  /*if(itsame.getLoaded()){
-   iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
-   iceShot.display(itsame);
-   }*/
 }
 
 
@@ -196,6 +208,10 @@ void keyReleased() {
     if (itsame.getObtainedIceFlower()) {
       currentBalls.add(new marioBall(itsame, "iceFlower"));
     }
+  }
+  if(key == 'n'){
+    startScreen = false;
+    paused = false;
   }
 }
 //make my terrain
