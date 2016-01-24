@@ -56,7 +56,7 @@ void setup() {
   
   deathScreen = loadImage("deathScreen.png");
   deathScreen.resize(width,height);
-  front.resize(2250, 465);
+  front.resize(3500, 465);
   itsame = new Mario();
   
 }
@@ -151,6 +151,11 @@ void draw() {
      iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
      iceShot.display(itsame);
      }*/
+
+      
+     
+     
+     
   }
 }
 
@@ -170,6 +175,9 @@ void keyPressed() {
     itsame.setIsJumping(15);
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+    //if(itsame.getHasShell()){
+     // itsame.setMario("standingMarioShell.png");
+    //}
     if(itsame.getObtainedIceFlower()){
           itsame.setMario("jumpingFireMario.png");
     }else{
@@ -216,6 +224,10 @@ void keyReleased() {
       startScreen = true;
       setTerrain();
       setEnemies();
+<<<<<<< HEAD
+=======
+      currentBalls.clear();
+>>>>>>> 9cb7ba5209e7e5f055e426bbfb3b63270c574ae0
     }
     setTerrain();
     setEnemies();

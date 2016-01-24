@@ -11,7 +11,11 @@ public class marioBall extends Enemy {
   public marioBall(float x, float y, float l, float h, String s, String qwer) {
     super(x, y, l, h, s);
     bulletType=qwer;
+    if(itsame.getFacingLeft()){
+      direction = -1;
+    }else{
     direction = 1;
+    }
     bulletType = qwer;
     gravity = 10;
   }
@@ -24,7 +28,11 @@ public class marioBall extends Enemy {
   public void downTrigger(Mario m, ArrayList<Terrain> ts) {
   }
   public marioBall(Mario m, String qwer) {
+<<<<<<< HEAD
     this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 10, 10, "Fireball.png", qwer);
+=======
+    this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 15, 15, "Fireball.png", qwer);
+>>>>>>> 9cb7ba5209e7e5f055e426bbfb3b63270c574ae0
   }
   // ACCESSORS:
   public String getBulletType() {
@@ -46,7 +54,7 @@ public class marioBall extends Enemy {
     oldXcor = x;
   }
   public void oneMove(ArrayList<Terrain> t) {
-    if (getYcor()>400) {
+    if (getYcor()>390) {
       gravity = -5;
     }
     gravity +=.5;
@@ -56,10 +64,10 @@ public class marioBall extends Enemy {
       if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
         //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
         if ((getXcor()<t.get(i).getXcor()+t.get(i).getLength())&&(!(getOldXcor()<t.get(i).getXcor()+t.get(i).getLength()))&&(t.get(i).getYcor()+t.get(i).getHeight()>=400)) {
-          direction = 1;
+          t.remove(this);
         }
         if ((getXcor()+getLength()>t.get(i).getXcor())&&(!((getOldXcor()+getLength()>t.get(i).getXcor())))) {
-          direction = -1;
+          t.remove(this);
         }
       }
     }

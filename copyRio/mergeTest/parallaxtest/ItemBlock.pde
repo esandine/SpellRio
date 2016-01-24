@@ -16,7 +16,8 @@ public class ItemBlock extends Terrain implements Collectable {
     m.setJumpsLeft(2);
     if (itsame.getObtainedIceFlower()) {
       itsame.setMario("standingFireMario.png");
-    } else {
+    }     
+     else {
       itsame.setMario("standingMario.png");
     }
   }

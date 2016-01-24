@@ -31,6 +31,7 @@ public class Koopa extends Enemy{
     // while mario is on top of goomba, then kill goomba. 
     setCollected(true);
     m.setHasShell(true);
-    print(m.getHasShell());
+    print("changedpic");
+    //print(m.getHasShell());
   }
    }

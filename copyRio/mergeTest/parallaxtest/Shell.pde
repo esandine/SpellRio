@@ -1,7 +1,16 @@
 public class Shell extends Enemy{
-  int direction = 1;
+  int direction;
   public Shell(Mario m) {
     super(m.getXcor()-m.getHorizontal()+m.getHsize(), m.getYcor(), 15, 15, "shell.png");
+<<<<<<< HEAD
+=======
+    if(itsame.getFacingLeft()){
+      direction = -1;
+    }
+    else{
+      direction = 1;
+    }
+>>>>>>> 9cb7ba5209e7e5f055e426bbfb3b63270c574ae0
   }
   float oldXcor;
   float getOldXcor() {

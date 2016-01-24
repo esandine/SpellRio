@@ -21,9 +21,10 @@ class Mario {
   boolean obtainedIceFlower;
   boolean hasShell;
   boolean loaded;
+  boolean facingLeft;
   float vsize;
   float hsize;
-
+  int gifCounter;
 
   Mario(color C, float x, float y) {
     c=C;
@@ -42,11 +43,13 @@ class Mario {
     won = false;
     hasAGreenPowerUp = false;
     obtainedIceFlower = false;
+    facingLeft = false;
     hasShell=false;
     //groundsurface=-10;
     vsize = 30;
     hsize = 15;
     setMario("standingMario.png");
+    gifCounter = 0;
   }
   Mario(float x, float y) {
     this(color(220, 0, 0), x, y);
@@ -56,8 +59,14 @@ class Mario {
   }
   void display() {//Displays Mario
     if (getHealth() > 0) {
-
-      image(mario, getXcor(), getYcor(), hsize, vsize);
+      if (facingLeft) {
+        pushMatrix();
+        scale(-1, 1);
+        image(mario, -getXcor()-getHsize(), getYcor(), hsize, vsize);
+        popMatrix();
+      } else {
+        image(mario, getXcor(), getYcor(), hsize, vsize);
+      }
     }
   }
   void move(float dx, float dy) {//Moves Mario a specified distance
@@ -131,6 +140,9 @@ class Mario {
   float getHsize() {
     return hsize;
   }
+  boolean getFacingLeft(){
+    return facingLeft;
+  }
   void setMario(String s) {
     mario = loadImage(s);
   }
@@ -191,6 +203,9 @@ class Mario {
   void setHsize(float n) {
     hsize = n;
   }
+  void setFacingLeft(boolean b){
+    facingLeft = b;
+  }
   //void setGroundSurface(float n){
   //  groundsurface=n;
   //}
@@ -199,6 +214,7 @@ class Mario {
       addHorizontal(0);
     }
     if (apressed) {
+      setFacingLeft(true);
       addHorizontal(3);
       for (int i = 0; i<ts.size(); i++) {
         for (int ii=0; ii<ts.get(i).size(); ii++) {
@@ -210,6 +226,7 @@ class Mario {
       }
     }
     if (dpressed) {
+      setFacingLeft(false);
       addHorizontal(-3);
       for (int i = 0; i<ts.size(); i++) {
         for (int ii=0; ii<ts.get(i).size(); ii++) {
@@ -219,6 +236,47 @@ class Mario {
           }
         }
       }
+/*
+      gifCounter++;
+      if (gifCounter == 12) {
+        gifCounter = 0;
+      }
+      if (gifCounter == 0) {
+        setMario("runningmario1.png");
+      }
+      if (gifCounter == 1) {
+        setMario("runningmario2.png");
+      }
+      if (gifCounter == 2) {
+        setMario("runningmario3.png");
+      }
+      if (gifCounter == 3) {
+        setMario("runningmario4.png");
+      }
+      if (gifCounter == 4) {
+        setMario("runningmario5.png");
+      }
+      if (gifCounter == 5) {
+        setMario("runningmario6.png");
+      }
+      if (gifCounter == 6) {
+        setMario("runningmario7.png");
+      }
+      if (gifCounter == 7) {
+        setMario("runningmario8.png");
+      }
+      if (gifCounter == 8) {
+        setMario("runningmario9.png");
+      }
+      if (gifCounter == 9) {
+        setMario("runningmario10.png");
+      }
+      if (gifCounter == 10) {
+        setMario("runningmario11.png");
+      }
+      if (gifCounter == 11) {
+        setMario("runningmario12.png");
+      }*/
     }
     if (getHorizontal()>0) {
       setHorizontal(0);
@@ -255,10 +313,14 @@ class Mario {
       itsame.move(0, itsame.getYcor()+itsame.getVsize()-groundheight);
       itsame.setJumpsLeft(2);
       gravity-=.5;
-      if(itsame.getObtainedIceFlower()){
+      if (itsame.getObtainedIceFlower()) {
         itsame.setMario("standingFireMario.png");
-      }else{
-      itsame.setMario("standingMario.png");
+      }
+      /*else if (itsame.getHasShell()) {
+       itsame.setMario("standingMarioShell.png");
+       } */
+      else {
+        itsame.setMario("standingMario.png");
       }
     }
   }
