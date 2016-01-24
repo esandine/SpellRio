@@ -78,7 +78,7 @@ void draw() {
     background(deathScreen);
     textSize(20);
     fill(255);
-    text("GAME OVER! Press R to Restart!", width/3 - 45, 400);
+    text("Press R to Restart!", width/3+5, 300);
   }
     else {
     if (!itsame.getLost() && !paused) {
