@@ -62,7 +62,7 @@ class Mario {
       if (facingLeft) {
         pushMatrix();
         scale(-1, 1);
-        image(mario, -getXcor(), getYcor(), hsize, vsize);
+        image(mario, -getXcor()-getHsize(), getYcor(), hsize, vsize);
         popMatrix();
       } else {
         image(mario, getXcor(), getYcor(), hsize, vsize);
