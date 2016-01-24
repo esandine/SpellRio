@@ -116,6 +116,9 @@ class Mario {
   float getHorizontal() {
     return horizontal;
   }
+  PImage getMario() {
+    return mario;
+  }
   boolean getLost() {
     return lost;
   }
@@ -140,7 +143,7 @@ class Mario {
   float getHsize() {
     return hsize;
   }
-  boolean getFacingLeft(){
+  boolean getFacingLeft() {
     return facingLeft;
   }
   void setMario(String s) {
@@ -203,7 +206,7 @@ class Mario {
   void setHsize(float n) {
     hsize = n;
   }
-  void setFacingLeft(boolean b){
+  void setFacingLeft(boolean b) {
     facingLeft = b;
   }
   //void setGroundSurface(float n){
@@ -225,7 +228,10 @@ class Mario {
         }
       }
     }
+
+
     if (dpressed) {
+
       setFacingLeft(false);
       addHorizontal(-3);
       for (int i = 0; i<ts.size(); i++) {
@@ -236,9 +242,23 @@ class Mario {
           }
         }
       }
-/*
       gifCounter++;
-      if (gifCounter == 12) {
+      if (obtainedIceFlower) {
+        if (gifCounter == 3) {
+          gifCounter = 0;
+        }
+        if (gifCounter == 0) {
+          setMario("runningfiremario1.png");
+        }
+        if (gifCounter == 1) {
+          setMario("runningfiremario2.png");
+        }
+        if (gifCounter == 2) {
+          setMario("runningfiremario3.png");
+        }
+      }
+      else{
+      if (gifCounter == 4) {
         gifCounter = 0;
       }
       if (gifCounter == 0) {
@@ -253,30 +273,7 @@ class Mario {
       if (gifCounter == 3) {
         setMario("runningmario4.png");
       }
-      if (gifCounter == 4) {
-        setMario("runningmario5.png");
       }
-      if (gifCounter == 5) {
-        setMario("runningmario6.png");
-      }
-      if (gifCounter == 6) {
-        setMario("runningmario7.png");
-      }
-      if (gifCounter == 7) {
-        setMario("runningmario8.png");
-      }
-      if (gifCounter == 8) {
-        setMario("runningmario9.png");
-      }
-      if (gifCounter == 9) {
-        setMario("runningmario10.png");
-      }
-      if (gifCounter == 10) {
-        setMario("runningmario11.png");
-      }
-      if (gifCounter == 11) {
-        setMario("runningmario12.png");
-      }*/
     }
     if (getHorizontal()>0) {
       setHorizontal(0);
@@ -320,7 +317,9 @@ class Mario {
        itsame.setMario("standingMarioShell.png");
        } */
       else {
-        itsame.setMario("standingMario.png");
+        if (!dpressed) {
+          itsame.setMario("standingMario.png");
+        }
       }
     }
   }
