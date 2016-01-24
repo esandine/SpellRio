@@ -216,6 +216,8 @@ void keyReleased() {
     if(itsame.getHealth() == 0){
       startScreen = true;
     }
+    setTerrain();
+    setEnemies();
     //if (itsame.getHealth()>1) {
     paused = !paused;
     itsame = new Mario();// Makes Mario in the center
@@ -238,6 +240,7 @@ void keyReleased() {
 }
 //make my terrain
 void setTerrain() {
+  currentWorld.clear();
   int counter = 0;
   for (int i = 0; i<40; i++) {
     if (counter<20) {
@@ -270,6 +273,7 @@ void setTerrain() {
   //currentWorld.add(new Enemy("test"));
 }
 void setEnemies() {
+  currentEnemies.clear();
   for (int i = 0; i<20; i++) {
     if (i<15) {
       if (Math.random()>.5) {
