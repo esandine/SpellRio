@@ -24,7 +24,7 @@ public class marioBall extends Enemy {
   public void downTrigger(Mario m, ArrayList<Terrain> ts) {
   }
   public marioBall(Mario m, String qwer) {
-    this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 5, 5, "iceball.png", qwer);
+    this(m.getXcor()-m.getHorizontal(), itsame.getYcor(), 10, 10, "Fireball.png", qwer);
   }
   // ACCESSORS:
   public String getBulletType() {

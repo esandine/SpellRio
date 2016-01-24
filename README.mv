@@ -1,4 +1,22 @@
 Directions to use it:
+-1/23/15:
+-Ely Sandine & Dhiraj Patel (via Skype):
+-New Features:
+-Made a screen for when the Game begins
+-Added Jumping animation
+-Made a death Screen
+-Made Fire Mario into Ice Mario
+-Added animations for Fire Mario
+-Added facing left animation, as well as running
+Bugs Added:
+-None?
+Bugs Fixed:
+-Made text look better for start and end screens
+-Made Turle Shells kill enemies better
+-Fixed Animation
+Goals:
+-Win Screen
+-Fix collisions detection between enemies and terrain
 -1/22/16:
 -Ely Sandine & Dhiraj Patel (via Skype):
 -New Features:

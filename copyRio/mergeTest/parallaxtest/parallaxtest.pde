@@ -1,5 +1,4 @@
 //import ddf.minim.*;
-
 import java.util.*;
 int matrixMove;
 PImage back, middle, front;
@@ -215,6 +214,8 @@ void keyReleased() {
   if (key=='r') {
     if(itsame.getHealth() == 0){
       startScreen = true;
+      setTerrain();
+      setEnemies();
     }
     setTerrain();
     setEnemies();
@@ -246,7 +247,7 @@ void setTerrain() {
     if (counter<20) {
       float height = (float)Math.random()*200+300;
       if (i>1) {
-        currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+Math.random()*100)+currentWorld.get(i-1).getLength(), height-100, 50, 500-height, "pipe.png"));
+        currentWorld.add(new Pipe((float)(currentWorld.get(i-1).getXcor()+(Math.random()*200 + 50))+currentWorld.get(i-1).getLength(), height-100, 50, 500-height, "pipe.png"));
         counter++;
         print(i);
       } else {
@@ -271,6 +272,7 @@ void setTerrain() {
   currentWorld.add(new Flag());
   //currentWorld.add(new Mushroom(300.0,350.0,10.0,10.0,"mushroom.png"));
   //currentWorld.add(new Enemy("test"));
+  currentWorld.remove(0);
 }
 void setEnemies() {
   currentEnemies.clear();

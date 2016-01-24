@@ -2,8 +2,22 @@ Directions to use it:
 -1/22/16:
 -Ely Sandine & Dhiraj Patel (via Skype):
 -New Features:
--Ice balls now kill when fired
-- 
+-Ice balls now kill enemies when fired
+-Ice Balls now bounce
+-Shells now kill enemies but not Mario
+-Made Mario's appearance change when he gets mushrooms
+-Bugs Added:
+-none
+-Bugs Fixed:
+-Fixed pipe heights and spacing
+-Fixed Shell spawning
+-Fixed it so now it gives you a random powerup or a coin from item blocks not just iceFlowers
+-Goals:
+-Flying Powerup
+-Multiple Worlds
+-Title/Death Screen. When you hit start it takes to load level screen
+-Change the difficulty
+-Add more Mario animations
  Day by Day feature log:
 -1/21/16:
 -Ely Sandine:
