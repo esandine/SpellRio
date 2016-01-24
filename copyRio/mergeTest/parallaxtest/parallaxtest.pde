@@ -53,12 +53,11 @@ void setup() {
   startScreen = true;
   bgImageLoad = loadImage("newGameCreator.png");
   bgImageLoad.resize(width, height);
-  
+
   deathScreen = loadImage("deathScreen.png");
-  deathScreen.resize(width,height);
+  deathScreen.resize(width, height);
   front.resize(3500, 465);
   itsame = new Mario();
-  
 }
 void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
@@ -73,13 +72,23 @@ void paraDraw(PImage img, PVector pos, float vel) {
 void draw() {
   if (startScreen) {
     background(bgImageLoad);
-  }else if(itsame.getHealth() == 0){
+  } else if (itsame.getHealth() == 0) {
     background(deathScreen);
     textSize(20);
     fill(255);
     text("Press R to Restart!", width/3+5, 300);
-  }
-    else {
+  } else if (itsame.getWon()&&!won) {
+    background(0);
+    print("won");
+    fill(204, 102, 0);
+    textSize(20);
+    text("You Won! press R to Restart", width/2-50, height/2);
+    fill(105,204,220);
+    textSize(13);
+    redraw();
+    paused = !paused;
+    won=true;
+  } else {
     if (!itsame.getLost() && !paused) {
       //print(itsame.getHealth());  
       itsame.moveUpDown(groundheight, currents);
@@ -124,16 +133,7 @@ void draw() {
       //procrastination.display();
       popMatrix();
     }
-    if (itsame.getWon()&&!won) {
-      print("won");
-      fill(204, 102, 0);
-      textSize(20);
-      text("You Won! press R to Restart", width/2, height/2);
-      textSize(13);
-      redraw();
-      paused = !paused;
-      won=true;
-    }
+
     for (int n = 0; n<currents.size(); n++) {
       for (int nn = 0; nn<currents.get(n).size(); nn++) {
         if ((currents.get(n).get(nn)).getCollected()) {
@@ -151,11 +151,6 @@ void draw() {
      iceShot = new marioBall(itsame.getXcor(),itsame.getYcor(),1,"ice","iceball.png");
      iceShot.display(itsame);
      }*/
-
-      
-     
-     
-     
   }
 }
 
@@ -176,12 +171,12 @@ void keyPressed() {
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
     //if(itsame.getHasShell()){
-     // itsame.setMario("standingMarioShell.png");
+    // itsame.setMario("standingMarioShell.png");
     //}
-    if(itsame.getObtainedIceFlower()){
-          itsame.setMario("jumpingFireMario.png");
-    }else{
-    itsame.setMario("jumpingMario.png");
+    if (itsame.getObtainedIceFlower()) {
+      itsame.setMario("jumpingFireMario.png");
+    } else {
+      itsame.setMario("jumpingMario.png");
     }
   }
   if (key=='a') {
@@ -220,7 +215,7 @@ void keyReleased() {
     bushVel = 0;
   }
   if (key=='r') {
-    if(itsame.getHealth() == 0){
+    if (itsame.getHealth() == 0) {
       startScreen = true;
       setTerrain();
       setEnemies();
@@ -237,7 +232,7 @@ void keyReleased() {
       itsame.setHasShell(false);
       currentBalls.add(new Shell(itsame));
     }
-    if (itsame.getObtainedIceFlower()) {
+    if (itsame.getObtainedIceFlower()&&currentBalls.size()<10) {
       currentBalls.add(new marioBall(itsame, "iceFlower"));
     }
   }

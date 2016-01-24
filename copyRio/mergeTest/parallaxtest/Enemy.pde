@@ -1,50 +1,72 @@
-public abstract class Enemy extends Terrain implements Collectable{
+public abstract class Enemy extends Terrain implements Collectable {
   boolean collected;
-  public Enemy(float x, float y, float l, float h, String s){
-    super(x,y,l,h,s);
+  public Enemy(float x, float y, float l, float h, String s) {
+    super(x, y, l, h, s);
     collected=false;
   }
-  public boolean getCollected(){
+  public boolean getCollected() {
     return collected;
   }
-  public void setCollected(boolean b){
+  public void setCollected(boolean b) {
     collected=b;
   }
-  public Enemy(String s){
-    this(200,200,100,100,s);
+  public Enemy(String s) {
+    this(200, 200, 100, 100, s);
   }
-  public void upTrigger(Mario m){
+  public void upTrigger(Mario m) {
     //print("test");
     /*while(m.isInsideVerticle(this)){
-      m.move(0,-.1);
-    }*/
+     m.move(0,-.1);
+     }*/
     // while mario is on top of goomba, then kill goomba. 
     setCollected(true);
   }
-  public void leftTrigger(Mario m){
+  public void leftTrigger(Mario m) {
     m.setHorizontal(m.getOldHorizontal());
-    m.setHealth(m.getHealth()-1);
+    if (m.getHasAGreenPowerUp()) {
+      m.setYcor(height/2);
+      m.setHorizontal(m.getHorizontal()+100);
+      m.setGravity(10);
+      m.setHasAGreenPowerUp(false);
+    } else {
+      m.setHealth(m.getHealth()-1);
+    }
   }
-  public void rightTrigger(Mario m){
+  public void rightTrigger(Mario m) {
     m.setHorizontal(m.getOldHorizontal());
-    m.setHealth(m.getHealth()-1);
+    if (m.getHasAGreenPowerUp()) {
+      m.setYcor(height/2);
+      m.setHorizontal(m.getHorizontal()+100);
+      m.setGravity(10);
+      m.setHasAGreenPowerUp(false);
+    } else {
+      m.setHealth(m.getHealth()-1);
+    }
   }
-  public void downTrigger(Mario m,ArrayList<Terrain> ts){
-        while(m.isInsideVerticle(this)){
-      m.move(0,-.1);
+  public void downTrigger(Mario m, ArrayList<Terrain> ts) {
+    while (m.isInsideVerticle(this)) {
+      m.move(0, -.1);
     }
-    m.setHealth(m.getHealth()-1);
+
+    if (m.getHasAGreenPowerUp()) {
+      m.setYcor(height/2);
+      m.setHorizontal(m.getHorizontal()+100);
+      m.setGravity(10);
+      m.setHasAGreenPowerUp(false);
+    } else {
+      m.setHealth(m.getHealth()-1);
+    }
   }
-  public void move(float x,float y){
-    if(getHealth() == 1){
-    setXcor(getXcor()+x);
-    setYcor(getYcor()-y);
-    if(getXcor()<0){
-      setXcor(2250);
-    }
-    if(getXcor()>2250){
-      setXcor(0);
-    }
+  public void move(float x, float y) {
+    if (getHealth() == 1) {
+      setXcor(getXcor()+x);
+      setYcor(getYcor()-y);
+      if (getXcor()<0) {
+        setXcor(2250);
+      }
+      if (getXcor()>2250) {
+        setXcor(0);
+      }
     }
   }
   public abstract void oneMove(ArrayList<Terrain> t);
