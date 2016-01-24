@@ -22,26 +22,10 @@ public abstract class Enemy extends Terrain implements Collectable {
     setCollected(true);
   }
   public void leftTrigger(Mario m) {
-    m.setHorizontal(m.getOldHorizontal());
-    if (m.getHasAGreenPowerUp()) {
-      m.setYcor(height/2);
-      m.setHorizontal(m.getHorizontal()+100);
-      m.setGravity(10);
-      m.setHasAGreenPowerUp(false);
-    } else {
-      m.setHealth(m.getHealth()-1);
-    }
+    m.die();
   }
   public void rightTrigger(Mario m) {
-    m.setHorizontal(m.getOldHorizontal());
-    if (m.getHasAGreenPowerUp()) {
-      m.setYcor(height/2);
-      m.setHorizontal(m.getHorizontal()+100);
-      m.setGravity(10);
-      m.setHasAGreenPowerUp(false);
-    } else {
-      m.setHealth(m.getHealth()-1);
-    }
+    m.die();
   }
   public void downTrigger(Mario m, ArrayList<Terrain> ts) {
     while (m.isInsideVerticle(this)) {
@@ -69,5 +53,5 @@ public abstract class Enemy extends Terrain implements Collectable {
       }
     }
   }
-  public abstract void oneMove(ArrayList<Terrain> t);
+  public abstract boolean oneMove(ArrayList<Terrain> t);
 }

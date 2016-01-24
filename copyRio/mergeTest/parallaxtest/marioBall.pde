@@ -49,7 +49,7 @@ public class marioBall extends Enemy {
   void setOldXcor(float x) {
     oldXcor = x;
   }
-  public void oneMove(ArrayList<Terrain> t) {
+  public boolean oneMove(ArrayList<Terrain> t) {
     if (getYcor()>390) {
       gravity = -5;
     }
@@ -60,14 +60,13 @@ public class marioBall extends Enemy {
       if (t.get(i).getYcor()+t.get(i).getHeight()>=getYcor()+15) {
         //if(!((getXcor()+getLength()>t.get(i).getXcor())&&(getXcor()<t.get(i).getXcor()+t.get(i).getLength()))){
         if ((getXcor()<t.get(i).getXcor()+t.get(i).getLength())&&(!(getOldXcor()<t.get(i).getXcor()+t.get(i).getLength()))&&(t.get(i).getYcor()+t.get(i).getHeight()>=400)) {
-          t.remove(this);
-          print("testingBalls");
+          return true;
         }
         if ((getXcor()+getLength()>t.get(i).getXcor())&&(!((getOldXcor()+getLength()>t.get(i).getXcor())))) {
-          t.remove(this);
-          print("testingBalls");
+          return true;
         }
       }
     }
+    return false;
   }
 }

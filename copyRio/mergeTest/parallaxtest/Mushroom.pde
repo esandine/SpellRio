@@ -37,6 +37,7 @@ class Mushroom extends Terrain {
         print("redShroomObtained");
         m.setVsize(50);
         m.setHsize(30);
+        m.setHasARedPowerUp(true);
       }
       if (identifier.equals("greenShroom")) {
         m.setHealth(m.getHealth()+1);

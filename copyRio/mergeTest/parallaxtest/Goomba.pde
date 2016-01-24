@@ -14,7 +14,7 @@ public class Goomba extends Enemy{
    void setOldXcor(float x){
      oldXcor = x;
    }
-   public void oneMove(ArrayList<Terrain> t){
+   public boolean oneMove(ArrayList<Terrain> t){
      setOldXcor(getXcor());
      move(direction*.5,0);
      for(int i = 0;i<t.size();i++){
@@ -26,5 +26,6 @@ public class Goomba extends Enemy{
            direction = -1;
          }
        }
+            return true;
    }
 }

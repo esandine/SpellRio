@@ -19,6 +19,7 @@ class Mario {
   // POWER-UPS BOOLEANS:
   boolean hasAGreenPowerUp;
   boolean obtainedIceFlower;
+  boolean hasARedPowerUp;
   boolean hasShell;
   boolean loaded;
   boolean facingLeft;
@@ -128,6 +129,9 @@ class Mario {
   boolean getObtainedIceFlower() {
     return obtainedIceFlower;
   }
+  boolean getHasARedPowerUp(){
+    return hasARedPowerUp;
+  }
   //float getGroundSurface(){
   //  return groundsurface;
   //}
@@ -197,6 +201,9 @@ class Mario {
   void setObtainedIceFlower(boolean b) {
     obtainedIceFlower = b;
   }
+  void setHasARedPowerUp(boolean b){
+    hasARedPowerUp = b;
+  }
   void setHasShell(boolean b) {
     hasShell=b;
   }
@@ -227,22 +234,7 @@ class Mario {
           }
         }
       }
-    }
-
-
-    if (dpressed) {
-
-      setFacingLeft(false);
-      addHorizontal(-3);
-      for (int i = 0; i<ts.size(); i++) {
-        for (int ii=0; ii<ts.get(i).size(); ii++) {
-          if (isInside(ts.get(i).get(ii), getHorizontal(), getYcor())) {
-            ts.get(i).get(ii).leftTrigger(this);
-            //println("left");
-          }
-        }
-      }
-      gifCounter++;
+            gifCounter++;
       if (obtainedIceFlower) {
         if (gifCounter == 3) {
           gifCounter = 0;
@@ -273,6 +265,52 @@ class Mario {
       if (gifCounter == 3) {
         setMario("runningmario4.png");
       }
+      }
+    }
+
+
+    if (dpressed) {
+
+      setFacingLeft(false);
+      addHorizontal(-3);
+      for (int i = 0; i<ts.size(); i++) {
+        for (int ii=0; ii<ts.get(i).size(); ii++) {
+          if (isInside(ts.get(i).get(ii), getHorizontal(), getYcor())) {
+            ts.get(i).get(ii).leftTrigger(this);
+            //println("left");
+          }
+        }
+      }
+      gifCounter++;
+      if (obtainedIceFlower) {
+        if (gifCounter == 3) {
+          gifCounter = 0;
+        }
+        if (gifCounter == 0) {
+          setMario("runningfiremario1.png");
+        }
+        if (gifCounter == 1) {
+          setMario("runningfiremario2.png");
+        }
+        if (gifCounter == 2) {
+          setMario("runningfiremario3.png");
+        }
+      } else {
+        if (gifCounter == 4) {
+          gifCounter = 0;
+        }
+        if (gifCounter == 0) {
+          setMario("runningmario1.png");
+        }
+        if (gifCounter == 1) {
+          setMario("runningmario2.png");
+        }
+        if (gifCounter == 2) {
+          setMario("runningmario3.png");
+        }
+        if (gifCounter == 3) {
+          setMario("runningmario4.png");
+        }
       }
     }
     if (getHorizontal()>0) {
@@ -341,6 +379,13 @@ class Mario {
       setHasAGreenPowerUp(false);
     }
     setHealth(getHealth()-1);
+    setHsize(15);
+    setVsize(30);
+    setHasARedPowerUp(false);
+    setObtainedIceFlower(false);
+    setYcor(height/2);
+    setHorizontal(getHorizontal()+100);
+    setGravity(10);
     if (getHealth()<=0) {
       lost = true;
     } else {

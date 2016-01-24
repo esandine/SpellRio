@@ -128,7 +128,9 @@ void draw() {
         }
       }
       for (int i = 0; i<currentBalls.size(); i++) {
-        ((Enemy)currentBalls.get(i)).oneMove(currentWorld);
+        if(((Enemy)currentBalls.get(i)).oneMove(currentWorld)){
+          currentBalls.remove(i);
+        }
       }
       //procrastination.display();
       popMatrix();
