@@ -60,6 +60,17 @@ void paraDraw(PImage img, PVector pos, float vel) {
 void draw() {
   if (!itsame.getLost() && !paused) {
     //print(itsame.getHealth());  
+    itsame.moveUpDown(groundheight, currents);
+    if ((itsame.getHealth() == 0 && !lost)) {
+      fill(204, 102, 0);
+      textSize(20);
+      text("press R to Restart", width/2, height/2);
+      //noLoop();
+      lost = true;
+      textSize(13);
+      redraw();
+      paused = !paused;
+    }
     pushMatrix();
     itsame.setOldHorizontal(itsame.getHorizontal());
     background(255);
@@ -88,17 +99,6 @@ void draw() {
     }
     //procrastination.display();
     popMatrix();
-    itsame.moveUpDown(groundheight, currents);
-  }
-  if ((itsame.getHealth() == 0 && !lost)) {
-    fill(204, 102, 0);
-    textSize(20);
-    text("press R to Restart", width/2, height/2);
-    //noLoop();
-    lost = true;
-    textSize(13);
-    redraw();
-    paused = !paused;
   }
   if (itsame.getWon()&&!won) {
     print("won");
@@ -182,10 +182,10 @@ void keyReleased() {
     bushVel = 0;
   }
   if (key=='r') {
-    if (itsame.getHealth()>1) {
-      paused = !paused;
-      itsame = new Mario();// Makes Mario in the center
-    }
+    //if (itsame.getHealth()>1) {
+    paused = !paused;
+    itsame = new Mario();// Makes Mario in the center
+    //}
   }
   if (key=='k') {
     print(itsame.getObtainedIceFlower());
