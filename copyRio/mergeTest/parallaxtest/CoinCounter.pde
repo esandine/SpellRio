@@ -1,5 +1,6 @@
 class CoinCounter{
   int coinNum = 0;
+
   CoinCounter(){
       coinNum = 0;
   }

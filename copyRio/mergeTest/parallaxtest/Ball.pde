@@ -3,7 +3,7 @@ public class Ball extends Enemy{
     super(x,y,l,h,s);
   }
   public Ball(Mario m){
-    this(itsame.getXcor(),itsame.getYcor(),5,5,"Fireball.png");
+    this(itsame.getXcor(),itsame.getYcor(),30,30,"Fireball.png");
   }
   void oneMove(ArrayList<Terrain> t){
     setXcor(getXcor()+3);

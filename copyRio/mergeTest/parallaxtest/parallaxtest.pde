@@ -1,4 +1,5 @@
 //import ddf.minim.*;
+
 import java.util.*;
 int matrixMove;
 PImage back, middle, front;
@@ -14,14 +15,14 @@ ArrayList<Terrain> currentWorld = new ArrayList();
 ArrayList<Terrain> currentEnemies = new ArrayList();
 ArrayList<Terrain> currentBalls = new ArrayList();
 ArrayList<ArrayList<Terrain>> currents = new ArrayList();
-Mario itsame = new Mario();
+Mario itsame;
 //AudioPlayer player;
 //Minim minim;
 boolean paused;
 boolean startScreen;
 //Goomba procrastination = new Goomba("dont do it");
 //Setup is called at the beginning of the game
-
+PImage bgImageLoad;
 
 void setup() {
   /*minim = new Minim(this);
@@ -29,10 +30,12 @@ void setup() {
    if(itsame.getHealth() > 0){
    player.play();
    }*/
+
   //It load sthe grond, middle, and background
-  back = loadImage("backTest.png");
+  back = loadImage("back2.png");
+  back.resize(width, height);
   middle = loadImage("middle.png");
-  front = loadImage("qwre.png");
+  front = loadImage("front2.png");
   paused = false;
   //Makes the size of the screen 640x420 also sets the framerate and textsize
   size(640, 420);
@@ -49,6 +52,11 @@ void setup() {
   currents.add(currentBalls);
   paused =true;
   startScreen = true;
+  bgImageLoad = loadImage("newGameCreator.png");
+  bgImageLoad.resize(width, height);
+  front.resize(2250, 465);
+  itsame = new Mario();
+  
 }
 void paraDraw(PImage img, PVector pos, float vel) {
   //pos.sub(vel, 0, 0);
@@ -62,13 +70,11 @@ void paraDraw(PImage img, PVector pos, float vel) {
 // makes original mario
 void draw() {
   if (startScreen) {
+    background(bgImageLoad);
+  }else if(itsame.getHealth() == 0){
     background(0);
-    fill(165,42,42);
-    rect(width/4,height/4,width/2,height/2);
-    textSize(20);
-    fill(0,0,0);
-    text("New Game: Hit n to begin!",200,height/3);
-  } else {
+  }
+    else {
     if (!itsame.getLost() && !paused) {
       //print(itsame.getHealth());  
       itsame.moveUpDown(groundheight, currents);
@@ -84,7 +90,9 @@ void draw() {
       }
       pushMatrix();
       itsame.setOldHorizontal(itsame.getHorizontal());
-      background(255);
+      background(back);
+
+      image(front, 0, 400, width, height);
       itsame.moveLeftRight(currents);
       //procrastination.oneMove();
       //itsame.triggers(currentWorld);
@@ -157,6 +165,7 @@ void keyPressed() {
     itsame.setIsJumping(15);
     itsame.setGravity(0);
     itsame.setJumpsLeft(itsame.getJumpsLeft()-1);
+    itsame.setMario("jumpingMario.png");
   }
   if (key=='a') {
     itsame.setApressed(true);
@@ -194,6 +203,9 @@ void keyReleased() {
     bushVel = 0;
   }
   if (key=='r') {
+    if(itsame.getHealth() == 0){
+      startScreen = true;
+    }
     //if (itsame.getHealth()>1) {
     paused = !paused;
     itsame = new Mario();// Makes Mario in the center
@@ -209,7 +221,7 @@ void keyReleased() {
       currentBalls.add(new marioBall(itsame, "iceFlower"));
     }
   }
-  if(key == 'n'){
+  if (key == '2') {
     startScreen = false;
     paused = false;
   }

@@ -14,6 +14,7 @@ public class ItemBlock extends Terrain implements Collectable {
       m.move(0, .1);
     }
     m.setJumpsLeft(2);
+    itsame.setMario("standingMario.png");
   }
   public void leftTrigger(Mario m) {
     m.setHorizontal(m.getOldHorizontal());

@@ -46,6 +46,7 @@ class Mario {
     //groundsurface=-10;
     vsize = 30;
     hsize = 15;
+    setMario("standingMario.png");
   }
   Mario(float x, float y) {
     this(color(220, 0, 0), x, y);
@@ -55,13 +56,7 @@ class Mario {
   }
   void display() {//Displays Mario
     if (getHealth() > 0) {
-      if (obtainedIceFlower) {
-        //mario = loadImage("iceSuitMario.png");
-        //setLoaded(true);
-        //print(getObtainedIceFlower());
-      } else {
-        mario=loadImage("standingMario.gif");
-      }
+
       image(mario, getXcor(), getYcor(), hsize, vsize);
     }
   }
@@ -230,71 +225,72 @@ class Mario {
     } else {
       addHorizontal(0);
       /*for (int i = 0; i<ts.size(); i++) {
-        for (int ii = 0; ii<ts.get(i).size(); ii++) {
-          if (isInside(ts.get(i).get(ii), getHorizontal(), getYcor())) {
-            ts.get(i).get(ii).leftTrigger(this);
-            ts.get(i).get(ii).rightTrigger(this);
-          }
-        }
-      }*/
+       for (int ii = 0; ii<ts.get(i).size(); ii++) {
+       if (isInside(ts.get(i).get(ii), getHorizontal(), getYcor())) {
+       ts.get(i).get(ii).leftTrigger(this);
+       ts.get(i).get(ii).rightTrigger(this);
+       }
+       }
+       }*/
     }
   }
-      //moveUpDown moves Mario either vertically up, or vertically down
-      void moveUpDown(float groundheight, ArrayList<ArrayList<Terrain>> ts) {
-        if (gravity<50) {
-          gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
-        }
-        itsame.move(0, 10-gravity);
-        for (int i = 0; i<ts.size(); i++) {
-          for (int ii = 0; ii<ts.get(i).size(); ii++) {
-            if (isInside(ts.get(i).get(ii), horizontal, 0)) {
-              if (10-gravity>0) {
-                ts.get(i).get(ii).downTrigger(this, ts.get(i));
-              } else {
-                ts.get(i).get(ii).upTrigger(this);
-              }
-            }
+  //moveUpDown moves Mario either vertically up, or vertically down
+  void moveUpDown(float groundheight, ArrayList<ArrayList<Terrain>> ts) {
+    if (gravity<50) {
+      gravity += .5;//((groundheight-itsame.getYcor())/38);//Readjusts gravity based on his height
+    }
+    itsame.move(0, 10-gravity);
+    for (int i = 0; i<ts.size(); i++) {
+      for (int ii = 0; ii<ts.get(i).size(); ii++) {
+        if (isInside(ts.get(i).get(ii), horizontal, 0)) {
+          if (10-gravity>0) {
+            ts.get(i).get(ii).downTrigger(this, ts.get(i));
+          } else {
+            ts.get(i).get(ii).upTrigger(this);
           }
         }
-        if (itsame.getYcor()+itsame.getVsize()>groundheight) {//If mario hits the ground
-          itsame.move(0, itsame.getYcor()+itsame.getVsize()-groundheight);
-          itsame.setJumpsLeft(2);
-          gravity-=.5;
-        }
-      }
-      public boolean isInside(Terrain m, float hori, float vert) {
-        return isInsideHorizontal(m)&&isInsideVerticle(m);
-      }
-      public boolean isInsideHorizontal(Terrain m) {
-        return (getXcor()+getHsize()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
-      }
-      public boolean isInsideVerticle(Terrain m) {
-        return (getYcor()+getVsize()>m.getYcor()) && (getYcor()<m.getYcor()+m.getHeight());
-      }
-      public void die() {
-        int m = 0;
-        if(getHasAGreenPowerUp()){
-          setYcor(height/2);
-          setHorizontal(getHorizontal()+100);
-          setGravity(10);
-          setHasAGreenPowerUp(false);
-        }
-        setHealth(getHealth()-1);
-        if(getHealth()<=0){
-        lost = true;
-        }else{
-          setHealth(1);
-        }
-      }
-      public void addHorizontal(float n) {
-        setHorizontal(getHorizontal()+n);
-      }
-      boolean checkPipes(ArrayList<Terrain> ts) {
-        for (int i = 0; i<5; i++) {
-          if (isInsideHorizontal(ts.get(i))) {
-            return true;
-          }
-        }
-        return false;
       }
     }
+    if (itsame.getYcor()+itsame.getVsize()>groundheight) {//If mario hits the ground
+      itsame.move(0, itsame.getYcor()+itsame.getVsize()-groundheight);
+      itsame.setJumpsLeft(2);
+      gravity-=.5;
+      itsame.setMario("standingMario.png");
+    }
+  }
+  public boolean isInside(Terrain m, float hori, float vert) {
+    return isInsideHorizontal(m)&&isInsideVerticle(m);
+  }
+  public boolean isInsideHorizontal(Terrain m) {
+    return (getXcor()+getHsize()>m.getXcor()+getHorizontal())&&(getXcor()<m.getXcor()+m.getLength()+getHorizontal());
+  }
+  public boolean isInsideVerticle(Terrain m) {
+    return (getYcor()+getVsize()>m.getYcor()) && (getYcor()<m.getYcor()+m.getHeight());
+  }
+  public void die() {
+    int m = 0;
+    if (getHasAGreenPowerUp()) {
+      setYcor(height/2);
+      setHorizontal(getHorizontal()+100);
+      setGravity(10);
+      setHasAGreenPowerUp(false);
+    }
+    setHealth(getHealth()-1);
+    if (getHealth()<=0) {
+      lost = true;
+    } else {
+      setHealth(1);
+    }
+  }
+  public void addHorizontal(float n) {
+    setHorizontal(getHorizontal()+n);
+  }
+  boolean checkPipes(ArrayList<Terrain> ts) {
+    for (int i = 0; i<5; i++) {
+      if (isInsideHorizontal(ts.get(i))) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
