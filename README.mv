@@ -1,4 +1,17 @@
-Directions to use it:
+Project Description:
+-We attempted to create a replica of the classic Mario game. In the game the pl$
+Directions to Compile/Run:
+-To run change directories into Driver. Open Driver.png in Processing. Then Run$
+Controls:
+-w: jump
+-a: move left
+-d: move right
+-p: pause
+-k: fire fireball
+-2: Begin game
+-r: Restart Game when dead
+-r -p: Restart the game while game is in progress
+Day by Day Changelog:
 -1/23/15:
 -Ely Sandine & Dhiraj Patel (via Skype):
 -New Features:
