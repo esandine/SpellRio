@@ -1,4 +1,3 @@
-//import ddf.minim.*;
 import java.util.*;
 int matrixMove;
 PImage back, middle, front;
@@ -15,8 +14,6 @@ ArrayList<Terrain> currentEnemies = new ArrayList();
 ArrayList<Terrain> currentBalls = new ArrayList();
 ArrayList<ArrayList<Terrain>> currents = new ArrayList();
 Mario itsame;
-//AudioPlayer player;
-//Minim minim;
 boolean paused;
 boolean startScreen;
 //Goomba procrastination = new Goomba("dont do it");
@@ -24,12 +21,6 @@ boolean startScreen;
 PImage bgImageLoad, deathScreen;
 
 void setup() {
-  /*minim = new Minim(this);
-   player = minim.loadFile("backgroundMusic.mp3",2048);
-   if(itsame.getHealth() > 0){
-   player.play();
-   }*/
-
   //It load sthe grond, middle, and background
   back = loadImage("back2.png");
   back.resize(width, height);
@@ -292,9 +283,3 @@ void setEnemies() {
     }
   }
 }
-/*
-void stop(){
- player.close();
- minim.stop();
- super.stop();
- }*/

@@ -19,8 +19,9 @@ class CoinCounter{
     textSize(20);
     text(""+coinNum,35,30);
     
-    image(healthCounter, width - 40, 30);
+    image(healthCounter, width - 50, 10);
     textSize(20);
+    fill(0,0,0);
     text(""+itsame.getHealth(),width - 20,30);
   }
 }
