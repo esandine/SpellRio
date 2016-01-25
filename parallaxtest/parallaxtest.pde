@@ -83,7 +83,7 @@ void draw() {
     fill(204, 102, 0);
     textSize(20);
     text("You Won! press R to Restart", width/2-50, height/2);
-    fill(105,204,220);
+    fill(105, 204, 220);
     textSize(13);
     redraw();
     paused = !paused;
@@ -128,7 +128,7 @@ void draw() {
         }
       }
       for (int i = 0; i<currentBalls.size(); i++) {
-        if(((Enemy)currentBalls.get(i)).oneMove(currentWorld)){
+        if (((Enemy)currentBalls.get(i)).oneMove(currentWorld)) {
           currentBalls.remove(i);
         }
       }
